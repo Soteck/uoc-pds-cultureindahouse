@@ -7,12 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pra2-rmiclient" />
-        <module name="pra2-ear" />
-        <module name="pra2-ejb" />
-        <module name="pra2-api" />
-        <module name="pra2-front" />
+        <module name="cultureindahouse-ejb" />
+        <module name="cultureindahouse-ear" />
+        <module name="cultureindahouse-rmiclient" />
+        <module name="cultureindahouse-api" />
+        <module name="cultureindahouse-front" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pra2-api" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

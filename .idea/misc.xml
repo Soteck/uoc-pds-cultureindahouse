@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="javaeeApplication" url="file://$PROJECT_DIR$/pra2-ear" />
-    <file type="web" url="file://$PROJECT_DIR$/pra2-api" />
-    <file type="web" url="file://$PROJECT_DIR$/pra2-front" />
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/cultureindahouse-ear" />
+    <file type="web" url="file://$PROJECT_DIR$/cultureindahouse-api" />
+    <file type="web" url="file://$PROJECT_DIR$/cultureindahouse-front" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
