@@ -5,17 +5,17 @@
 <application>
   <display-name>cultureindahouse-ear</display-name>
   <module>
-    <ejb>cultureindahouse-ejb.jar</ejb>
+    <ejb>cultureindahouse-ejb-1.0-SNAPSHOT.jar</ejb>
   </module>
   <module>
     <web>
-      <web-uri>cultureindahouse-front.war</web-uri>
+      <web-uri>cultureindahouse-front-1.0-SNAPSHOT.war</web-uri>
       <context-root>/front</context-root>
     </web>
   </module>
   <module>
     <web>
-      <web-uri>cultureindahouse-api.war</web-uri>
+      <web-uri>cultureindahouse-api-1.0-SNAPSHOT.war</web-uri>
       <context-root>/api</context-root>
     </web>
   </module>

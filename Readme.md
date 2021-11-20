@@ -1,5 +1,4 @@
 # Proyecto de desarrollo del Software: Práctica 4
-
 ##Autores:
 - Amelia
 - Antonio
