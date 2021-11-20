@@ -1,4 +1,4 @@
-es\soteck\uoc\iscsd\pra2\front\AddCategoryMB.class
-es\soteck\uoc\iscsd\pra2\front\ListCategoriesMB.class
-es\soteck\uoc\iscsd\pra2\front\ShowCategoryMB.class
-es\soteck\uoc\iscsd\pra2\front\EditCategoryMB.class
+org\uoc\pds\alpha\cultureindahouse\front\AddCategoryMB.class
+org\uoc\pds\alpha\cultureindahouse\front\EditCategoryMB.class
+org\uoc\pds\alpha\cultureindahouse\front\ListCategoriesMB.class
+org\uoc\pds\alpha\cultureindahouse\front\ShowCategoryMB.class
