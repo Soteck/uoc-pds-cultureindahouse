@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+
+        <form>
+            <div class="container col-6 p-5 my-5 border bg-dark border-warning">
+                <h1 class="h3 mb-3 fw-normal text-white">An unexpected error has occurred</h1>
+
+                <h:link outcome="index" type="submit" value="Register" styleClass="btn btn-warning text-dark me-2">
+                    <span class="fa fa-poo"/>
+                </h:link>
+            </div>
+            <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        </form>
+
+        <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>
