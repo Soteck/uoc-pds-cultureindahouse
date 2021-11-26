@@ -1,8 +1,0 @@
-org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryRemote.class
-org\uoc\pds\alpha\cultureindahouse\ejb\repository\CategoryRepositoryInterface.class
-org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryBean.class
-org\uoc\pds\alpha\cultureindahouse\ejb\pojo\CategoryVO.class
-org\uoc\pds\alpha\cultureindahouse\ejb\entity\Category.class
-org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryLocal.class
-org\uoc\pds\alpha\cultureindahouse\ejb\base\BaseRepository.class
-org\uoc\pds\alpha\cultureindahouse\ejb\repository\CategoryRepository.class
