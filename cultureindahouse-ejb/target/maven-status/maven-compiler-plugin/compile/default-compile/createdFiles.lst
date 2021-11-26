@@ -1,8 +1,8 @@
-es\soteck\uoc\iscsd\pra2\ejb\base\BaseRepository.class
-es\soteck\uoc\iscsd\pra2\ejb\bean\CategoryRemote.class
-es\soteck\uoc\iscsd\pra2\ejb\repository\CategoryRepository.class
-es\soteck\uoc\iscsd\pra2\ejb\repository\CategoryRepositoryInterface.class
-es\soteck\uoc\iscsd\pra2\ejb\bean\CategoryLocal.class
-es\soteck\uoc\iscsd\pra2\ejb\entity\Category.class
-es\soteck\uoc\iscsd\pra2\ejb\pojo\CategoryVO.class
-es\soteck\uoc\iscsd\pra2\ejb\bean\CategoryBean.class
+org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryRemote.class
+org\uoc\pds\alpha\cultureindahouse\ejb\repository\CategoryRepositoryInterface.class
+org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryBean.class
+org\uoc\pds\alpha\cultureindahouse\ejb\pojo\CategoryVO.class
+org\uoc\pds\alpha\cultureindahouse\ejb\entity\Category.class
+org\uoc\pds\alpha\cultureindahouse\ejb\bean\CategoryLocal.class
+org\uoc\pds\alpha\cultureindahouse\ejb\base\BaseRepository.class
+org\uoc\pds\alpha\cultureindahouse\ejb\repository\CategoryRepository.class
