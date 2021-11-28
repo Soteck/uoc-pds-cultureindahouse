@@ -1,11 +1,11 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -14,18 +14,30 @@ import javax.persistence.Table;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "event", schema = "pra2")
-public class Event {
+@Table(name = "orderHistory", schema = "pra2")
+public class OrderHistory {
 
 	@Id
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "date")
+	private Date date;
 
-	@Column(name = "description")
-	private String description;
+	@Column(name = "reservationId")
+	private String reservationId;
+
+	@Column(name = "orderId")
+	private String orderId;
+
+	@ManyToOne
+	@JoinColumn(name = "eventId")
+	private Event event;
+
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
 
 
 }

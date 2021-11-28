@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -14,30 +15,20 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "category", schema = "pra2")
-public class Category {
-
+@Table(name = "label", schema = "pra2")
+public class Label {
 
 	@Id
 	@Column(name = "id")
 	private int id;
 
+	@NotNull
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "description")
 	private String description;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Category category = (Category) o;
-		return name != null && Objects.equals(name, category.name);
-	}
 
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
+
 }

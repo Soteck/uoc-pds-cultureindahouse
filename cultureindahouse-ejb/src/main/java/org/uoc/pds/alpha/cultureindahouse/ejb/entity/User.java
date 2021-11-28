@@ -1,12 +1,15 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
-import lombok.*;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Objects;
+
+import lombok.*;
+
 
 @Entity
 @Getter
@@ -16,7 +19,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "user", schema = "pra2")
 public  class User {
-
 
 	@Id
 	@Column(name = "email")
@@ -39,6 +41,12 @@ public  class User {
 
 	@Column(name = "address")
 	private String address;
+
+	@Column(name = "isAdministrator")
+	private boolean isAdministrator;
+
+	@OneToMany(mappedBy = "orderHistory")
+	private Collection<OrderHistory> orderHistory;
 
 
 }

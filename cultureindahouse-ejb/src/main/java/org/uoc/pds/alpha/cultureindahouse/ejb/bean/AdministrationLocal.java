@@ -1,22 +1,51 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface CategoryLocal {
+public interface AdministrationLocal {
 
-	CategoryVO add(String name, String description);
+	CategoryVO addCategory(String name, String description);
 
-	List<CategoryVO> list();
+	CategoryVO updateCategory(int id, String name, String description);
 
-	void delete(String name);
+	CategoryVO showCategory(int id);
 
-	CategoryVO update(String name, String description);
+	List<CategoryVO> listAllCategories();
 
-	CategoryVO findByName(String name);
+	void deleteCategory(int id);
+
+	EventOrganizerVO addEventOrganizer( String name, String description);
+
+	EventOrganizerVO updateEventOrganizer (int id, String name, String description);
+
+	EventOrganizerVO showEventOrganizer(int id);
+
+	List<EventOrganizerVO> listAllEventOrganizers();
+
+	UserVO addAdministrator (String email, String password, String name, String surname);
+
+	UserVO updateAdministrator( String email, String password, String name, String surname);
+
+	UserVO showAdministator ( String email);
+
+	List<UserVO> listAllAdministrators();
+
+	LabelVO addLabel (String name, String description);
+
+	LabelVO updateLabel (int id, String name, String description);
+
+	LabelVO showLabel(int id);
+
+	List<LabelVO> listAllLabels();
+
+	void removeLabel(int id);
 
 
 }

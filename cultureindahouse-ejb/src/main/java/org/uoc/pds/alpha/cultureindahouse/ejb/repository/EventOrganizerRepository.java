@@ -1,6 +1,8 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Stateless
 @TransactionManagement
-public class CategoryRepository implements CategoryRepositoryInterface {
+public class EventOrganizerRepository implements EventOrganizerRepositoryInterface {
 
 
 	@PersistenceContext(unitName = "GAO-PU")
@@ -20,7 +22,7 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 
 	@Override
-	public Category add(Category data) {
+	public EventOrganizer add(EventOrganizer data) {
 		em.persist(data);
 		em.flush();
 		return data;
@@ -28,28 +30,28 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 	@Override
 	public void delete(Serializable id) {
-		Category data = this.get(id);
+		EventOrganizer data = this.get(id);
 		em.remove(data);
 	}
 
 	@Override
-	public Category update(Serializable id, Category data) {
-		Category bddData = this.get(id);
-//		bddData.setName(data.getName());
+	public EventOrganizer update(Serializable id, EventOrganizer data) {
+		EventOrganizer bddData = this.get(id);
+		bddData.setName(data.getName());
 		bddData.setDescription(data.getDescription());
 		em.flush();
 		return bddData;
 	}
 
 	@Override
-	public Category get(Serializable id) {
-		return em.find(Category.class, id);
+	public EventOrganizer get(Serializable id) {
+		return em.find(EventOrganizer.class, id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Category> list() {
-		Query query = em.createQuery("select c from Category c");
+	public List<EventOrganizer> list() {
+		Query query = em.createQuery("select c from EventOrganizer c");
 		return query.getResultList();
 	}
 }

@@ -1,51 +1,32 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
 
 import javax.ejb.Local;
+import java.net.URL;
 import java.util.List;
 
 @Local
-public interface AdministrationLocal {
+public interface EventLocal {
 
-	CategoryVO addCategory(String name, String description);
+void orderEvent(int eventId, String email, String reservationId);
 
-	CategoryVO updateCategory(int id, String name, String description);
+    List<EventVO> listAllEvents();
 
-	CategoryVO showCategory(int id);
+    List<EventVO>  findEventsByCategory(int categoryId);
 
-	List<CategoryVO> listAllCategories();
+    List<EventVO> findEventsByName (String name);
 
-	void deleteCategory(int id);
+    List<EventVO>  findEventsByLabel( String label);
 
-	EventOrganizerVO addEventOrganizer( String name, String description);
+    EventVO showEvent(int id);
 
-	EventOrganizerVO updateEventOrganizer (int id, String name, String description);
+    EventVO showEvent (String reservationId, URL location);
 
-	EventOrganizerVO showEventOrganizer(int id);
+    List<OrderHistoryVO> findOrdersByUser(String email);
 
-	List<EventOrganizerVO> listAllEventOrganizers();
+    List<OrderHistoryVO> findAllOrders();
 
-	UserVO addAdministrator (String email, String password, String name, String surname);
-
-	UserVO updateAdministrator( String email, String password, String name, String surname);
-
-	UserVO showAdministator ( String email);
-
-	List<UserVO> listAllAdministrators();
-
-	LabelVO addLabel (String name, String description);
-
-	LabelVO updateLabel (int id, String name, String description);
-
-	LabelVO showLabel(int id);
-
-	List<LabelVO> listAllLabels();
-
-	void removeLabel(int id);
-
+    OrderHistoryVO showOrder(int id);
 
 }

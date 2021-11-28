@@ -2,8 +2,13 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.CategoryMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.CategoryRepositoryInterface;
+import org.uoc.pds.alpha.cultureindahouse.ejb.repository.EventOrganizerRepositoryInterface;
+import org.uoc.pds.alpha.cultureindahouse.ejb.repository.LabelRepositoryInterface;
+import org.uoc.pds.alpha.cultureindahouse.ejb.repository.UserRepositoryInterface;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,55 +16,118 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class CategoryBean implements CategoryLocal, CategoryRemote {
+public class AdministrationBean implements AdministrationLocal, AdministrationRemote {
 
 	@EJB
 	private CategoryRepositoryInterface categoryRepository;
+	@EJB
+	private EventOrganizerRepositoryInterface eventOrganizerRepositoryInterface;
+	@EJB
+	private UserRepositoryInterface userRepositoryInterface;
+	@EJB
+	private LabelRepositoryInterface labelRepositoryInterface;
+
 
 	@Override
-	public CategoryVO add(String name, String description) {
+	public CategoryVO addCategory(String name, String description) {
 		Category category = new Category();
 		category.setName(name);
 		category.setDescription(description);
-		return entityToVO(categoryRepository.add(category));
+		return CategoryMapper.entityToVO(categoryRepository.add(category));
 	}
 
 	@Override
-	public List<CategoryVO> list() {
-		List<Category> data = categoryRepository.list();
-		return entityToVO(data);
-	}
-
-	@Override
-	public void delete(String name) {
-		this.categoryRepository.delete(name);
-	}
-
-	@Override
-	public CategoryVO update(String name, String description) {
+	public CategoryVO updateCategory(int id, String name, String description) {
 		Category data = new Category();
 		data.setDescription(description);
-		return entityToVO(this.categoryRepository.update(name, data));
+		return CategoryMapper.entityToVO(this.categoryRepository.update(name, data));
 	}
 
 	@Override
-	public CategoryVO findByName(String name) {
-		return entityToVO(this.categoryRepository.get(name));
+	public CategoryVO showCategory(int id) {
+		return CategoryMapper.entityToVO(this.categoryRepository.get(id));
 	}
 
-	private CategoryVO entityToVO(Category category) {
-		CategoryVO ret = new CategoryVO();
-		ret.setName(category.getName());
-		ret.setDescription(category.getDescription());
-		return ret;
+	@Override
+	public void deleteCategory(int id) {
+		this.categoryRepository.delete(id);
 	}
 
-	private List<CategoryVO> entityToVO(List<Category> categories) {
-		List<CategoryVO> ret = new ArrayList<>();
-		for (Category cat : categories) {
-			ret.add(this.entityToVO(cat));
-		}
-		return ret;
+	@Override
+	public List<CategoryVO> listAllCategories() {
+		List<Category> data = categoryRepository.list();
+		return CategoryMapper.entityToVO(data);
 	}
+
+
+	@Override
+	public EventOrganizerVO addEventOrganizer(String name, String description) {
+		return null;
+	}
+
+	@Override
+	public EventOrganizerVO updateEventOrganizer(int id, String name, String description) {
+		return null;
+	}
+
+	@Override
+	public EventOrganizerVO showEventOrganizer(int id) {
+		return null;
+	}
+
+	@Override
+	public List<EventOrganizerVO> listAllEventOrganizers() {
+		return null;
+	}
+
+	@Override
+	public UserVO addAdministrator(String email, String password, String name, String surname) {
+		return null;
+	}
+
+	@Override
+	public UserVO updateAdministrator(String email, String password, String name, String surname) {
+		return null;
+	}
+
+	@Override
+	public UserVO showAdministator(String email) {
+		return null;
+	}
+
+	@Override
+	public List<UserVO> listAllAdministrators() {
+		return null;
+	}
+
+	@Override
+	public LabelVO addLabel(String name, String description) {
+		return null;
+	}
+
+	@Override
+	public LabelVO updateLabel(int id, String name, String description) {
+		return null;
+	}
+
+	@Override
+	public LabelVO showLabel(int id) {
+		return null;
+	}
+
+	@Override
+	public List<LabelVO> listAllLabels() {
+		return null;
+	}
+
+	@Override
+	public void removeLabel(int id) {
+
+	}
+
+
+
+
+
 
 }

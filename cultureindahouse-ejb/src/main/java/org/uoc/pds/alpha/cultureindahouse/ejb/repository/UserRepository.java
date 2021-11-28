@@ -1,26 +1,25 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.io.Serializable;
-import java.util.List;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 @Stateless
 @TransactionManagement
-public class CategoryRepository implements CategoryRepositoryInterface {
-
+public class UserRepository implements UserRepositoryInterface {
 
 	@PersistenceContext(unitName = "GAO-PU")
 	private EntityManager em;
 
-
 	@Override
-	public Category add(Category data) {
+	public User add(User data) {
 		em.persist(data);
 		em.flush();
 		return data;
@@ -28,28 +27,36 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 	@Override
 	public void delete(Serializable id) {
-		Category data = this.get(id);
+		User data = this.get(id);
 		em.remove(data);
 	}
 
 	@Override
-	public Category update(Serializable id, Category data) {
-		Category bddData = this.get(id);
-//		bddData.setName(data.getName());
-		bddData.setDescription(data.getDescription());
+	public User update(Serializable id, User data) {
+		User bddData = this.get(id);
+		bddData.setEmail(data.getEmail());
+		bddData.setPassword(data.getPassword());
+		bddData.setName(data.getName());
+		bddData.setSurname(data.getSurname());
+		bddData.setNif(data.getNif());
+		bddData.setPreferedLanguage(data.getPreferedLanguage());
+		bddData.setAddress(data.getAddress());
+		bddData.setAdministrator(data.isAdministrator());
+		bddData.setOrderHistory(data.getOrderHistory());
+
 		em.flush();
 		return bddData;
 	}
 
 	@Override
-	public Category get(Serializable id) {
-		return em.find(Category.class, id);
+	public User get(Serializable id) {
+		return em.find(User.class, id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Category> list() {
-		Query query = em.createQuery("select c from Category c");
+	public List<User> list() {
+		Query query = em.createQuery("select c from User c");
 		return query.getResultList();
 	}
 }
