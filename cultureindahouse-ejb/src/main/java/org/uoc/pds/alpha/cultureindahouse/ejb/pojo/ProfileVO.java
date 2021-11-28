@@ -1,5 +1,4 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
-
 import lombok.Data;
 
 @Data
