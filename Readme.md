@@ -11,14 +11,14 @@
   - La autenticación esta manejada por el contenedor wilfdly, transparente al programador. 
   - Igualmente, se han programado las páginas de login para mimicar los requisitos del proyecto
   - Los usuarios disponibles son:
-    - superadmin/superadmin (Rol SUPERADMIN + ADMIN)
-    - admin/admin (Rol ADMIN)
-    - user/user (Rol _ninguno_)
+    - superadmin/superadmin (Rol `SUPERADMIN` + `ADMIN`)
+    - admin/admin (Rol `ADMIN`)
+    - user/user (Rol `<ninguno>`)
 
 ##Configuración servidor wildfly 16.0.0.Final ("{wildfly.home}\standalone\configuration\standalone.xml")
 ###BDD config (alojada en un servidor publico)
-- Dentro del XML, buscar el tag <subsystem xmlns="urn:jboss:domain:datasources:5.0">
-- Dentro del objeto <datasources>, añadir el siguiente hijo:
+- Dentro del XML, buscar el tag `<subsystem xmlns="urn:jboss:domain:datasources:5.0">`
+- Dentro del objeto `<datasources>`, añadir el siguiente hijo:
 ```
                 <datasource jta="false" jndi-name="java:jboss/postgresDS" pool-name="postgresDS" enabled="true" use-java-context="true" use-ccm="false">
                     <connection-url>jdbc:postgresql://vps.soteck.es:5432/uoc</connection-url>
@@ -30,21 +30,21 @@
                     </security>
                 </datasource>
   ```
-- Dentro del objeto <drivers>, añadir el siguiente hijo:
+- Dentro del objeto `<drivers>`, añadir el siguiente hijo:
 ```
                     <driver name="postgresql" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
 ```
 ###Configuración de elytron security 
-- Dentro del XML, buscar el tag <subsystem xmlns="urn:wildfly:elytron:6.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto">
-- Buscar el tag <security-domains> y agregar el siguiente:
+- Dentro del XML, buscar el tag `<subsystem xmlns="urn:wildfly:elytron:6.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto">`
+- Buscar el tag `<security-domains>` y agregar el siguiente:
 ```
                 <security-domain name="uoc-security-domain" default-realm="uoc-security-realm" permission-mapper="default-permission-mapper">
                     <realm name="uoc-security-realm" role-decoder="from-roles-attribute"/>
                 </security-domain>
 ```
-- Buscar el tag <security-realms> y agregar el siguiente hijo:
+- Buscar el tag `<security-realms>` y agregar el siguiente hijo:
 ```
                 <jdbc-realm name="uoc-security-realm">
                     <principal-query sql="SELECT password FROM pra2.profile WHERE email = ?" data-source="postgresDS">
@@ -57,11 +57,11 @@
                     </principal-query>
                 </jdbc-realm>
 ```
-- Buscar el tag <mappers> y agregar el siguiente hijo:
+- Buscar el tag `<mappers>` y agregar el siguiente hijo:
 ```
                 <simple-role-decoder name="from-roles-attribute" attribute="roles"/>
 ```
-- Buscar el tag <http> y agregar el siguiente hijo:
+- Buscar el tag `<http>` y agregar el siguiente hijo:
 ```
                 <http-authentication-factory name="uoc-security-http-auth" security-domain="uoc-security-domain" http-server-mechanism-factory="global">
                     <mechanism-configuration>
@@ -71,7 +71,7 @@
                     </mechanism-configuration>
                 </http-authentication-factory>
 ```
-- Dentro del XML, buscar el tag  <subsystem xmlns="urn:jboss:domain:undertow:8.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
+- Dentro del XML, buscar el tag  `<subsystem xmlns="urn:jboss:domain:undertow:8.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">`
 - Agregar dentro del subsystem encontrado, el siguiente hijo:
 ```
             <application-security-domains>
