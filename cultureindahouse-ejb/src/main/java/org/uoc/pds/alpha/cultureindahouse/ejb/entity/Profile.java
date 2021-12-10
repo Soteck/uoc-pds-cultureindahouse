@@ -2,10 +2,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +15,10 @@ import java.util.Objects;
 public class Profile {
 
 	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.Profile.ID")
+	private int id;
+
 	@Column(name = "email")
 	private String email;
 

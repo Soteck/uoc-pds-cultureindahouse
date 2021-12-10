@@ -1,4 +1,4 @@
-package org.uoc.pds.alpha.cultureindahouse.front;
+package org.uoc.pds.alpha.cultureindahouse.front.category;
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.CategoryLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;

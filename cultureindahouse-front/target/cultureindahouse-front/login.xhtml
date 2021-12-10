@@ -10,17 +10,18 @@
 <ui:composition template="headerView.xhtml">
     <ui:define name="content">
 
-        <form>
+        <form action="">
             <div class="container col-4 p-5 my-5 border bg-dark border-warning">
                 <h1 class="h3 mb-3 fw-normal text-white">Fill in the form to register</h1>
                 <div class="form-floating mb-3 rounded-3 ">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                    <input type="email" class="form-control" id="floatingInput" placeholder="alpha@uoc.edu" value="#{accountManagedBean.profile.email}"/>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3 rounded-3 ">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"></input>
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="alpha" value="#{accountManagedBean.profile.password}"/>
                     <label for="floatingPassword">Password</label>
                 </div>
+                <h:outputText value="#{accountManagedBean.message}" />
 
                 <div class="checkbox mb-3 rounded-3 shadow-sm">
                     <label >
@@ -34,7 +35,7 @@
             <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
         </form>
 
-        <hr class="featurette-divider"></hr>
+        <hr class="featurette-divider"/>
 
     </ui:define>
 </ui:composition>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+    <security-domain>uoc-security-domain-application</security-domain>
+</jboss-web>
