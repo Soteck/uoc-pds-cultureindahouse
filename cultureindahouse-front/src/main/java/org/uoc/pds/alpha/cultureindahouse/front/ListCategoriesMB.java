@@ -15,13 +15,19 @@ public class ListCategoriesMB {
 	@EJB
 	private CategoryLocal categoryLocal;
 
-
 	public List<CategoryVO> getCategories() {
 		return categoryLocal.list();
 	}
 
 	public String listCategories() {
-		return "listCategoryView.xhtml";
+		return "administration/listCategoryView.xhtml";
 	}
+
+	public String Administration() { return "administrationView.xhtml"; }
+
+	public String errorAdministration() { return "administration/error.xhtml"; }
+	public String errorEvent() { return "event/error.xhtml"; }
+	public String errorMedia() { return "media/error.xhtml"; }
+	public String errorProfile() { return "private/error.xhtml"; }
 
 }
