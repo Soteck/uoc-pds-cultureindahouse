@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
+import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Profile;
@@ -13,9 +14,23 @@ import java.util.List;
 public class CategoryMapper {
 
 
+    public static Category voToEntity(CategoryVO categoryVO) {
+        Category ret = new Category();
+
+        var id = categoryVO.getId();
+
+        if (id != null) {
+            ret.setId(id);
+        }
+        ret.setName(categoryVO.getName());
+        ret.setDescription(categoryVO.getDescription());
+
+        return ret;
+    }
 
     public static CategoryVO entityToVO(Category category) {
         CategoryVO ret = new CategoryVO();
+        ret.setId(category.getId());
         ret.setName(category.getName());
         ret.setDescription(category.getDescription());
         return ret;

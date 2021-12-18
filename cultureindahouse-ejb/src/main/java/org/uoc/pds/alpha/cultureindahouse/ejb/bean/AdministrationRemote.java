@@ -29,9 +29,9 @@ public interface AdministrationRemote {
 
 	UserVO addAdministrator (String email, String password, String name, String surname);
 
-	UserVO updateAdministrator( String email, String password, String name, String surname);
+	UserVO updateAdministrator( int id,String email, String password, String name, String surname);
 
-	UserVO showAdministator ( String email);
+	UserVO showAdministator ( int id);
 
 	List<UserVO> listAllAdministrators();
 

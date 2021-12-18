@@ -18,6 +18,7 @@ public class Category {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
 	@Column(name = "name")

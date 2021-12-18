@@ -6,6 +6,9 @@ import lombok.Data;
 public  class UserVO {
 
 
+	private Integer id;
+
+
 	private String email;
 
 

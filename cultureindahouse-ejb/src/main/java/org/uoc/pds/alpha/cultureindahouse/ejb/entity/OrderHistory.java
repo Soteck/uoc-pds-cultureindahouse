@@ -19,6 +19,7 @@ public class OrderHistory {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
 	@Column(name = "date")

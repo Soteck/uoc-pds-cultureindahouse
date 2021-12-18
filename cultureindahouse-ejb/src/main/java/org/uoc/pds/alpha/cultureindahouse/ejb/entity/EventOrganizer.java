@@ -3,10 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import com.sun.istack.internal.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -20,7 +17,8 @@ import java.util.Objects;
 public class EventOrganizer {
 
 	@Id
-	@Column(name = "id")
+	@Column(name= "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
 	@Column(name = "name")
@@ -28,6 +26,11 @@ public class EventOrganizer {
 
 	@Column(name = "description")
 	private String description;
+
+	@ManyToOne
+	private User administrator;
+
+	//TODO: ADD EventOrganizerId on Event
 
 
 }

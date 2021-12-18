@@ -1,12 +1,10 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
@@ -27,7 +25,8 @@ import lombok.ToString;
 public class Event {
 
 	@Id
-	@Column(name = "id")
+	@Column(name= "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
 	@Column(name = "name")
@@ -42,9 +41,10 @@ public class Event {
 	@Column(name = "initDate")
 	private Date initDate;
 
-	@NotNull
 	@Column(name = "endDate")
 	private Date endDate;
 
+	@OneToMany
+	private List<OrderHistory> orderHistory;
 
 }

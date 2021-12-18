@@ -2,11 +2,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
 import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.*;
 
@@ -18,35 +14,39 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user", schema = "pra2")
-public  class User {
+public class User {
 
-	@Id
-	@Column(name = "email")
-	private String email;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
+    private int id;
 
-	@Column(name = "password")
-	private String password;
+    @Column(name = "email")
+    private String email;
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "password")
+    private String password;
 
-	@Column(name = "surname")
-	private String surname;
+    @Column(name = "name")
+    private String name;
 
-	@Column(name = "nif")
-	private String nif;
+    @Column(name = "surname")
+    private String surname;
 
-	@Column(name = "preferedLanguage")
-	private String preferedLanguage;
+    @Column(name = "nif")
+    private String nif;
 
-	@Column(name = "address")
-	private String address;
+    @Column(name = "preferedLanguage")
+    private String preferedLanguage;
 
-	@Column(name = "isAdministrator")
-	private boolean isAdministrator;
+    @Column(name = "address")
+    private String address;
 
-	@OneToMany(mappedBy = "orderHistory")
-	private Collection<OrderHistory> orderHistory;
+    @Column(name = "isAdministrator")
+    private boolean isAdministrator;
+
+    @OneToMany(mappedBy = "orderHistory")
+    private Collection<OrderHistory> orderHistory;
 
 
 }
