@@ -27,32 +27,27 @@
 
                 <h:column>
                     <f:facet name="header">Acciones</f:facet>
-                    <h:link outcome="categoryDetailView" class="btn btn-success">
+                    <h:link outcome="categoryDetailView.xhmtl"  class="btn btn-success">
                         <f:param name="categoryName" value="#{category.name}"/>
                         <i class="fa fa-eye">&nbsp;</i>
                         <span>Ver Categoria</span>
                     </h:link>
 
-                    <h:link outcome="modifyCategoryView" class="btn btn-warning" style="margin-left: 25px;">
+                    <h:link outcome="modifyCategoryView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
                         <f:param name="categoryName" value="#{category.name}"/>
                         <i class="fa fa-edit">&nbsp;</i>
                         <span>Editar Categoria</span>
                     </h:link>
-                </h:column>
 
+                </h:column>
             </h:dataTable>
 
             <br/>
 
-            <h:link outcome="modifyCategoryView" class="btn btn-info" style="margin-left: 25px;">
+            <h:link outcome="modifyCategoryView.xhtml" class="btn btn-info" style="margin-left: 25px;">
                 <f:param name="categoryName" value=""/>
                 <i class="fa fa-edit">&nbsp;</i>
                 <span>Añadir Categoria</span>
-            </h:link>
-
-            <h:link outcome="odifyCategoryView" type="button" value="Add category" styleClass="btn btn-primary">
-                <f:param name="categoryName" value=""/>
-                <span class="fa fa-plus" />
             </h:link>
 
         </div>
