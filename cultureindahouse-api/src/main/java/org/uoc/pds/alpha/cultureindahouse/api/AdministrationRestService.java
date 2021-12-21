@@ -17,7 +17,7 @@ public class AdministrationRestService {
 
 	@GET
 	@Path("/{primaryKey}")
-	public Response getategory(
+	public Response getCategory(
 			@PathParam("primaryKey") int id) {
 		return Response.ok(administrationLocal.showCategory(id)).build();
 	}

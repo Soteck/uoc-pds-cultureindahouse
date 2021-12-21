@@ -17,9 +17,10 @@ public class Category {
 
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
-	private int id;
+	@Column(name = "id", updatable = false)
+	@SequenceGenerator(name = "pra2.category_id_seq", sequenceName = "pra2.category_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.category_id_seq")
+	private Integer id;
 
 	@Column(name = "name")
 	private String name;
@@ -27,7 +28,20 @@ public class Category {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
 	private Collection<Event> events;
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Category category = (Category) o;
+		return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(description, category.description);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, description);
+	}
 }
