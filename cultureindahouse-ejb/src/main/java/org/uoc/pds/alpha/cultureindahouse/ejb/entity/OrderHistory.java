@@ -17,9 +17,10 @@ import java.util.Objects;
 public class OrderHistory {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
-	private int id;
+	@Column(name = "id", updatable = false)
+	@SequenceGenerator(name = "pra2.orderHistory_id_seq", sequenceName = "pra2.orderHistory_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.orderHistory_id_seq")
+	private Integer id;
 
 	@Column(name = "date")
 	private Date date;
