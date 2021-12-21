@@ -16,6 +16,7 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 
 	@PersistenceContext(unitName = "GAO-PU")
+
 	private EntityManager em;
 
 

@@ -25,9 +25,10 @@ import lombok.ToString;
 public class Event {
 
 	@Id
-	@Column(name= "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
-	private int id;
+	@Column(name = "id", updatable = false)
+	@SequenceGenerator(name = "pra2.event_id_seq", sequenceName = "pra2.event_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.event_id_seq")
+	private Integer id;
 
 	@Column(name = "name")
 	private String name;
@@ -47,4 +48,25 @@ public class Event {
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderHistory> orderHistory;
 
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Event event = (Event) o;
+		return Objects.equals(id, event.id) && Objects.equals(name, event.name) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(initDate, event.initDate) && Objects.equals(endDate, event.endDate) && Objects.equals(orderHistory, event.orderHistory) && Objects.equals(user, event.user) && Objects.equals(category, event.category);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, description, image, initDate, endDate, orderHistory, user, category);
+	}
 }
