@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
+        url('#'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">An unexpected error has occurred in Media</h2>
+            </div>
+        </div>
+
+        <form>
+            <div class="container col-6 p-5 my-5 border bg-dark border-warning text-center">
+                <h1 class="h3 mb-3 fw-normal text-white align-content-center">Click to return home</h1>
+                <h:link outcome="/index.xhtml" type="submit" value="Return Home" styleClass="btn btn-warning text-dark me-2 align-items-center">
+                    <span class="fa fa-poo"/>
+                </h:link>
+            </div>
+        </form>
+
+        <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>

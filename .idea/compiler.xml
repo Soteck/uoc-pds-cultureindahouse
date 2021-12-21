@@ -9,12 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cultureindahouse-ejb" />
         <module name="cultureindahouse-ear" />
-        <module name="cultureindahouse-rmiclient" />
         <module name="cultureindahouse-api" />
         <module name="cultureindahouse-front" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cultureindahouse-rmiclient" target="8" />
       <module name="pra2-api" target="8" />
     </bytecodeTargetLevel>
   </component>

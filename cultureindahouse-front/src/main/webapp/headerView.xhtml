@@ -8,9 +8,9 @@
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <script type="application/javascript" src="lib/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
-    <link href="lib/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/styles.css" rel="stylesheet"/>
+    <script type="application/javascript" src="./lib/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+    <link href="./lib/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./css/styles.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/40cb42a836.js" crossorigin="anonymous" type="application/javascript"></script>
 
     <title>PDS CULTURAINDAHOUSE UOC </title>
@@ -27,10 +27,13 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.xhtml">Home</a>
+                            <a class="nav-link active" aria-current="page" href="./index.xhtml">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="listCategoryView.xhtml"  tabindex="-1" aria-disabled="true">Administration</a>
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link enabled" href="./administrationView.xhtml" tabindex="-1" aria-disabled="true">Administration</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Event</a>
@@ -38,25 +41,23 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Media</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Profile</a>
-                        </li>
                     </ul>
-                    <form class="d-flex">
-                        <button type="button" class="btn btn-warning text-dark me-2" >Login</button>
-                        <button type="button" class="btn btn-outline-success">Sign-up</button>
-                    </form>
+
+                    <div class="dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+                            <button  type="button" class="btn btn-outline-success">User</button>
+                        </a>
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item link-dark " href="./private/error.xhtml">Profile</a></li>
+                            <li><hr class="dropdown-divider"></hr></li>
+                            <li><a class="dropdown-item link-dark  " href="./index.xhtml">Sign out</a></li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
         </nav>
-
-        <!-- FOOTER -->
-        <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-        </footer>
-
+        <div class="container-fluid" style=""></div>
     </ui:insert>
     <div id="content">
         <div class="container">
@@ -64,7 +65,13 @@
         </div>
     </div>
 
-
-
 </h:body>
+
+<!-- FOOTER -->
+<footer class="footer mt-auto py-2 bg-dark">
+    <div class="container">
+        <span class="text-muted">&copy; 2021 grupo Alpha.</span>
+    </div>
+</footer>
+
 </html>

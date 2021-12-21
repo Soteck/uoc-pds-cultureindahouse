@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.front;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.CategoryLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 
 import javax.ejb.EJB;
@@ -12,14 +12,14 @@ import javax.faces.bean.SessionScoped;
 public class EditCategoryMB {
 
 	@EJB
-	private CategoryLocal categoryLocal;
+	private AdministrationLocal categoryLocal;
 
-	protected String categoryName = null;
+	protected Integer categoryId = null;
 	private CategoryVO category;
 
 	public CategoryVO getCategory(){
-		if(category == null || !category.getName().equals(categoryName)){
-			category = categoryLocal.findByName(categoryName);
+		if(category == null || !(category.getId() == categoryId)){
+			category = categoryLocal.showCategory(categoryId);
 		}
 		return category;
 	}
@@ -28,17 +28,17 @@ public class EditCategoryMB {
 		this.category = category;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryId(int categoryId) {
+		this.categoryId =  categoryId;
 	}
 
     public Object actualizarCategoria() {
-		categoryLocal.update(category.getName(), category.getDescription());
-		this.categoryName = null;
+		categoryLocal.updateCategory(categoryId,category.getName(), category.getDescription());
+		this.categoryId = null;
 		this.category = null;
 		return "listCategoryView.xhtml";
     }
