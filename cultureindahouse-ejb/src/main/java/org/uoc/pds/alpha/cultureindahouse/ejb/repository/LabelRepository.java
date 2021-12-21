@@ -1,18 +1,19 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.io.Serializable;
-import java.util.List;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 
 @Stateless
 @TransactionManagement
-public class CategoryRepository implements CategoryRepositoryInterface {
+public class LabelRepository implements LabelRepositoryInterface {
 
 
 	@PersistenceContext(unitName = "GAO-PU")
@@ -20,7 +21,7 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 
 	@Override
-	public Category add(Category data) {
+	public Label add(Label data) {
 		em.persist(data);
 		em.flush();
 		return data;
@@ -28,13 +29,13 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 
 	@Override
 	public void delete(Serializable id) {
-		Category data = this.get(id);
+		Label data = this.get(id);
 		em.remove(data);
 	}
 
 	@Override
-	public Category update(Serializable id, Category data) {
-		Category bddData = this.get(id);
+	public Label update(Serializable id, Label data) {
+		Label bddData = this.get(id);
 		bddData.setName(data.getName());
 		bddData.setDescription(data.getDescription());
 		em.flush();
@@ -42,14 +43,14 @@ public class CategoryRepository implements CategoryRepositoryInterface {
 	}
 
 	@Override
-	public Category get(Serializable id) {
-		return em.find(Category.class, id);
+	public Label get(Serializable id) {
+		return em.find(Label.class, id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Category> list() {
-		Query query = em.createQuery("select c from Category c");
+	public List<Label> list() {
+		Query query = em.createQuery("select c from Label c");
 		return query.getResultList();
 	}
 }

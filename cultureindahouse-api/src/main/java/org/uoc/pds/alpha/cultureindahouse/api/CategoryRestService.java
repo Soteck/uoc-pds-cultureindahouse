@@ -15,7 +15,6 @@ public class CategoryRestService {
 	@EJB
 	private CategoryLocal categoryLocal;
 
-
 	@GET
 	@Path("/")
 	public Response listAllCategories() {
@@ -42,7 +41,6 @@ public class CategoryRestService {
 		return Response.ok(categoryLocal.update(primaryKey, description)).build();
 	}
 
-
 	@DELETE
 	@Path("/{primaryKey}")
 	public Response deleteCategory(
@@ -50,6 +48,7 @@ public class CategoryRestService {
 		categoryLocal.delete(primaryKey);
 		return Response.ok().build();
 	}
+
 	@GET
 	@Path("/{primaryKey}")
 	public Response getategory(

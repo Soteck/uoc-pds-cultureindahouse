@@ -1,9 +1,9 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,22 +12,25 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "category", schema = "pra2")
-public class Category {
-
+@Table(name = "label", schema = "pra2")
+public class Label {
 
 	@Id
-	@Column(name = "id")
+	@Column(name= "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
+	@NotNull
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	private Collection<Event> events;
+
+
+	//TODO: ADD EVENTID
+
+
 
 }
