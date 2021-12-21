@@ -15,7 +15,6 @@ public class ListCategoriesMB {
 	@EJB
 	private AdministrationLocal categoryLocal;
 
-
 	public List<CategoryVO> getCategories() {
 		return categoryLocal.listAllCategories();
 	}
@@ -23,5 +22,18 @@ public class ListCategoriesMB {
 	public String listCategories() {
 		return "listCategoryView.xhtml";
 	}
+
+	public String detailCategories() {
+		return "categoryDetailView.xhtml";
+	}
+	public String Administration() { return "administrationView.xhtml"; }
+
+	public String errorAdministration() { return "error.xhtml"; }
+	public String errorEvent() { return "event/error.xhtml"; }
+	public String errorMedia() { return "media/error.xhtml"; }
+	public String errorProfile() { return "private/error.xhtml"; }
+
+
+
 
 }
