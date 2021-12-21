@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.CategoryLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -10,15 +10,22 @@ import javax.ws.rs.core.Response;
 
 @Path("/category")
 @Produces(MediaType.APPLICATION_JSON)
-public class CategoryRestService {
+public class AdministrationRestService {
 
 	@EJB
-	private CategoryLocal categoryLocal;
+	private AdministrationLocal administrationLocal;
+
+	@GET
+	@Path("/{primaryKey}")
+	public Response getategory(
+			@PathParam("primaryKey") int id) {
+		return Response.ok(administrationLocal.showCategory(id)).build();
+	}
 
 	@GET
 	@Path("/")
 	public Response listAllCategories() {
-		return Response.ok(categoryLocal.list()).build();
+		return Response.ok(administrationLocal.listAllCategories()).build();
 	}
 
 	@POST
@@ -28,7 +35,7 @@ public class CategoryRestService {
 			MultivaluedMap<String, String> formParams) {
 		String name = formParams.getFirst("name");
 		String description = formParams.getFirst("description");
-		return Response.ok(categoryLocal.add(name, description)).build();
+		return Response.ok(administrationLocal.addCategory(name, description)).build();
 	}
 
 	@PUT
@@ -36,23 +43,19 @@ public class CategoryRestService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response updateCategory(
 			MultivaluedMap<String, String> formParams,
-			@PathParam("primaryKey") String primaryKey) {
+			@PathParam("primaryKey") int id) {
+		String name = formParams.getFirst("name");
 		String description = formParams.getFirst("description");
-		return Response.ok(categoryLocal.update(primaryKey, description)).build();
+		return Response.ok(administrationLocal.updateCategory(id, name, description)).build();
 	}
 
 	@DELETE
 	@Path("/{primaryKey}")
 	public Response deleteCategory(
-			@PathParam("primaryKey") String primaryKey) {
-		categoryLocal.delete(primaryKey);
+			@PathParam("primaryKey") int id) {
+		administrationLocal.deleteCategory(id);
 		return Response.ok().build();
 	}
 
-	@GET
-	@Path("/{primaryKey}")
-	public Response getategory(
-			@PathParam("primaryKey") String primaryKey) {
-		return Response.ok(categoryLocal.findByName(primaryKey)).build();
-	}
+
 }

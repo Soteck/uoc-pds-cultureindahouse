@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import com.sun.istack.internal.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Table(name = "event", schema = "pra2")
 public class Event {
 

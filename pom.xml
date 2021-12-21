@@ -13,7 +13,6 @@
         <module>cultureindahouse-ejb</module>
         <module>cultureindahouse-front</module>
         <module>cultureindahouse-api</module>
-        <module>cultureindahouse-rmiclient</module>
         <module>cultureindahouse-ear</module>
     </modules>
     <dependencyManagement>
