@@ -45,7 +45,7 @@ public class User {
     @Column(name = "isAdministrator")
     private boolean isAdministrator;
 
-    @OneToMany(mappedBy = "orderHistory")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<OrderHistory> orderHistory;
 
 
