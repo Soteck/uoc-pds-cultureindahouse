@@ -44,7 +44,7 @@ public class Event {
 	@Column(name = "endDate")
 	private Date endDate;
 
-	@OneToMany
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderHistory> orderHistory;
 
 }
