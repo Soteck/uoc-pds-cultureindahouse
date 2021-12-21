@@ -17,9 +17,10 @@ import lombok.*;
 public class User {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
-    private int id;
+    @Column(name = "id", updatable = false)
+    @SequenceGenerator(name = "pra2.user_id_seq", sequenceName = "pra2.user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.user_id_seq")
+    private Integer id;
 
     @Column(name = "email")
     private String email;
@@ -47,6 +48,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<OrderHistory> orderHistory;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Event> events;
 
 
 }

@@ -16,9 +16,10 @@ import java.util.Objects;
 public class EventOrganizer {
 
 	@Id
-	@Column(name= "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
-	private int id;
+	@Column(name = "id", updatable = false)
+	@SequenceGenerator(name = "pra2.eventOrganizer_id_seq", sequenceName = "pra2.eventOrganizer_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.eventOrganizer_id_seq")
+	private Integer id;
 
 	@Column(name = "name")
 	private String name;
