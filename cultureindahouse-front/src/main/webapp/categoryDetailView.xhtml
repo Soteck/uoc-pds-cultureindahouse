@@ -11,29 +11,52 @@
     <f:viewParam name="categoryName" value="#{ShowCategoryMB.categoryName}"/>
 </f:metadata>
 
-<ui:composition template="headerView.xhtml">
-
+<ui:composition template="./headerView.xhtml">
     <ui:define name="content">
-        <h:form>
-            <div style="padding-top: 50px">
-                <div class="row">
-                    <div class="col">
-                        Name
-                    </div>
-                    <div class="col">
-                        <h:outputText value="#{ShowCategoryMB.category.name}"/>
-                    </div>
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Categories detail</h2>
+                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                <form class="d-flex">
+                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                        <span class="fa fa-home"/>
+                    </h:link>
+                    <h:link outcome="listCategoryView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                        <span class="fa fa-bars"/>
+                    </h:link>
+                </form>
+            </div>
+        </div>
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h3 class="display-4 text-white fw-bold">Detail view</h3>
+                <div class="mb-3">
+                    <label for="new-name" class="form-label">Name</label>
+                    <h:inputText class="form-control" id="new-name" placeholder="Name" value="#{ShowCategoryMB.category.name}" readonly = "true"/>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        Description
-                    </div>
-                    <div class="col">
-                        <h:outputText value="#{ShowCategoryMB.category.description}"/>
-                    </div>
+                <div class="mb-3">
+                    <label for="new-description" class="form-label">Description</label>
+                    <h:inputText class="form-control" id="new-description" placeholder="Description" value="#{ShowCategoryMB.category.description}" readonly = "true"/>
                 </div>
             </div>
-        </h:form>
+        </div>
+
+        <div class="row" style="padding-top: 10px" >
+            <div class="col-3 p-3">
+                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <f:param name="categoryName" value=""/>
+                    <i class="fa fa-undo">&nbsp;</i>
+                    <span>Reurn to list</span>
+                </h:link>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"></hr>
+
+
     </ui:define>
 </ui:composition>
 </html>

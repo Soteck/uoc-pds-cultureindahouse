@@ -13,39 +13,108 @@
     <ui:param name="new" value="#{EditCategoryMB.categoryName eq null || EditCategoryMB.categoryName.length() le 1}"/>
 </f:metadata>
 
-<ui:composition template="headerView.xhtml">
+<ui:composition template="./headerView.xhtml">
     <ui:define name="content">
         <h:form>
             <div style="padding-top: 50px">
                 <c:choose>
                     <c:when test="${new}">
-                        <div class="mb-3">
-                            <label for="new-name" class="form-label">Nombre</label>
-                            <h:inputText class="form-control" id="new-name" placeholder="Nombre" value="#{AddCategoryMB.category.name}" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="new-description" class="form-label">Descripcion</label>
-                            <h:inputText class="form-control" id="new-description" placeholder="Descripcion" value="#{AddCategoryMB.category.description}" />
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h2 class="display-4 text-white fw-bold">Categories Add</h2>
+                                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                                        <span class="fa fa-home"/>
+                                    </h:link>
+                                    <h:link outcome="listCategoryView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                                        <span class="fa fa-bars"/>
+                                    </h:link>
+                            </div>
                         </div>
 
-                        <h:commandButton value="Añadir" height="355" width="350"
-                                         action="#{AddCategoryMB.anadirCategoria}"
-                                         class="btn btn-info"/>
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">Categories Update</h3>
+                                <div class="mb-3">
+                                    <label for="new-name" class="form-label text-white">Name</label>
+                                    <h:inputText class="form-control" id="new-name" placeholder="Nombre" value="#{AddCategoryMB.category.name}" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-description" class="form-label text-white">Description</label>
+                                    <h:inputText class="form-control" id="new-description" placeholder="Descripcion" value="#{AddCategoryMB.category.description}" />
+                                </div>
+
+                                <h:commandButton value="Añadir" height="355" width="350"
+                                                 action="#{AddCategoryMB.anadirCategoria}"
+                                                 class="btn btn-outline-success"/>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px" >
+                            <div class="col-3 p-3">
+                                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                                    <f:param name="categoryName" value=""/>
+                                    <i class="fa fa-undo">&nbsp;</i>
+                                    <span>Reurn to list</span>
+                                </h:link>
+                            </div>
+                        </div>
+
+                        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+                        <hr class="featurette-divider"/>
 
                     </c:when>
+
+
                     <c:otherwise>
-                        <div class="mb-3">
-                            <label for="update-name" class="form-label">Nombre</label>
-                            <h:inputText class="form-control" id="update-name" placeholder="Nombre" value="#{EditCategoryMB.category.name}" disabled="true" readonly="true" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="update-description" class="form-label">Descripcion</label>
-                            <h:inputText class="form-control" id="update-description" placeholder="Descripcion" value="#{EditCategoryMB.category.description}" />
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h2 class="display-4 text-white fw-bold">Categories detail</h2>
+                                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                                        <span class="fa fa-home"/>
+                                    </h:link>
+                                    <h:link outcome="listCategoryView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                                        <span class="fa fa-bars"/>
+                                    </h:link>
+                            </div>
                         </div>
 
-                        <h:commandButton value="Actualizar" height="355" width="350"
-                                         action="#{EditCategoryMB.actualizarCategoria}"
-                                         class="btn btn-warning"/>
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">Categories Update</h3>
+                                <div class="mb-3">
+                                    <label for="update-name" class="form-label">Name</label>
+                                    <h:inputText class="form-control" id="update-name" placeholder="Nombre" value="#{EditCategoryMB.category.name}" disabled="true" readonly="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update-description" class="form-label">Description</label>
+                                    <h:inputText class="form-control" id="update-description" placeholder="Descripcion" value="#{EditCategoryMB.category.description}" />
+                                </div>
+
+                                <h:commandButton value="Actualizar" height="355" width="350"
+                                                 action="#{EditCategoryMB.actualizarCategoria}"
+                                                 class="btn btn-outline-success "/>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px" >
+                            <div class="col-3 p-3">
+
+                            </div>
+                            <div class="col-3 p-3">
+                                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                                    <f:param name="categoryName" value=""/>
+                                    <i class="fa fa-undo">&nbsp;</i>
+                                    <span>Reurn to list</span>
+                                </h:link>
+                            </div>
+                        </div>
+
+                        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+                        <hr class="featurette-divider"/>
 
                     </c:otherwise>
                 </c:choose>

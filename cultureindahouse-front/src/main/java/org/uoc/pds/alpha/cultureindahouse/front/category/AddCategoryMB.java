@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.front.category;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.CategoryLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 
 import javax.ejb.EJB;
@@ -12,7 +12,7 @@ import javax.faces.bean.SessionScoped;
 public class AddCategoryMB {
 
     @EJB
-    private CategoryLocal categoryLocal;
+    private AdministrationLocal categoryLocal;
 
     private CategoryVO category = new CategoryVO();
 
@@ -25,7 +25,7 @@ public class AddCategoryMB {
     }
 
     public String anadirCategoria() {
-        categoryLocal.add(category.getName(), category.getDescription());
+        categoryLocal.addCategory(category.getName(), category.getDescription());
         category = new CategoryVO();
         return "listCategoryView.xhtml";
     }

@@ -40,16 +40,5 @@ public class Profile {
 	@Column(name = "address")
 	private String address;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Profile profile = (Profile) o;
-		return Objects.equals(email, profile.email) && Objects.equals(password, profile.password) && Objects.equals(name, profile.name) && Objects.equals(surnames, profile.surnames) && Objects.equals(nif, profile.nif) && Objects.equals(preferedLanguage, profile.preferedLanguage) && Objects.equals(address, profile.address);
-	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, password, name, surnames, nif, preferedLanguage, address);
-	}
 }

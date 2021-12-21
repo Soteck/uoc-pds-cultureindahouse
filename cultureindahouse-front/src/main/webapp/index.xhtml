@@ -7,16 +7,16 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="headerView.xhtml">
+<ui:composition template="./headerView.xhtml">
     <ui:define name="content">
 
-        <div class="p-4 mb-3 bg-dark border-warning rounded-3" style="background-image:
+        <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
         url('https://i.blogs.es/aa91a3/cine-/1366_2000.jpg'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Culture without leaving home</h2>
                 <p class="col-md-8 text-white fs-4">Do you want to have access to different cultural programs live and delayed without leaving home?</p>
                 <p class="col-md-8 text-white fs-4">What are you waiting for, sign up?</p>
-                <form class="d-flex">
+                <form class="d-flex" action="summit">
                     <h:link outcome="login" type="button" value="Login" styleClass="btn btn-warning text-dark me-2">
                         <span class="fa fa-address-card"/>
                     </h:link>
@@ -27,27 +27,48 @@
             </div>
         </div>
 
-        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <div class="pricing-header p-1 pb-md-3 mx-auto text-center">
             <p class="fs-5 text-muted">Here you can see the different blocks of programmed actions to which you have access.</p>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+
             <div class="col">
-                <div class="camb-3 rounded-3 shadow-sm bg-warning ">
+                <div class="card mb-3 rounded-3 shadow-sm bg-warning">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Profile</h4>
+                    </div>
+                    <div class="card-body bg-dark border-warning">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li class="text-white">User options</li>
+                            <li class="text-white">Event options</li>
+                            <li class="text-white">Login options</li>
+                            <li>Help</li>
+                        </ul>
+                        <h:form>
+                            <h:commandButton value="Profile menu" height="150" width="150"
+                                             action="#{ListCategoriesMB.errorProfile}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-3 rounded-3 shadow-sm bg-warning ">
                     <div class="card-header py-3">
                         <h4 class="my-0 fw-normal">Administration</h4>
                     </div>
                     <div class="card-body bg-dark border-warning">
-
                         <ul class="list-unstyled mt-3 mb-4">
-                            <a class="text-red" href="listCategoryView.xhtml">Category options</a>
                             <li class="text-white">Label options</li>
                             <li class="text-white">Event Organizer options</li>
-                            <li class="text-white">Administration options</li>
+                            <li class="text-white">Administrator options</li>
+                            <li>Help </li>
                         </ul>
                         <h:form>
                             <h:commandButton value="Administration menu" height="150" width="150"
-                                             action="#{ListCategoriesMB.listCategories}" immediate="true"
+                                             action="#{ListCategoriesMB.Administration}" immediate="true"
                                              class=" w-100 btn btn-lg btn-outline-success me-2"/>
                         </h:form>
                     </div>
@@ -67,8 +88,8 @@
                         </ul>
                         <h:form>
                             <h:commandButton value="Event menu" hheight="150" width="150"
-                                             action="#{ListCategoriesMB.listCategories}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                                             action="#{ListCategoriesMB.errorEvent}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
                         </h:form>
                     </div>
                 </div>
@@ -87,35 +108,13 @@
                         </ul>
                         <h:form>
                             <h:commandButton value="Media menu" hheight="150" width="150"
-                                             action="#{ListCategoriesMB.listCategories}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card mb-3 rounded-3 shadow-sm bg-warning">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Profile</h4>
-                    </div>
-                    <div class="card-body bg-dark border-warning">
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li class="text-white">User options</li>
-                            <li class="text-white">Event options</li>
-                            <li class="text-white">Login options</li>
-                            <li>Help</li>
-                        </ul>
-                        <h:form>
-                            <h:commandButton value="Profile menu" hheight="150" width="150"
-                                             action="#{ListCategoriesMB.listCategories}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                                             action="#{ListCategoriesMB.errorMedia}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
                         </h:form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <hr class="featurette-divider"></hr>
 
     </ui:define>
 </ui:composition>
