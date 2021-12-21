@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.front;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.CategoryLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 
 import javax.ejb.EJB;
@@ -13,11 +13,11 @@ import java.util.List;
 public class ListCategoriesMB {
 
 	@EJB
-	private CategoryLocal categoryLocal;
+	private AdministrationLocal categoryLocal;
 
 
 	public List<CategoryVO> getCategories() {
-		return categoryLocal.list();
+		return categoryLocal.listAllCategories();
 	}
 
 	public String listCategories() {

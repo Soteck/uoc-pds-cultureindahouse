@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
-import com.sun.istack.internal.NotNull;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Label {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
 	private int id;
 
-	@NotNull
+
 	@Column(name = "name")
 	private String name;
 
