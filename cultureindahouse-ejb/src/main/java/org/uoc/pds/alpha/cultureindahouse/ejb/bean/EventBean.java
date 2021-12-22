@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
+import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.CategoryMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
@@ -19,8 +20,15 @@ public class EventBean implements EventLocal, EventRemote {
 	@EJB
 	private EventRepositoryInterface eventRepositoryInterface;
 
+	@EJB
+	private UserRepositoryInterface userRepositoryInterface;
+
 	@Override
-	public void orderEvent(int eventId, String email, String reservationId) {
+	public void orderEvent(int eventId, String email) {
+		OrderHistoryVO orderHistoryVO = new OrderHistoryVO();
+
+		var event = eventRepositoryInterface.get(eventId);
+
 
 	}
 

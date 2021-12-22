@@ -62,4 +62,9 @@ public class UserRepository implements UserRepositoryInterface {
 		Query query = em.createQuery("select c from User c");
 		return query.getResultList();
 	}
+
+
+	public List<User> getByName(){
+		return null;
+	}
 }

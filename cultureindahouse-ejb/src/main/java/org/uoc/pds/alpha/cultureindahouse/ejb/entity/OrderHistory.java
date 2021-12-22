@@ -24,12 +24,6 @@ public class OrderHistory {
 	@Column(name = "date")
 	private Date date;
 
-	@Column(name = "reservation_id")
-	private String reservationId;
-
-	@Column(name = "order_id")
-	private String orderId;
-
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private Event event;

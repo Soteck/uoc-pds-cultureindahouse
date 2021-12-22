@@ -7,16 +7,12 @@ import lombok.Data;
 @Data
 public class OrderHistoryVO {
 
-	private int id;
+	private Integer id;
 
 	private Date date;
 
-	private String reservationId;
+	private EventVO event;
 
-	private String orderId;
-
-	private String eventId;
-
-	private String userId;
+	private UserVO user;
 
 }
