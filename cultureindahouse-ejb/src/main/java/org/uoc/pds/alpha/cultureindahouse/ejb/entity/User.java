@@ -37,13 +37,13 @@ public class User {
     @Column(name = "nif")
     private String nif;
 
-    @Column(name = "preferedLanguage")
+    @Column(name = "prefered_language")
     private String preferedLanguage;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "isAdministrator")
+    @Column(name = "is_administrator")
     private boolean isAdministrator;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

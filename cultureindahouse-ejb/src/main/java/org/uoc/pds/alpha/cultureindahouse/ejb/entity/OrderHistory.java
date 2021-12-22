@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -13,30 +12,30 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Table(name = "orderHistory", schema = "pra2")
+@Table(name = "order_history", schema = "pra2")
 public class OrderHistory {
 
 	@Id
 	@Column(name = "id", updatable = false)
-	@SequenceGenerator(name = "pra2.orderHistory_id_seq", sequenceName = "pra2.orderHistory_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.orderHistory_id_seq")
+	@SequenceGenerator(name = "pra2.order_history_id_seq", sequenceName = "pra2.order_history_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.order_history_id_seq")
 	private Integer id;
 
 	@Column(name = "date")
 	private Date date;
 
-	@Column(name = "reservationId")
+	@Column(name = "reservation_id")
 	private String reservationId;
 
-	@Column(name = "orderId")
+	@Column(name = "order_id")
 	private String orderId;
 
 	@ManyToOne
-	@JoinColumn(name = "eventId")
+	@JoinColumn(name = "event_id")
 	private Event event;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 

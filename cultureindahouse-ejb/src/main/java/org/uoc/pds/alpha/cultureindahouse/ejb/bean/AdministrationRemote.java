@@ -27,6 +27,8 @@ public interface AdministrationRemote {
 
 	List<EventOrganizerVO> listAllEventOrganizers();
 
+	void deleteEventOrganizer(int id);
+
 	UserVO addAdministrator (String email, String password, String name, String surname);
 
 	UserVO updateAdministrator( int id,String email, String password, String name, String surname);
@@ -34,6 +36,8 @@ public interface AdministrationRemote {
 	UserVO showAdministator ( int id);
 
 	List<UserVO> listAllAdministrators();
+
+	void deleteAdministrator(int id);
 
 	LabelVO addLabel (String name, String description);
 
@@ -43,6 +47,6 @@ public interface AdministrationRemote {
 
 	List<LabelVO> listAllLabels();
 
-	void removeLabel(int id);
+	void deleteLabel(int id);
 
 }
