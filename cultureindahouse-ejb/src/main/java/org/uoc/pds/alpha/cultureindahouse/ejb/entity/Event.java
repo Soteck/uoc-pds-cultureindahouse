@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -39,21 +38,21 @@ public class Event {
 	@Column(name = "image")
 	private String image;
 
-	@Column(name = "initDate")
+	@Column(name = "init_date")
 	private Date initDate;
 
-	@Column(name = "endDate")
+	@Column(name = "end_date")
 	private Date endDate;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderHistory> orderHistory;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "categoryId")
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 
