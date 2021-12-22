@@ -100,6 +100,11 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
+    public void deleteEventOrganizer(int id) {
+        this.eventOrganizerRepository.delete(id);
+    }
+
+    @Override
     public UserVO addAdministrator(String email, String password, String name, String surname) {
 
         User user = new User();
@@ -140,6 +145,11 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
+    public void deleteAdministrator(int id) {
+        this.userRepository.delete(id);
+    }
+
+    @Override
     public LabelVO addLabel(String name, String description) {
         Label label = new Label();
         label.setName(name);
@@ -168,7 +178,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public void removeLabel(int id) {
+    public void deleteLabel(int id) {
         this.labelRepository.delete(id);
     }
 

@@ -42,7 +42,10 @@ public class UserRepository implements UserRepositoryInterface {
 		bddData.setPreferedLanguage(data.getPreferedLanguage());
 		bddData.setAddress(data.getAddress());
 		bddData.setAdministrator(data.isAdministrator());
-		bddData.setOrderHistory(data.getOrderHistory());
+
+		if (data.getOrderHistory() != null && !data.getOrderHistory().isEmpty()){
+			bddData.setOrderHistory(data.getOrderHistory());
+		}
 
 		em.flush();
 		return bddData;

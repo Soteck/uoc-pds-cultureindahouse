@@ -21,7 +21,11 @@ public class EventOrganizerMapper {
         }
         ret.setName(eventOrganizerVO.getName());
         ret.setDescription(eventOrganizerVO.getDescription());
-        ret.setAdministrator(UserMapper.voToEntity(eventOrganizerVO.getAdministrator()));
+
+        if (eventOrganizerVO.getAdministrator() != null){
+            ret.setAdministrator(UserMapper.voToEntity(eventOrganizerVO.getAdministrator()));
+        }
+
         return ret;
     }
 
@@ -30,7 +34,10 @@ public class EventOrganizerMapper {
         ret.setId(eventOrganizer.getId());
         ret.setName(eventOrganizer.getName());
         ret.setDescription(eventOrganizer.getDescription());
-        ret.setAdministrator(UserMapper.entityToVO(eventOrganizer.getAdministrator()));
+
+        if (eventOrganizer.getAdministrator() != null){
+            ret.setAdministrator(UserMapper.entityToVO(eventOrganizer.getAdministrator()));
+        }
         return ret;
     }
 
