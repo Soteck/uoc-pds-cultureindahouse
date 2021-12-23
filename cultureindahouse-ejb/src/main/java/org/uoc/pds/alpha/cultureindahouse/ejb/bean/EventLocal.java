@@ -23,7 +23,7 @@ public interface EventLocal {
 
     EventVO showEvent(int id);
 
-    EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate);
+
 
     List<OrderHistoryVO> findOrdersByUser(String email);
 

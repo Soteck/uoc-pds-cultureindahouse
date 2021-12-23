@@ -41,6 +41,24 @@ public class UserVO {
 
     private List<CommentVO> comments;
 
+    public UserVO(String email, String password, String name, String surname) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+    }
+
+
+    public UserVO(String email, String password, String name, String surname, String nif, String preferedLanguage, String address) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.nif = nif;
+        this.preferedLanguage = preferedLanguage;
+        this.address = address;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

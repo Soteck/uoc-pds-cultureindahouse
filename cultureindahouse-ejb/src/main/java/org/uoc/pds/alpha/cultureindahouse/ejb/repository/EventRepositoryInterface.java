@@ -9,5 +9,6 @@ import java.util.List;
 
 @Local
 public interface EventRepositoryInterface extends BaseRepository<Event> {
-    List<Event> getEventByName(String name);
+    Event getEventByName(String name);
+    List<Event> getEventsByName(String name);
 }

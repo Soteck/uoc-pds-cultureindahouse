@@ -23,6 +23,7 @@ public class EventBean implements EventLocal, EventRemote {
 
     @EJB
     private OrderHistoryRepositoryInterface orderHistoryRepository;
+
     @EJB
     private EventRepositoryInterface eventRepository;
 
@@ -51,14 +52,6 @@ public class EventBean implements EventLocal, EventRemote {
     }
 
     @Override
-    public EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate) {
-
-        var event = new Event(name, description, location, image, initDate, endDate);
-
-        return EventMapper.toVO(eventRepository.add(event));
-    }
-
-    @Override
     public List<EventVO> listAllEvents() {
         return EventMapper.toVO(eventRepository.list());
     }
@@ -80,7 +73,7 @@ public class EventBean implements EventLocal, EventRemote {
 
     @Override
     public List<EventVO> findEventsByName(String name) {
-        return EventMapper.toVO(eventRepository.getEventByName(name));
+        return EventMapper.toVO(eventRepository.getEventsByName(name));
     }
 
     @Override

@@ -67,7 +67,13 @@ public class EventRepository implements EventRepositoryInterface {
 	}
 
 	@Override
-	public List<Event> getEventByName(String name) {
+	public Event getEventByName(String name) {
+		Query query = em.createQuery("select e from Event e where e.name = :name").setParameter("name",  name);
+		return query.getSingleResult();
+	}
+
+	@Override
+	public List<Event> getEventsByName(String name) {
 		Query query = em.createQuery("select e from Event e where e.name like :name").setParameter("name", "%" + name + "%");
 		return query.getResultList();
 	}
