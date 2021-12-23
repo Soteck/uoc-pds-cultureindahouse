@@ -23,4 +23,5 @@ public class ShowCategoryMB {
 	public CategoryVO getCategory(){
 		return categoryLocal.showCategory(categoryId);
 	}
+
 }

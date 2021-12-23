@@ -32,7 +32,7 @@ public class EditCategoryMB {
 		this.category = category;
 	}
 
-    public Object actualizarCategoria() {
+	public Object actualizarCategoria() {
 		categoryLocal.updateCategory(categoryId,category.getName(), category.getDescription());
 		this.categoryId = null;
 		this.category = null;
