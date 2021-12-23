@@ -46,11 +46,20 @@ public class User {
     @Column(name = "is_administrator")
     private boolean isAdministrator;
 
+    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<EventOrganizer> eventOrganizers;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<OrderHistory> orderHistory;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Event> events;
+    private Collection<Event> favorites;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Rating> ratings;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Comment> comments;
 
 
 }

@@ -1,5 +1,5 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
-/*
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,12 +16,20 @@ import java.util.List;
 @Table(name = "rating", schema = "pra2")
 public class Rating {
 
-	@Id
-	@Column(name= "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event.ID")
+    @Id
+    @Column(name = "id", updatable = false)
+    @SequenceGenerator(name = "pra2.rating_id_seq", sequenceName = "pra2.rating_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.rating_id_seq")
 	private Integer id;
 
 	@Column(name = "rating")
 	private int rating;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
-*/

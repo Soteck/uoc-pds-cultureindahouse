@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 @Stateless
 @TransactionManagement
@@ -53,6 +54,12 @@ public class EventRepository implements EventRepositoryInterface {
 	@SuppressWarnings("unchecked")
 	public List<Event> list() {
 		Query query = em.createQuery("select c from Category c");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Event> getEventByName(String name) {
+		Query query = em.createQuery("select e from Event e where e.name like :name").setParameter("name", "%" + name + "%");
 		return query.getResultList();
 	}
 }

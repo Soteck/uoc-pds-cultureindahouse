@@ -1,19 +1,19 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.ProfileVO;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.Local;
 
 @Local
 public interface ProfileLocal {
 
+	UserVO login(String email, String password);
 
-	ProfileVO login(String email, String password);
+	UserVO registerUser(UserVO profile);
 
-	ProfileVO registerUser(ProfileVO profile);
+	UserVO updateUser(UserVO profile);
 
-	ProfileVO updateUser(ProfileVO profile);
-
-	ProfileVO showUser(String email);
+	UserVO showUser(String email);
 
 }

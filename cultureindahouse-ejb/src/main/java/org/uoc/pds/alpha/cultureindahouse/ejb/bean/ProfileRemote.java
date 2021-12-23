@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.ProfileVO;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.Remote;
 
@@ -8,12 +9,12 @@ import javax.ejb.Remote;
 public interface ProfileRemote {
 
 
-	ProfileVO login(String email, String password);
+	UserVO login(String email, String password);
 
-	ProfileVO registerUser(ProfileVO profile);
+	UserVO registerUser(UserVO profile);
 
-	ProfileVO updateUser(ProfileVO profile);
+	UserVO updateUser(UserVO profile);
 
-	ProfileVO showUser(String email);
+	UserVO showUser(String email);
 
 }

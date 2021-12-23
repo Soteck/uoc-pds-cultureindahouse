@@ -1,75 +1,47 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Profile;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.ProfileVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.repository.ProfileRepositoryInterface;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.repository.UserRepositoryInterface;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Stateless
 public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 	@EJB
-	private ProfileRepositoryInterface profileRepositoryInterface;
+	private UserRepositoryInterface userRepository;
 
 	@Override
-	public ProfileVO login(String email, String password) {
-		Profile profile = profileRepositoryInterface.get(email);
-		if (profile.getPassword().equals(password)) {
-			return entityToVO(profile);
+	public UserVO login(String email, String password) {
+		User user = userRepository.get(email);
+		if (user.getPassword().equals(password)) {
+			return UserMapper.toVO(user);
 		}
 		return null;
 	}
 
 	@Override
-	public ProfileVO registerUser(ProfileVO profile) {
-		return entityToVO(profileRepositoryInterface.add(voToEntity(profile)));
+	public UserVO registerUser(UserVO profile) {
+		return UserMapper.toVO(userRepository.add(UserMapper.toEntity(profile)));
 	}
 
 	@Override
-	public ProfileVO updateUser(ProfileVO profile) {
-		return entityToVO(profileRepositoryInterface.update(profile.getEmail(), voToEntity(profile)));
+	public UserVO updateUser(UserVO profile) {
+		return UserMapper.toVO(userRepository.update(profile.getEmail(), UserMapper.toEntity(profile)));
 	}
 
 	@Override
-	public ProfileVO showUser(String email) {
-		return entityToVO(profileRepositoryInterface.get(email));
+	public UserVO showUser(String email) {
+		return UserMapper.toVO(userRepository.get(email));
 	}
 
-	private Profile voToEntity(ProfileVO profileVO) {
-		Profile ret = new Profile();
-		ret.setEmail(profileVO.getEmail());
-		ret.setName(profileVO.getName());
-		ret.setPassword(profileVO.getPassword());
-		ret.setSurnames(profileVO.getSurnames());
-		ret.setNif(profileVO.getNif());
-		ret.setPreferedLanguage(profileVO.getPreferedLanguage());
-		ret.setAddress(profileVO.getAddress());
-		return ret;
-	}
 
-	private ProfileVO entityToVO(Profile profile) {
-		ProfileVO ret = new ProfileVO();
-		ret.setEmail(profile.getEmail());
-		ret.setName(profile.getName());
-		ret.setPassword(profile.getPassword());
-		ret.setSurnames(profile.getSurnames());
-		ret.setNif(profile.getNif());
-		ret.setPreferedLanguage(profile.getPreferedLanguage());
-		ret.setAddress(profile.getAddress());
-		return ret;
-	}
 
-	private List<ProfileVO> entityToVO(List<Profile> profiles) {
-		List<ProfileVO> ret = new ArrayList<>();
-		for (Profile profile : profiles) {
-			ret.add(this.entityToVO(profile));
-		}
-		return ret;
-	}
+
 
 }

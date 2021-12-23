@@ -1,57 +1,56 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
 
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+
 
 @Data
 @NoArgsConstructor
-public  class UserVO {
+public class UserVO {
 
-	public UserVO(String email, String password, String name, String surname) {
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.surname = surname;
-	}
+    private Integer id;
 
-	private Integer id;
+    private String email;
 
+    private String password;
 
-	private String email;
+    private String name;
 
+    private String surname;
 
-	private String password;
+    private String nif;
 
+    private String preferedLanguage;
 
-	private String name;
+    private String address;
 
+    private boolean isAdministrator;
 
-	private String surname;
+    private List<EventOrganizerVO> eventOrganizers;
 
+    private List<OrderHistoryVO> orderHistory;
 
-	private String nif;
+    private List<EventVO> favorites;
 
+    private List<RatingVO> ratings;
 
-	private String preferedLanguage;
+    private List<CommentVO> comments;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserVO userVO = (UserVO) o;
+        return Objects.equals(id, userVO.id) && Objects.equals(email, userVO.email);
+    }
 
-	private String address;
-
-
-	private boolean isAdministrator;
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		UserVO userVO = (UserVO) o;
-		return Objects.equals(id, userVO.id) && Objects.equals(email, userVO.email);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, email);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email);
+    }
 }

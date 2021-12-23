@@ -2,11 +2,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Profile;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.ProfileVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,32 +10,47 @@ import java.util.List;
 public class CategoryMapper {
 
 
-    public static Category voToEntity(CategoryVO categoryVO) {
+    public static Category toEntity(CategoryVO categoryVO) {
         Category ret = new Category();
 
-        var id = categoryVO.getId();
-
-        if (id != null) {
-            ret.setId(id);
-        }
+        ret.setId(categoryVO.getId());
         ret.setName(categoryVO.getName());
         ret.setDescription(categoryVO.getDescription());
+
+        var events = categoryVO.getEvents();
+        if (events != null && !events.isEmpty()) {
+            ret.setEvents(EventMapper.toEntity(events));
+        }
 
         return ret;
     }
 
-    public static CategoryVO entityToVO(Category category) {
+    public static CategoryVO toVO(Category category) {
         CategoryVO ret = new CategoryVO();
         ret.setId(category.getId());
         ret.setName(category.getName());
         ret.setDescription(category.getDescription());
+
+        var events = category.getEvents();
+        if (events != null && !events.isEmpty()) {
+            ret.setEvents(EventMapper.toVO(new ArrayList<>(events)));
+        }
+
         return ret;
     }
 
-    public static List<CategoryVO> entityToVO(List<Category> categories) {
+    public static List<Category> toEntity(List<CategoryVO> categories) {
+        List<Category> ret = new ArrayList<>();
+        for (CategoryVO category : categories) {
+            ret.add(toEntity(category));
+        }
+        return ret;
+    }
+
+    public static List<CategoryVO> toVO(List<Category> categories) {
         List<CategoryVO> ret = new ArrayList<>();
         for (Category category : categories) {
-            ret.add(entityToVO(category));
+            ret.add(toVO(category));
         }
         return ret;
     }
