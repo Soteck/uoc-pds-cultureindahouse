@@ -3,8 +3,6 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,17 +12,17 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @AllArgsConstructor
 
-@Table(name = "rating", schema = "pra2")
-public class Rating {
+@Table(name = "comment", schema = "pra2")
+public class Comment {
 
     @Id
     @Column(name = "id", updatable = false)
-    @SequenceGenerator(name = "pra2.rating_id_seq", sequenceName = "pra2.rating_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.rating_id_seq")
+    @SequenceGenerator(name = "pra2.comment_id_seq", sequenceName = "pra2.comment_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.comment_id_seq")
 	private Integer id;
 
-	@Column(name = "rating")
-	private int rating;
+	@Column(name = "text")
+	private String text;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -34,9 +32,8 @@ public class Rating {
     @JoinColumn(name = "user_id")
     private User user;
 
-
-    public Rating(int rating, Event event, User user) {
-        this.rating = rating;
+    public Comment(String text, Event event, User user) {
+        this.text = text;
         this.event = event;
         this.user = user;
     }
@@ -45,12 +42,12 @@ public class Rating {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rating rating1 = (Rating) o;
-        return rating == rating1.rating && Objects.equals(id, rating1.id);
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id) && Objects.equals(text, comment.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, rating);
+        return Objects.hash(id, text);
     }
 }

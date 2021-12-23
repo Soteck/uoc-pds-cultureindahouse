@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -24,12 +25,6 @@ public class OrderHistory {
 	@Column(name = "date")
 	private Date date;
 
-	@Column(name = "reservation_id")
-	private String reservationId;
-
-	@Column(name = "order_id")
-	private String orderId;
-
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private Event event;
@@ -39,5 +34,16 @@ public class OrderHistory {
 	private User user;
 
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		OrderHistory that = (OrderHistory) o;
+		return Objects.equals(id, that.id) && Objects.equals(date, that.date);
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, date);
+	}
 }

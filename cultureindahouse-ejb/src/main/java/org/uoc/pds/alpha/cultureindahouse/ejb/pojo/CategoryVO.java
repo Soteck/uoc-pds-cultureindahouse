@@ -4,8 +4,11 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -23,6 +26,8 @@ public class CategoryVO implements Serializable {
 	private String name;
 
 	private String description;
+
+	private List<EventVO> events;
 
 	@Override
 	public boolean equals(Object o) {

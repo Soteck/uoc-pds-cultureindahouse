@@ -31,6 +31,10 @@ public class Category {
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
 	private Collection<Event> events;
 
+	public Category(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
 
 	@Override
 	public boolean equals(Object o) {

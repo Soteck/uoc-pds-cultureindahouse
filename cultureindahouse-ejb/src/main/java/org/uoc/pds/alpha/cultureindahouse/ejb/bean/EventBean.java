@@ -1,71 +1,124 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
-import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.CategoryMapper;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
+import lombok.var;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.EventMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.OrderHistoryMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.OrderHistoryVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.net.URL;
+import javax.persistence.criteria.Order;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
 public class EventBean implements EventLocal, EventRemote {
 
+    @EJB
+    private OrderHistoryRepositoryInterface orderHistoryRepository;
+
+    @EJB
+    private EventRepositoryInterface eventRepository;
+
+    @EJB
+    private UserRepositoryInterface userRepository;
+
 	@EJB
-	private OrderHistoryRepositoryInterface orderHistoryRepositoryInterface;
+	private CategoryRepositoryInterface categoryRepository;
+
 	@EJB
-	private EventRepositoryInterface eventRepositoryInterface;
+	private LabelRepositoryInterface labelRepository;
 
-	@Override
-	public void orderEvent(int eventId, String email, String reservationId) {
+    @Override
+    public OrderHistoryVO orderEvent(int eventId, String email) {
 
-	}
+        var event = eventRepository.get(eventId);
 
-	@Override
-	public List<EventVO> listAllEvents() {
-		return null;
-	}
+        var user = userRepository.getUserByEmail(email);
 
-	@Override
-	public List<EventVO> findEventsByCategory(int categoryId) {
-		return null;
-	}
+        OrderHistoryVO orderHistory = new OrderHistoryVO(Calendar.getInstance().getTime(), EventMapper.toVO(event), UserMapper.toVO(user));
 
-	@Override
-	public List<EventVO> findEventsByName(String name) {
-		return null;
-	}
+        var order = orderHistoryRepository.add(OrderHistoryMapper.toEntity(orderHistory));
 
-	@Override
-	public List<EventVO> findEventsByLabel(String label) {
-		return null;
-	}
 
-	@Override
-	public EventVO showEvent(int id) {
-		return null;
-	}
+        return OrderHistoryMapper.toVO(order);
+    }
 
-	@Override
-	public EventVO showEvent(String reservationId, URL location) {
-		return null;
-	}
+    @Override
+    public List<EventVO> listAllEvents() {
+        return EventMapper.toVO(eventRepository.list());
+    }
 
-	@Override
-	public List<OrderHistoryVO> findOrdersByUser(String email) {
-		return null;
-	}
+    @Override
+    public List<EventVO> findEventsByCategory(int categoryId) {
 
-	@Override
-	public List<OrderHistoryVO> findAllOrders() {
-		return null;
-	}
+		var ret = new ArrayList<EventVO>();
+		var category = categoryRepository.get(categoryId);
 
-	@Override
-	public OrderHistoryVO showOrder(int id) {
-		return null;
-	}
+		var events = category.getEvents();
+
+		if (events != null && !events.isEmpty()){
+			ret = new ArrayList<>(EventMapper.toVO(new ArrayList<>(events)));
+		}
+
+		return ret;
+    }
+
+    @Override
+    public List<EventVO> findEventsByName(String name) {
+        return EventMapper.toVO(eventRepository.getEventsByName(name));
+    }
+
+    @Override
+    public List<EventVO> findEventsByLabel(int labelId) {
+		var ret = new ArrayList<EventVO>();
+		var label = labelRepository.get(labelId);
+
+		var events = label.getEvents();
+
+		if (events != null && !events.isEmpty()){
+			ret = new ArrayList<>(EventMapper.toVO(new ArrayList<>(events)));
+		}
+
+		return ret;
+    }
+
+    @Override
+    public EventVO showEvent(int id) {
+        return EventMapper.toVO(eventRepository.get(id));
+    }
+
+
+    @Override
+    public List<OrderHistoryVO> findOrdersByUser(String email) {
+        var orders = userRepository.getUserByEmail(email).getOrderHistory();
+        var ret = new ArrayList<OrderHistoryVO>();
+
+        if (orders != null && !orders.isEmpty()){
+            ret = new ArrayList<>(OrderHistoryMapper.toVO(new ArrayList<>(orders)));
+        }
+
+        return ret;
+    }
+
+    @Override
+    public List<OrderHistoryVO> findAllOrders() {
+
+
+        return OrderHistoryMapper.toVO(orderHistoryRepository.list());
+    }
+
+    @Override
+    public OrderHistoryVO showOrder(int id) {
+
+
+        return OrderHistoryMapper.toVO(orderHistoryRepository.get(id));
+    }
 }

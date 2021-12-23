@@ -1,50 +1,68 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
 
-import lombok.var;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventOrganizerMapper {
 
 
-    public static EventOrganizer voToEntity(EventOrganizerVO eventOrganizerVO) {
+    public static EventOrganizer toEntity(EventOrganizerVO eventOrganizerVO) {
         EventOrganizer ret = new EventOrganizer();
 
-        var id = eventOrganizerVO.getId();
-
-        if (id != null) {
-            ret.setId(id);
-        }
+        ret.setId(eventOrganizerVO.getId());
         ret.setName(eventOrganizerVO.getName());
         ret.setDescription(eventOrganizerVO.getDescription());
 
-        if (eventOrganizerVO.getAdministrator() != null){
-            ret.setAdministrator(UserMapper.voToEntity(eventOrganizerVO.getAdministrator()));
+        var user = eventOrganizerVO.getAdministrator();
+        if (user != null) {
+            ret.setAdministrator(UserMapper.toEntity(user));
+        }
+
+        var events = eventOrganizerVO.getEvents();
+
+        if (events != null && !events.isEmpty()){
+            ret.setEvents(EventMapper.toEntity(events));
         }
 
         return ret;
     }
 
-    public static EventOrganizerVO entityToVO(EventOrganizer eventOrganizer) {
+    public static EventOrganizerVO toVO(EventOrganizer eventOrganizer) {
         EventOrganizerVO ret = new EventOrganizerVO();
+
         ret.setId(eventOrganizer.getId());
         ret.setName(eventOrganizer.getName());
         ret.setDescription(eventOrganizer.getDescription());
 
-        if (eventOrganizer.getAdministrator() != null){
-            ret.setAdministrator(UserMapper.entityToVO(eventOrganizer.getAdministrator()));
+        var user = eventOrganizer.getAdministrator();
+        if (user != null) {
+            ret.setAdministrator(UserMapper.toVO(user));
+        }
+
+        var events = eventOrganizer.getEvents();
+
+        if (events != null && !events.isEmpty()){
+            ret.setEvents(EventMapper.toVO(new ArrayList<>(events)));
         }
         return ret;
     }
 
-    public static List<EventOrganizerVO> entityToVO(List<EventOrganizer> categories) {
+    public static List<EventOrganizer> toEntity(List<EventOrganizerVO> categories) {
+        List<EventOrganizer> ret = new ArrayList<>();
+        for (EventOrganizerVO eventOrganizer : categories) {
+            ret.add(toEntity(eventOrganizer));
+        }
+        return ret;
+    }
+
+    public static List<EventOrganizerVO> toVO(List<EventOrganizer> categories) {
         List<EventOrganizerVO> ret = new ArrayList<>();
         for (EventOrganizer eventOrganizer : categories) {
-            ret.add(entityToVO(eventOrganizer));
+            ret.add(toVO(eventOrganizer));
         }
         return ret;
     }

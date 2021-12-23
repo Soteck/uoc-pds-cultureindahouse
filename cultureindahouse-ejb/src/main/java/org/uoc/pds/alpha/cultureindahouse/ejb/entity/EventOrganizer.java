@@ -4,6 +4,8 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,9 +30,22 @@ public class EventOrganizer {
 	private String description;
 
 	@ManyToOne
+	@JoinColumn(name = "administrator_id")
 	private User administrator;
 
-	//TODO: ADD EventOrganizerId on Event
+	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Event> events;
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		EventOrganizer that = (EventOrganizer) o;
+		return Objects.equals(id, that.id) && Objects.equals(name, that.name);
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name);
+	}
 }

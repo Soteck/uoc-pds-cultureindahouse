@@ -3,6 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -39,6 +40,8 @@ public class EventOrganizerRepository implements EventOrganizerRepositoryInterfa
 		EventOrganizer bddData = this.get(id);
 		bddData.setName(data.getName());
 		bddData.setDescription(data.getDescription());
+		bddData.setAdministrator(data.getAdministrator());
+		bddData.setEvents(data.getEvents());
 		em.flush();
 		return bddData;
 	}
@@ -51,7 +54,9 @@ public class EventOrganizerRepository implements EventOrganizerRepositoryInterfa
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<EventOrganizer> list() {
-		Query query = em.createQuery("select c from EventOrganizer c");
+		Query query = em.createQuery("select e from EventOrganizer e");
 		return query.getResultList();
 	}
+
+
 }
