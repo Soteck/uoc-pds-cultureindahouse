@@ -1,14 +1,15 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.io.Serializable;
-import java.util.List;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 @Stateless
 @TransactionManagement
@@ -41,11 +42,11 @@ public class UserRepository implements UserRepositoryInterface {
         bddData.setPreferedLanguage(data.getPreferedLanguage());
         bddData.setAddress(data.getAddress());
         bddData.setAdministrator(data.isAdministrator());
-
-        if (data.getOrderHistory() != null && !data.getOrderHistory().isEmpty()) {
-            bddData.setOrderHistory(data.getOrderHistory());
-        }
-
+        bddData.setEventOrganizers(data.getEventOrganizers());
+        bddData.setOrderHistory(data.getOrderHistory());
+        bddData.setFavorites(data.getFavorites());
+        bddData.setRatings(data.getRatings());
+        bddData.setComments(data.getComments());
         em.flush();
         return bddData;
     }
@@ -56,7 +57,6 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> list() {
         Query query = em.createQuery("select c from User c");
         return query.getResultList();

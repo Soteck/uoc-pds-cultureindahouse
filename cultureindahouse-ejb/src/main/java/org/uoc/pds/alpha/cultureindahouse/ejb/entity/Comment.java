@@ -32,6 +32,12 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Comment(String text, Event event, User user) {
+        this.text = text;
+        this.event = event;
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

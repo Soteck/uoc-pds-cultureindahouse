@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 @Stateless
 @TransactionManagement
@@ -38,9 +37,19 @@ public class EventRepository implements EventRepositoryInterface {
 	public Event update(Serializable id, Event data) {
 		Event bddData = this.get(id);
 		bddData.setName(data.getName());
+		bddData.setDescription(data.getDescription());
+		bddData.setLocation(data.getLocation());
 		bddData.setImage(data.getImage());
 		bddData.setInitDate(data.getInitDate());
 		bddData.setEndDate(data.getEndDate());
+		bddData.setEventOrganizer(data.getEventOrganizer());
+		bddData.setOrderHistory(data.getOrderHistory());
+		bddData.setUser(data.getUser());
+		bddData.setCategory(data.getCategory());
+		bddData.setLabels(data.getLabels());
+		bddData.setRatings(data.getRatings());
+		bddData.setComments(data.getComments());
+		bddData.setQuestions(data.getQuestions());
 		em.flush();
 		return bddData;
 	}

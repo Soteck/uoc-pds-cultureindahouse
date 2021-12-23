@@ -3,6 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -27,4 +28,22 @@ public class Response {
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
 
+
+    public Response(String message, Question question) {
+        this.message = message;
+        this.question = question;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Response response = (Response) o;
+        return Objects.equals(id, response.id) && Objects.equals(message, response.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, message);
+    }
 }

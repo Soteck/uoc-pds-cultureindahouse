@@ -40,6 +40,8 @@ public class EventOrganizerRepository implements EventOrganizerRepositoryInterfa
 		EventOrganizer bddData = this.get(id);
 		bddData.setName(data.getName());
 		bddData.setDescription(data.getDescription());
+		bddData.setAdministrator(data.getAdministrator());
+		bddData.setEvents(data.getEvents());
 		em.flush();
 		return bddData;
 	}

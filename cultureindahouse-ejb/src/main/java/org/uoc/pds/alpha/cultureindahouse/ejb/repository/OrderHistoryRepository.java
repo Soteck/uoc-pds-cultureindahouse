@@ -39,6 +39,7 @@ public class OrderHistoryRepository implements OrderHistoryRepositoryInterface {
 		bddData.setEvent(data.getEvent());
 		bddData.setUser(data.getUser());
 
+
 		em.flush();
 		return bddData;
 	}
