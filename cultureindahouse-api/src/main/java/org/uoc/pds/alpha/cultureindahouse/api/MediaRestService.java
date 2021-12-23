@@ -31,49 +31,49 @@ public class MediaRestService {
 
 
     @GET
-    @Path("events/favorites")
+    @Path("/events/favorites")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllFavorites(){
         return Response.ok(mediaLocal.listAllFavorites()).build();
     }
 
     @GET
-    @Path("events/favorites?email={email}")
+    @Path("/events/favorites?email={email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllFavorites(@PathParam("email") String email){
         return Response.ok(mediaLocal.listAllFavorites(email)).build();
     }
 
     @GET
-    @Path("events/favorites?userId={userId}")
+    @Path("/events/favorites?userId={userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllFavorites(@PathParam("userId")int userId){
         return Response.ok(mediaLocal.listAllFavorites(userId)).build();
     }
 
     @GET
-    @Path("questions/{questionId}")
+    @Path("/questions/{questionId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuestion(@PathParam("questionId")int questionId){
         return Response.ok(mediaLocal.getQuestion(questionId)).build();
     }
 
     @GET
-    @Path("responses/{questionId}")
+    @Path("/responses/{questionId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getResponse(@PathParam("questionId")int questionId){
         return Response.ok(mediaLocal.getResponse(questionId)).build();
     }
 
     @GET
-    @Path("questions?eventId={eventId}")
+    @Path("/questions?eventId={eventId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllQuestions(@PathParam("eventId")int eventId){
         return Response.ok(mediaLocal.listAllQuestions(eventId)).build();
     }
 
     @PUT
-    @Path("events/favorites/by-email")
+    @Path("/events/favorites/by-email")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addToFavorites(EventEmail dto){
@@ -81,7 +81,7 @@ public class MediaRestService {
     }
 
     @PUT
-    @Path("events/favorites/by-user-id")
+    @Path("/events/favorites/by-user-id")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addToFavorites(EventUser dto){
@@ -90,7 +90,7 @@ public class MediaRestService {
 
 
     @POST
-    @Path("comments/by-email")
+    @Path("/comments/by-email")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendComment(SendCommentEmail dto){
@@ -98,7 +98,7 @@ public class MediaRestService {
     }
 
     @POST
-    @Path("comments/by-user-id")
+    @Path("/comments/by-user-id")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendComment(SendCommentUser dto){
@@ -106,14 +106,14 @@ public class MediaRestService {
     }
 
     @POST
-    @Path("ratings/by-email")
+    @Path("/ratings/by-email")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addRating(SendRatingEmail dto){
         return Response.ok(mediaLocal.addRating(dto.eventId,dto.email,dto.rating)).build();
     }
     @POST
-    @Path("ratings/by-user-id")
+    @Path("/ratings/by-user-id")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addRating(SendRatingUser dto){
@@ -122,7 +122,7 @@ public class MediaRestService {
 
 
     @POST
-    @Path("questions/answer")
+    @Path("/questions/answer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response answerQuestion(AnswerQuestion dto){
@@ -130,7 +130,7 @@ public class MediaRestService {
     }
 
     @POST
-    @Path("questions/ask")
+    @Path("/questions/ask")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response askQuestion(AskQuestion dto){
