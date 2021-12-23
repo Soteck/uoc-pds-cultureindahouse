@@ -53,7 +53,7 @@
 
                     <div style="padding:2px; display:inline">
                         <h:link outcome="categoryDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
-                            <f:param name="categoryName" value="#{category.name}"/>
+                            <f:param name="categoryId" value="#{category.id}"/>
                             <i class="fa fa-search">&nbsp;</i>
                         </h:link>
                     </div>
@@ -65,7 +65,7 @@
                     </f:facet>
                     <div style="padding:2px; display:inline">
                         <h:link outcome="modifyCategoryView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
-                            <f:param name="categoryName" value="#{category.name}"/>
+                            <f:param name="categoryId" value="#{category.id}"/>
                             <i class="fa fa-edit">&nbsp;</i>
                         </h:link>
                     </div>
@@ -76,10 +76,10 @@
                         <h:outputText value="Delete"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="errorAdministration.xhtml" class="btn btn-danger" style="margin-left: 25px;">
-                            <f:param name="categoryName" value="#{category.name}"/>
+                        <h:commandLink outcome="listCategoryView.xhtml" class="btn btn-danger" style="margin-left: 25px;" action="#{ListCategoriesMB.deleteCategory}">
+                            <f:setPropertyActionListener target="#{categoryId}" value="#{category.id}" />
                             <i class="fa fa-trash">&nbsp;</i>
-                        </h:link>
+                        </h:commandLink>
                     </div>
                 </h:column>
 

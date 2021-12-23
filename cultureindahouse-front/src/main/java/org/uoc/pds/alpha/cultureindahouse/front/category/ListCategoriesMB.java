@@ -6,6 +6,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Console;
 import java.util.List;
 
 @SessionScoped
@@ -14,6 +15,8 @@ public class ListCategoriesMB {
 
 	@EJB
 	private AdministrationLocal categoryLocal;
+
+	public void deleteCategory(int categoryId){ categoryLocal.deleteCategory(categoryId); }
 
 	public List<CategoryVO> getCategories() {
 		return categoryLocal.listAllCategories();
