@@ -9,8 +9,8 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="categoryName" value="#{EditCategoryMB.categoryName}"/>
-    <ui:param name="new" value="#{EditCategoryMB.categoryName eq null || EditCategoryMB.categoryName.length() le 1}"/>
+    <f:viewParam name="categoryId" value="#{EditCategoryMB.categoryId}"/>
+    <ui:param name="new" value="#{EditCategoryMB.categoryId eq null}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
@@ -54,7 +54,6 @@
                         <div class="row" style="padding-top: 10px" >
                             <div class="col-3 p-3">
                                 <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                                    <f:param name="categoryName" value=""/>
                                     <i class="fa fa-undo">&nbsp;</i>
                                     <span>Reurn to list</span>
                                 </h:link>
@@ -106,7 +105,6 @@
                             </div>
                             <div class="col-3 p-3">
                                 <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                                    <f:param name="categoryName" value=""/>
                                     <i class="fa fa-undo">&nbsp;</i>
                                     <span>Reurn to list</span>
                                 </h:link>

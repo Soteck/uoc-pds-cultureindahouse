@@ -1,5 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.front.category;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 
@@ -14,6 +16,8 @@ public class EditCategoryMB {
 	@EJB
 	private AdministrationLocal categoryLocal;
 
+	@Getter
+	@Setter
 	protected Integer categoryId = null;
 	private CategoryVO category;
 
@@ -26,14 +30,6 @@ public class EditCategoryMB {
 
 	public void setCategory(CategoryVO category) {
 		this.category = category;
-	}
-
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId =  categoryId;
 	}
 
     public Object actualizarCategoria() {
