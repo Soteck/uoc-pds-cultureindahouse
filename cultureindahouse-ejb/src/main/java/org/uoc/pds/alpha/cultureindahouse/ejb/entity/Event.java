@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -35,6 +36,9 @@ public class Event {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "location")
+	private String location;
+
 	@Column(name = "image")
 	private String image;
 
@@ -43,6 +47,10 @@ public class Event {
 
 	@Column(name = "end_date")
 	private Date endDate;
+
+	@ManyToOne
+	@JoinColumn(name = "event_organizer_id")
+	private EventOrganizer eventOrganizer;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderHistory> orderHistory;
@@ -56,16 +64,41 @@ public class Event {
 	private Category category;
 
 
+	@ManyToMany
+	@JoinTable(
+			name = "label_event",
+			joinColumns = @JoinColumn(name = "event_id"),
+			inverseJoinColumns = @JoinColumn(name = "label_id"))
+	private Collection<Label> labels;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Rating> ratings;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Comment> comments;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Question> questions;
+
+	public Event(String name, String description, String location, String image, Date initDate, Date endDate) {
+		this.name = name;
+		this.description = description;
+		this.location = location;
+		this.image = image;
+		this.initDate = initDate;
+		this.endDate = endDate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Event event = (Event) o;
-		return Objects.equals(id, event.id) && Objects.equals(name, event.name) && Objects.equals(description, event.description) && Objects.equals(image, event.image) && Objects.equals(initDate, event.initDate) && Objects.equals(endDate, event.endDate) && Objects.equals(orderHistory, event.orderHistory) && Objects.equals(user, event.user) && Objects.equals(category, event.category);
+		return Objects.equals(id, event.id) && Objects.equals(name, event.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, description, image, initDate, endDate, orderHistory, user, category);
+		return Objects.hash(id, name);
 	}
 }

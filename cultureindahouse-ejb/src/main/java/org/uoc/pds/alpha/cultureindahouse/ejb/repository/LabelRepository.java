@@ -38,6 +38,7 @@ public class LabelRepository implements LabelRepositoryInterface {
 		Label bddData = this.get(id);
 		bddData.setName(data.getName());
 		bddData.setDescription(data.getDescription());
+		bddData.setEvents(data.getEvents());
 		em.flush();
 		return bddData;
 	}

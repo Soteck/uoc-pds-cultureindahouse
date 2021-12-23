@@ -1,7 +1,10 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -13,6 +16,8 @@ public class LabelVO {
 	private String name;
 
 	private String description;
+
+	private List<EventVO> events;
 
 	public LabelVO(String name, String description) {
 		this.name = name;

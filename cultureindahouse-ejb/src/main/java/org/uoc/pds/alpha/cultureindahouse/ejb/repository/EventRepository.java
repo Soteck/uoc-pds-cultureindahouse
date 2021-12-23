@@ -37,9 +37,19 @@ public class EventRepository implements EventRepositoryInterface {
 	public Event update(Serializable id, Event data) {
 		Event bddData = this.get(id);
 		bddData.setName(data.getName());
+		bddData.setDescription(data.getDescription());
+		bddData.setLocation(data.getLocation());
 		bddData.setImage(data.getImage());
 		bddData.setInitDate(data.getInitDate());
 		bddData.setEndDate(data.getEndDate());
+		bddData.setEventOrganizer(data.getEventOrganizer());
+		bddData.setOrderHistory(data.getOrderHistory());
+		bddData.setUser(data.getUser());
+		bddData.setCategory(data.getCategory());
+		bddData.setLabels(data.getLabels());
+		bddData.setRatings(data.getRatings());
+		bddData.setComments(data.getComments());
+		bddData.setQuestions(data.getQuestions());
 		em.flush();
 		return bddData;
 	}
@@ -53,6 +63,18 @@ public class EventRepository implements EventRepositoryInterface {
 	@SuppressWarnings("unchecked")
 	public List<Event> list() {
 		Query query = em.createQuery("select c from Category c");
+		return query.getResultList();
+	}
+
+	@Override
+	public Event getEventByName(String name) {
+		Query query = em.createQuery("select e from Event e where e.name = :name").setParameter("name",  name);
+		return ((Event)query.getSingleResult());
+	}
+
+	@Override
+	public List<Event> getEventsByName(String name) {
+		Query query = em.createQuery("select e from Event e where e.name like :name").setParameter("name", "%" + name + "%");
 		return query.getResultList();
 	}
 }

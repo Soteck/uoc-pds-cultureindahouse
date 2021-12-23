@@ -44,7 +44,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         Category category = new Category();
         category.setName(name);
         category.setDescription(description);
-        return CategoryMapper.entityToVO(categoryRepository.add(category));
+        return CategoryMapper.toVO(categoryRepository.add(category));
     }
 
     @Override
@@ -52,12 +52,12 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         Category data = new Category();
         data.setName(name);
         data.setDescription(description);
-        return CategoryMapper.entityToVO(this.categoryRepository.update(id, data));
+        return CategoryMapper.toVO(this.categoryRepository.update(id, data));
     }
 
     @Override
     public CategoryVO showCategory(int id) {
-        return CategoryMapper.entityToVO(this.categoryRepository.get(id));
+        return CategoryMapper.toVO(this.categoryRepository.get(id));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     @Override
     public List<CategoryVO> listAllCategories() {
         List<Category> data = categoryRepository.list();
-        return CategoryMapper.entityToVO(data);
+        return CategoryMapper.toVO(data);
     }
 
 
@@ -77,7 +77,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         EventOrganizer eventOrganizer = new EventOrganizer();
         eventOrganizer.setName(name);
         eventOrganizer.setDescription(description);
-        return EventOrganizerMapper.entityToVO(eventOrganizerRepository.add(eventOrganizer));
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.add(eventOrganizer));
     }
 
     @Override
@@ -85,18 +85,18 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         EventOrganizer eventOrganizer = new EventOrganizer();
         eventOrganizer.setName(name);
         eventOrganizer.setDescription(description);
-        return EventOrganizerMapper.entityToVO(eventOrganizerRepository.update(id, eventOrganizer));
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.update(id, eventOrganizer));
     }
 
     @Override
     public EventOrganizerVO showEventOrganizer(int id) {
-        return EventOrganizerMapper.entityToVO(eventOrganizerRepository.get(id));
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.get(id));
     }
 
     @Override
     public List<EventOrganizerVO> listAllEventOrganizers() {
         List<EventOrganizer> data = eventOrganizerRepository.list();
-        return EventOrganizerMapper.entityToVO(data);
+        return EventOrganizerMapper.toVO(data);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         user.setEmail(email);
         user.setSurname(surname);
         user.setAdministrator(true);
-        return UserMapper.entityToVO(userRepository.add(user));
+        return UserMapper.toVO(userRepository.add(user));
 
     }
 
@@ -125,20 +125,20 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         user.setEmail(email);
         user.setSurname(surname);
         user.setAdministrator(true);
-        return UserMapper.entityToVO(userRepository.update(id, user));
+        return UserMapper.toVO(userRepository.update(id, user));
     }
 
     @Override
     public UserVO showAdministator(int id) {
 
-        return UserMapper.entityToVO(userRepository.get(id));
+        return UserMapper.toVO(userRepository.get(id));
     }
 
     @Override
     public List<UserVO> listAllAdministrators() {
 
         List<User> data = userRepository.list();
-        var users = UserMapper.entityToVO(data);
+        var users = UserMapper.toVO(data);
 
         return users.stream().filter(user -> user.isAdministrator()).collect(Collectors.toList());
 
@@ -154,7 +154,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         Label label = new Label();
         label.setName(name);
         label.setDescription(description);
-        return LabelMapper.entityToVO(labelRepository.add(label));
+        return LabelMapper.toVO(labelRepository.add(label));
     }
 
     @Override
@@ -163,18 +163,18 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         Label label = new Label();
         label.setName(name);
         label.setDescription(description);
-        return LabelMapper.entityToVO(labelRepository.update(id, label));
+        return LabelMapper.toVO(labelRepository.update(id, label));
     }
 
     @Override
     public LabelVO showLabel(int id) {
-        return LabelMapper.entityToVO(labelRepository.get(id));
+        return LabelMapper.toVO(labelRepository.get(id));
     }
 
     @Override
     public List<LabelVO> listAllLabels() {
         List<Label> data = labelRepository.list();
-        return LabelMapper.entityToVO(data);
+        return LabelMapper.toVO(data);
     }
 
     @Override

@@ -36,10 +36,9 @@ public class OrderHistoryRepository implements OrderHistoryRepositoryInterface {
 		OrderHistory bddData = this.get(id);
 
 		bddData.setDate(data.getDate());
-		bddData.setReservationId(data.getReservationId());
-		bddData.setOrderId(data.getOrderId());
 		bddData.setEvent(data.getEvent());
 		bddData.setUser(data.getUser());
+
 
 		em.flush();
 		return bddData;

@@ -7,4 +7,6 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 
 @Local
 public interface UserRepositoryInterface extends BaseRepository<User> {
+
+    User getUserByEmail(String email);
 }

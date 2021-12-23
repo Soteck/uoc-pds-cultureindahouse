@@ -4,6 +4,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -28,10 +29,20 @@ public class Label {
 	@Column(name = "description")
 	private String description;
 
+	@ManyToMany(mappedBy = "labels")
+	private Collection<Event> events;
 
 
-	//TODO: ADD EVENTID
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Label label = (Label) o;
+		return Objects.equals(id, label.id) && Objects.equals(name, label.name);
+	}
 
-
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name);
+	}
 }

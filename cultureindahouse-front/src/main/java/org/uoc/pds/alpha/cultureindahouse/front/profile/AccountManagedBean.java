@@ -3,7 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.front.profile;
 import lombok.Getter;
 import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.ProfileVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -21,11 +21,11 @@ public class AccountManagedBean {
 
 	@Getter
 	@Setter
-	private ProfileVO profile;
+	private UserVO profile;
 	private String message = "";
 
 	public AccountManagedBean() {
-		this.profile = new ProfileVO();
+		this.profile = new UserVO();
 	}
 
 	public String getMessage() {
