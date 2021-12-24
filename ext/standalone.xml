@@ -288,10 +288,10 @@
             <security-realms>
                 <identity-realm name="local" identity="$local"/>
                 <jdbc-realm name="uoc-security-realm">
-                    <principal-query sql="SELECT password FROM pra2.profile WHERE email = ?" data-source="postgresDS">
+                    <principal-query sql="SELECT password FROM pra2.user WHERE email = ?" data-source="postgresDS">
                         <clear-password-mapper password-index="1"/>
                     </principal-query>
-                    <principal-query sql="select ROLE from ( (select 'ADMIN' as ROLE, email from pra2.profile where admin = true)  union all  (select 'SUPERADMIN' as ROLE, email from pra2.profile where superadmin = true)  ) as ROLE where email = ?" data-source="postgresDS">
+                    <principal-query sql="select ROLE from ( (select 'ADMIN' as ROLE, email from pra2.user where is_administrator = true)   ) as ROLE where email = ?" data-source="postgresDS">
                         <attribute-mapping>
                             <attribute to="roles" index="1"/>
                         </attribute-mapping>
