@@ -10,7 +10,6 @@ import javax.faces.bean.SessionScoped;
 
 @SessionScoped
 @ManagedBean(name = "AddLabelMB")
-
 public class AddLabelMB {
 
     @EJB

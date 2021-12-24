@@ -3,7 +3,6 @@ package org.uoc.pds.alpha.cultureindahouse.front.label;
 import lombok.Getter;
 import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import javax.ejb.EJB;
