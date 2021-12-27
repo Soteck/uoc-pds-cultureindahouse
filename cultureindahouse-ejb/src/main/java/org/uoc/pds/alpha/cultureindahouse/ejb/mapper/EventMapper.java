@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EventMapper {
 
-    public static Event toEntity(EventVO eventVO) {
+    public static Event toEntity(EventVO eventVO, boolean relations) {
         Event ret = new Event();
 
         ret.setId(eventVO.getId());
@@ -21,48 +21,48 @@ public class EventMapper {
         ret.setEndDate(eventVO.getEndDate());
 
         var eventOrganizer = eventVO.getEventOrganizer();
-        if (eventOrganizer != null) {
-            ret.setEventOrganizer(EventOrganizerMapper.toEntity(eventOrganizer));
+        if (relations && eventOrganizer != null) {
+            ret.setEventOrganizer(EventOrganizerMapper.toEntity(eventOrganizer, false));
         }
 
         var orderHistory = eventVO.getOrderHistory();
-        if (orderHistory != null && !orderHistory.isEmpty()) {
-            ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory));
+        if (relations && orderHistory != null && !orderHistory.isEmpty()) {
+            ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory, false));
         }
 
         var user = eventVO.getUser();
-        if (user != null) {
-            ret.setUser(UserMapper.toEntity(user));
+        if (relations && user != null) {
+            ret.setUser(UserMapper.toEntity(user, false));
         }
 
         var category = eventVO.getCategory();
-        if (category != null) {
-            ret.setCategory(CategoryMapper.toEntity(category));
+        if (relations && category != null) {
+            ret.setCategory(CategoryMapper.toEntity(category, false));
         }
 
         var labels = eventVO.getLabels();
-        if (labels != null && !labels.isEmpty()) {
-            ret.setLabels(LabelMapper.toEntity(labels));
+        if (relations && labels != null && !labels.isEmpty()) {
+            ret.setLabels(LabelMapper.toEntity(labels, false));
         }
 
         var ratings = eventVO.getRatings();
-        if (ratings != null && !ratings.isEmpty()) {
-            ret.setRatings(RatingMapper.toEntity(ratings));
+        if (relations && ratings != null && !ratings.isEmpty()) {
+            ret.setRatings(RatingMapper.toEntity(ratings, false));
         }
         var comments = eventVO.getComments();
-        if (comments != null && !comments.isEmpty()) {
-            ret.setComments(CommentMapper.toEntity(comments));
+        if (relations && comments != null && !comments.isEmpty()) {
+            ret.setComments(CommentMapper.toEntity(comments, false));
         }
         var questions = eventVO.getQuestions();
-        if (questions != null && !questions.isEmpty()) {
-            ret.setQuestions(QuestionMapper.toEntity(questions));
+        if (relations && questions != null && !questions.isEmpty()) {
+            ret.setQuestions(QuestionMapper.toEntity(questions, false));
         }
 
 
         return ret;
     }
 
-    public static EventVO toVO(Event event) {
+    public static EventVO toVO(Event event, boolean relations) {
         EventVO ret = new EventVO();
 
 
@@ -75,59 +75,59 @@ public class EventMapper {
         ret.setEndDate(event.getEndDate());
 
         var eventOrganizer = event.getEventOrganizer();
-        if (eventOrganizer != null) {
-            ret.setEventOrganizer(EventOrganizerMapper.toVO(eventOrganizer));
+        if (relations && eventOrganizer != null) {
+            ret.setEventOrganizer(EventOrganizerMapper.toVO(eventOrganizer, false));
         }
 
         var orderHistory = event.getOrderHistory();
-        if (orderHistory != null && !orderHistory.isEmpty()) {
-            ret.setOrderHistory(OrderHistoryMapper.toVO(orderHistory));
+        if (relations && orderHistory != null && !orderHistory.isEmpty()) {
+            ret.setOrderHistory(OrderHistoryMapper.toVO(orderHistory, false));
         }
 
         var user = event.getUser();
-        if (user != null) {
-            ret.setUser(UserMapper.toVO(user));
+        if (relations && user != null) {
+            ret.setUser(UserMapper.toVO(user, false));
         }
 
         var category = event.getCategory();
-        if (category != null) {
-            ret.setCategory(CategoryMapper.toVO(category));
+        if (relations && category != null) {
+            ret.setCategory(CategoryMapper.toVO(category, false));
         }
 
         var labels = event.getLabels();
-        if (labels != null && !labels.isEmpty()) {
-            ret.setLabels(LabelMapper.toVO(new ArrayList<>(labels)));
+        if (relations && labels != null && !labels.isEmpty()) {
+            ret.setLabels(LabelMapper.toVO(labels, false));
         }
 
         var ratings = event.getRatings();
-        if (ratings != null && !ratings.isEmpty()) {
-            ret.setRatings(RatingMapper.toVO(new ArrayList<>(ratings)));
+        if (relations && ratings != null && !ratings.isEmpty()) {
+            ret.setRatings(RatingMapper.toVO(ratings, false));
         }
         var comments = event.getComments();
-        if (comments != null && !comments.isEmpty()) {
-            ret.setComments(CommentMapper.toVO(new ArrayList<>(comments)));
+        if (relations && comments != null && !comments.isEmpty()) {
+            ret.setComments(CommentMapper.toVO(comments, false));
         }
         var questions = event.getQuestions();
-        if (questions != null && !questions.isEmpty()) {
-            ret.setQuestions(QuestionMapper.toVO(new ArrayList<>(questions)));
+        if (relations && questions != null && !questions.isEmpty()) {
+            ret.setQuestions(QuestionMapper.toVO(questions, false));
         }
 
 
         return ret;
     }
 
-    public static List<Event> toEntity(List<EventVO> events) {
+    public static List<Event> toEntity(List<EventVO> events, boolean relations) {
         List<Event> ret = new ArrayList<>();
         for (EventVO event : events) {
-            ret.add(toEntity(event));
+            ret.add(toEntity(event, relations));
         }
         return ret;
     }
 
-    public static List<EventVO> toVO(List<Event> events) {
+    public static List<EventVO> toVO(List<Event> events, boolean relations) {
         List<EventVO> ret = new ArrayList<>();
         for (Event event : events) {
-            ret.add(toVO(event));
+            ret.add(toVO(event, relations));
         }
         return ret;
     }

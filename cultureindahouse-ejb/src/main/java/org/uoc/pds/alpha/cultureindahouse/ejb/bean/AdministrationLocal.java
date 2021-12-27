@@ -21,9 +21,9 @@ public interface AdministrationLocal {
 
 	void deleteCategory(int id);
 
-	EventOrganizerVO addEventOrganizer( String name, String description);
+	EventOrganizerVO addEventOrganizer(String name, String description);
 
-	EventOrganizerVO updateEventOrganizer (int id, String name, String description);
+	EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
 	EventOrganizerVO showEventOrganizer(int id);
 
@@ -37,13 +37,13 @@ public interface AdministrationLocal {
 
 	UserVO showUser(int id);
 
-	List<UserVO> listAllAdministrators();
+	List<UserVO> listAllUsers();
 
-	void deleteAdministrator(int id);
+	void deleteUser(int id);
 
-	LabelVO addLabel (String name, String description);
+	LabelVO addLabel(String name, String description);
 
-	LabelVO updateLabel (int id, String name, String description);
+	LabelVO updateLabel(int id, String name, String description);
 
 	LabelVO showLabel(int id);
 

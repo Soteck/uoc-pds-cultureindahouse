@@ -10,7 +10,7 @@ import java.util.List;
 public class RatingMapper {
 
 
-    public static Rating toEntity(RatingVO ratingVO) {
+    public static Rating toEntity(RatingVO ratingVO, boolean relations) {
         Rating ret = new Rating();
 
         ret.setId(ratingVO.getId());
@@ -18,20 +18,20 @@ public class RatingMapper {
 
         var event = ratingVO.getEvent();
 
-        if (event != null) {
-            ret.setEvent(EventMapper.toEntity(event));
+        if (relations && event != null) {
+            ret.setEvent(EventMapper.toEntity(event, false));
         }
         var user = ratingVO.getUser();
 
-        if (user != null) {
-            ret.setUser(UserMapper.toEntity(user));
+        if (relations && user != null) {
+            ret.setUser(UserMapper.toEntity(user, false));
         }
 
 
         return ret;
     }
 
-    public static RatingVO toVO(Rating rating) {
+    public static RatingVO toVO(Rating rating, boolean relations) {
 
         RatingVO ret = new RatingVO();
 
@@ -40,31 +40,31 @@ public class RatingMapper {
 
         var event = rating.getEvent();
 
-        if (event != null) {
-            ret.setEvent(EventMapper.toVO(event));
+        if (relations && event != null) {
+            ret.setEvent(EventMapper.toVO(event, relations));
         }
         var user = rating.getUser();
 
-        if (user != null) {
-            ret.setUser(UserMapper.toVO(user));
+        if (relations && user != null) {
+            ret.setUser(UserMapper.toVO(user, relations));
         }
 
         return ret;
     }
 
 
-    public static List<Rating> toEntity(List<RatingVO> categories) {
+    public static List<Rating> toEntity(List<RatingVO> categories, boolean relations) {
         List<Rating> ret = new ArrayList<>();
         for (RatingVO rating : categories) {
-            ret.add(toEntity(rating));
+            ret.add(toEntity(rating, relations));
         }
         return ret;
     }
 
-    public static List<RatingVO> toVO(List<Rating> categories) {
+    public static List<RatingVO> toVO(List<Rating> categories, boolean relations) {
         List<RatingVO> ret = new ArrayList<>();
         for (Rating Rating : categories) {
-            ret.add(toVO(Rating));
+            ret.add(toVO(Rating, relations));
         }
         return ret;
     }

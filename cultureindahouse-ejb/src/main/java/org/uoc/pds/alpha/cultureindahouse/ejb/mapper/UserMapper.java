@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserMapper {
 
-    public static User toEntity(UserVO userVO) {
+    public static User toEntity(UserVO userVO, boolean relations) {
         User ret = new User();
 
         ret.setId(userVO.getId());
@@ -24,38 +24,38 @@ public class UserMapper {
 
         var eventOrganizers = userVO.getEventOrganizers();
 
-        if (eventOrganizers != null && !eventOrganizers.isEmpty()) {
-            ret.setEventOrganizers(EventOrganizerMapper.toEntity(eventOrganizers));
+        if (relations && eventOrganizers != null && !eventOrganizers.isEmpty()) {
+            ret.setEventOrganizers(EventOrganizerMapper.toEntity(eventOrganizers, false));
         }
 
         var orderHistory = userVO.getOrderHistory();
 
-        if (orderHistory != null && !orderHistory.isEmpty()) {
-            ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory));
+        if (relations && orderHistory != null && !orderHistory.isEmpty()) {
+            ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory, false));
         }
 
         var events = userVO.getFavorites();
 
-        if (events != null && !events.isEmpty()) {
-            ret.setFavorites(EventMapper.toEntity(events));
+        if (relations && events != null && !events.isEmpty()) {
+            ret.setFavorites(EventMapper.toEntity(events, false));
         }
 
         var ratings = userVO.getRatings();
 
-        if (ratings != null && !ratings.isEmpty()) {
-            ret.setRatings(RatingMapper.toEntity(ratings));
+        if (relations && ratings != null && !ratings.isEmpty()) {
+            ret.setRatings(RatingMapper.toEntity(ratings, false));
         }
 
         var comments = userVO.getComments();
 
-        if (comments != null && !comments.isEmpty()) {
-            ret.setComments(CommentMapper.toEntity(comments));
+        if (relations && comments != null && !comments.isEmpty()) {
+            ret.setComments(CommentMapper.toEntity(comments, false));
         }
 
         return ret;
     }
 
-    public static UserVO toVO(User user) {
+    public static UserVO toVO(User user, boolean relations) {
         UserVO ret = new UserVO();
 
         ret.setId(user.getId());
@@ -70,49 +70,49 @@ public class UserMapper {
 
         var eventOrganizers = user.getEventOrganizers();
 
-        if (eventOrganizers != null && !eventOrganizers.isEmpty()) {
-            ret.setEventOrganizers(EventOrganizerMapper.toVO(new ArrayList<>(eventOrganizers)));
+        if (relations && eventOrganizers != null && !eventOrganizers.isEmpty()) {
+            ret.setEventOrganizers(EventOrganizerMapper.toVO(eventOrganizers, false));
         }
 
         var orderHistory = user.getOrderHistory();
 
-        if (orderHistory != null && !orderHistory.isEmpty()) {
-            ret.setOrderHistory(OrderHistoryMapper.toVO(new ArrayList<>(orderHistory)));
+        if (relations && orderHistory != null && !orderHistory.isEmpty()) {
+            ret.setOrderHistory(OrderHistoryMapper.toVO(orderHistory, false));
         }
 
         var events = user.getFavorites();
 
-        if (events != null && !events.isEmpty()) {
-            ret.setFavorites(EventMapper.toVO(new ArrayList<>(events)));
+        if (relations && events != null && !events.isEmpty()) {
+            ret.setFavorites(EventMapper.toVO(events, false));
         }
 
         var ratings = user.getRatings();
 
-        if (ratings != null && !ratings.isEmpty()) {
-            ret.setRatings(RatingMapper.toVO(new ArrayList<>(ratings)));
+        if (relations && ratings != null && !ratings.isEmpty()) {
+            ret.setRatings(RatingMapper.toVO(ratings, false));
         }
 
         var comments = user.getComments();
 
-        if (comments != null && !comments.isEmpty()) {
-            ret.setComments(CommentMapper.toVO(new ArrayList<>(comments)));
+        if (relations && comments != null && !comments.isEmpty()) {
+            ret.setComments(CommentMapper.toVO(comments, false));
         }
         return ret;
     }
 
 
-    public static List<User> toEntity(List<UserVO> categories) {
+    public static List<User> toEntity(List<UserVO> categories, boolean relations) {
         List<User> ret = new ArrayList<>();
         for (UserVO User : categories) {
-            ret.add(toEntity(User));
+            ret.add(toEntity(User, relations));
         }
         return ret;
     }
 
-    public static List<UserVO> toVO(List<User> categories) {
+    public static List<UserVO> toVO(List<User> categories, boolean relations) {
         List<UserVO> ret = new ArrayList<>();
         for (User User : categories) {
-            ret.add(toVO(User));
+            ret.add(toVO(User, relations));
         }
         return ret;
     }

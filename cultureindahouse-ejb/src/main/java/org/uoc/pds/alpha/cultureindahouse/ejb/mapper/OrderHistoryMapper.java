@@ -11,27 +11,27 @@ import java.util.List;
 
 public class OrderHistoryMapper {
 
-    public static OrderHistory toEntity(OrderHistoryVO orderHistoryVO) {
+    public static OrderHistory toEntity(OrderHistoryVO orderHistoryVO, boolean relations) {
         OrderHistory ret = new OrderHistory();
 
         ret.setId(orderHistoryVO.getId());
         ret.setDate(orderHistoryVO.getDate());
 
         var event = orderHistoryVO.getEvent();
-        if (event != null){
-            ret.setEvent(EventMapper.toEntity(event));
+        if (relations && event != null){
+            ret.setEvent(EventMapper.toEntity(event, false));
         }
 
         var user = orderHistoryVO.getUser();
-        if (user != null){
-            ret.setUser(UserMapper.toEntity(user));
+        if (relations && user != null){
+            ret.setUser(UserMapper.toEntity(user, false));
         }
 
 
         return ret;
     }
 
-    public static OrderHistoryVO toVO(OrderHistory order) {
+    public static OrderHistoryVO toVO(OrderHistory order, boolean relations) {
         OrderHistoryVO ret = new OrderHistoryVO();
 
         ret.setId(order.getId());
@@ -39,13 +39,13 @@ public class OrderHistoryMapper {
         ret.setDate(order.getDate());
 
         var event = order.getEvent();
-        if (event != null){
-            ret.setEvent(EventMapper.toVO(event));
+        if (relations && event != null){
+            ret.setEvent(EventMapper.toVO(event, false));
         }
 
         var user = order.getUser();
-        if (user != null){
-            ret.setUser(UserMapper.toVO(user));
+        if (relations && user != null){
+            ret.setUser(UserMapper.toVO(user, false));
         }
 
 
@@ -53,18 +53,18 @@ public class OrderHistoryMapper {
     }
 
 
-    public static List<OrderHistory> toEntity(List<OrderHistoryVO> events) {
+    public static List<OrderHistory> toEntity(List<OrderHistoryVO> events, boolean relations) {
         List<OrderHistory> ret = new ArrayList<>();
         for (OrderHistoryVO event : events) {
-            ret.add(toEntity(event));
+            ret.add(toEntity(event, relations));
         }
         return ret;
     }
 
-    public static List<OrderHistoryVO> toVO(List<OrderHistory> events) {
+    public static List<OrderHistoryVO> toVO(List<OrderHistory> events, boolean relations) {
         List<OrderHistoryVO> ret = new ArrayList<>();
         for (OrderHistory event : events) {
-            ret.add(toVO(event));
+            ret.add(toVO(event, relations));
         }
         return ret;
     }
