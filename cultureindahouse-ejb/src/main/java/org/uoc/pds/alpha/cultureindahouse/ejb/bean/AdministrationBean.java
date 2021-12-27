@@ -71,7 +71,6 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         return CategoryMapper.toVO(data);
     }
 
-
     @Override
     public EventOrganizerVO addEventOrganizer(String name, String description) {
         EventOrganizer eventOrganizer = new EventOrganizer();

@@ -8,7 +8,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="categoryId" value="#{ShowCategoryMB.categoryId}"/>
+    <f:viewParam name="eventOrganizerId" value="#{ShowEventOrganizerMB.eventOrganizerId}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
@@ -16,13 +16,13 @@
 
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
-                <h2 class="display-4 text-white fw-bold">Categories detail</h2>
+                <h2 class="display-4 text-white fw-bold">EventOrganizerId detail</h2>
                 <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
                 <form class="d-flex">
                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                         <span class="fa fa-home"/>
                     </h:link>
-                    <h:link outcome="listCategoryView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                    <h:link outcome="EventOrganizerIdListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
                         <span class="fa fa-bars"/>
                     </h:link>
                 </form>
@@ -34,19 +34,18 @@
                 <h3 class="display-4 text-white fw-bold">Detail view</h3>
                 <div class="mb-3">
                     <label for="new-name" class="form-label">Name</label>
-                    <h:inputText class="form-control" id="new-name" placeholder="Name" value="#{ShowCategoryMB.category.name}" readonly = "true"/>
+                    <h:inputText class="form-control" id="new-name" placeholder="Name" value="#{ShowEventOrganizerMB.eventOrganizer.name}" readonly = "true"/>
                 </div>
                 <div class="mb-3">
                     <label for="new-description" class="form-label">Description</label>
-                    <h:inputText class="form-control" id="new-description" placeholder="Description" value="#{ShowCategoryMB.category.description}" readonly = "true"/>
+                    <h:inputText class="form-control" id="new-description" placeholder="Description" value="#{ShowEventOrganizerMB.eventOrganizer.description}" readonly = "true"/>
                 </div>
             </div>
         </div>
 
         <div class="row" style="padding-top: 10px" >
             <div class="col-3 p-3">
-                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                    <f:param name="categoryName" value=""/>
+                <h:link outcome="EventOrganizerListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <i class="fa fa-undo">&nbsp;</i>
                     <span>Return to list</span>
                 </h:link>

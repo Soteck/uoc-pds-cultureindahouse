@@ -16,7 +16,7 @@
     <title>PDS CULTURAINDAHOUSE UOC </title>
 </h:head>
 
-<h:body>
+<h:body style="background-color: #D5D6D9">
     <ui:insert name="top">
         <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
             <div class="container-fluid">
@@ -39,7 +39,7 @@
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Media</a>
+                            <a class="nav-link enabled" href="./MediaView.xhtml" tabindex="-1" aria-disabled="true">Media</a>
                         </li>
                     </ul>
                     <span >Hola, <h:outputText value="#{accountManagedBean.username}"/>. Bienvenido!</span>
@@ -65,13 +65,15 @@
         </div>
     </div>
 
+
+    <!-- FOOTER
+    <footer class="footer mt-auto py-2 bg-dark">
+        <div class="container">
+            <span class="text-muted">&copy; 2021 grupo Alpha.</span>
+        </div>
+    </footer>
+    -->
+
+
 </h:body>
-
-<!-- FOOTER -->
-<footer class="footer mt-auto py-2 bg-dark">
-    <div class="container">
-        <span class="text-muted">&copy; 2021 grupo Alpha.</span>
-    </div>
-</footer>
-
 </html>
