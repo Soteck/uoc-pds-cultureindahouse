@@ -29,6 +29,7 @@ public class ModifyAdministratorMB {
         this.user = user;
     }
 
+
     public Object actualizarAdministrator() {
         administratorLocal.updateAdministrator(userId,user.getName(), user.getSurname(), user.getPassword(), user.getEmail());
         this.userId = null;

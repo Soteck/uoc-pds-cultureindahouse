@@ -53,12 +53,12 @@
                             </li>
                         </c:if>
 
-                        <c:if test="#{accountManagedBean.logged}">
+                        <c:if test="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
                             <li class="nav-item">
                                 <a class="nav-link enabled" href="./superAdministrationView.xhtml" tabindex="-1" >Super Admin</a>
                             </li>
                         </c:if>
-                        <c:if test="#{not accountManagedBean.logged}">
+                        <c:if test="#{not accountManagedBean.logged or not accountManagedBean.loggedUser.superAdministrator}">
                             <li class="nav-item">
                                 <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Super Admin</a>
                             </li>
