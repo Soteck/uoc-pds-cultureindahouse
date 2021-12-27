@@ -111,7 +111,7 @@ public class AdministrationRestService {
     @Path("/administrator")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllAdministrators() {
-        return Response.ok(administrationLocal.listAllAdministrators()).build();
+        return Response.ok(administrationLocal.listAllUsers()).build();
     }
 
     @POST
@@ -135,7 +135,7 @@ public class AdministrationRestService {
     @DELETE
     @Path("/label/{primaryKey}")
     public Response deleteAdministrator(@PathParam("primaryKey") int id) {
-        administrationLocal.deleteAdministrator(id);
+        administrationLocal.deleteUser(id);
         return Response.ok().build();
     }
 

@@ -21,6 +21,6 @@ public class ShowAdministratorMB {
     private Integer userId = null;
 
     public UserVO getAdministrator(){
-        return administrationLocal.showAdministator(userId);
+        return administrationLocal.showUser(userId);
     }
 }

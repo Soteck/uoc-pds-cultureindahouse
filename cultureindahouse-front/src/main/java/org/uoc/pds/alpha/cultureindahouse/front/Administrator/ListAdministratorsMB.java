@@ -6,7 +6,6 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Console;
 import java.util.List;
 
 @SessionScoped
@@ -17,7 +16,7 @@ public class ListAdministratorsMB {
     private AdministrationLocal administratorLocal;
 
     public List<UserVO> getAdministrators() {
-        return administratorLocal.listAllAdministrators();
+        return administratorLocal.listAllUsers();
     }
 
     public String listAdministrators() {

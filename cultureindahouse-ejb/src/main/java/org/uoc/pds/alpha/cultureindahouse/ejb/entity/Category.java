@@ -3,7 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,7 +29,7 @@ public class Category {
 	private String description;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
-	private Collection<Event> events;
+	private List<Event> events;
 
 	public Category(String name, String description) {
 		this.name = name;

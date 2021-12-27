@@ -10,7 +10,7 @@ import java.util.List;
 public class EventOrganizerMapper {
 
 
-    public static EventOrganizer toEntity(EventOrganizerVO eventOrganizerVO) {
+    public static EventOrganizer toEntity(EventOrganizerVO eventOrganizerVO, boolean relations) {
         EventOrganizer ret = new EventOrganizer();
 
         ret.setId(eventOrganizerVO.getId());
@@ -18,20 +18,20 @@ public class EventOrganizerMapper {
         ret.setDescription(eventOrganizerVO.getDescription());
 
         var user = eventOrganizerVO.getAdministrator();
-        if (user != null) {
-            ret.setAdministrator(UserMapper.toEntity(user));
+        if (relations && user != null) {
+            ret.setAdministrator(UserMapper.toEntity(user, false));
         }
 
         var events = eventOrganizerVO.getEvents();
 
-        if (events != null && !events.isEmpty()){
-            ret.setEvents(EventMapper.toEntity(events));
+        if (relations && events != null && !events.isEmpty()){
+            ret.setEvents(EventMapper.toEntity(events, false));
         }
 
         return ret;
     }
 
-    public static EventOrganizerVO toVO(EventOrganizer eventOrganizer) {
+    public static EventOrganizerVO toVO(EventOrganizer eventOrganizer, boolean relations) {
         EventOrganizerVO ret = new EventOrganizerVO();
 
         ret.setId(eventOrganizer.getId());
@@ -39,30 +39,30 @@ public class EventOrganizerMapper {
         ret.setDescription(eventOrganizer.getDescription());
 
         var user = eventOrganizer.getAdministrator();
-        if (user != null) {
-            ret.setAdministrator(UserMapper.toVO(user));
+        if (relations && user != null) {
+            ret.setAdministrator(UserMapper.toVO(user, false));
         }
 
         var events = eventOrganizer.getEvents();
 
-        if (events != null && !events.isEmpty()){
-            ret.setEvents(EventMapper.toVO(new ArrayList<>(events)));
+        if (relations && events != null && !events.isEmpty()){
+            ret.setEvents(EventMapper.toVO(events, false));
         }
         return ret;
     }
 
-    public static List<EventOrganizer> toEntity(List<EventOrganizerVO> categories) {
+    public static List<EventOrganizer> toEntity(List<EventOrganizerVO> categories, boolean relations) {
         List<EventOrganizer> ret = new ArrayList<>();
         for (EventOrganizerVO eventOrganizer : categories) {
-            ret.add(toEntity(eventOrganizer));
+            ret.add(toEntity(eventOrganizer, relations));
         }
         return ret;
     }
 
-    public static List<EventOrganizerVO> toVO(List<EventOrganizer> categories) {
+    public static List<EventOrganizerVO> toVO(List<EventOrganizer> categories, boolean relations) {
         List<EventOrganizerVO> ret = new ArrayList<>();
         for (EventOrganizer eventOrganizer : categories) {
-            ret.add(toVO(eventOrganizer));
+            ret.add(toVO(eventOrganizer, relations));
         }
         return ret;
     }
