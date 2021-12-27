@@ -23,8 +23,7 @@ public class AdministratorToEventOrganizerMB {
     private UserVO user;
 
     public Object addEventOrganizer() {
-        administratorToEventLocal.updateAdministrator(userId,user.getName(), user.getSurname(), user.getPassword(), user.getEmail());
-        this.userId = null;
+        //falta la funcion
         this.user = null;
         return "AdministrationListView.xhtml";
     }

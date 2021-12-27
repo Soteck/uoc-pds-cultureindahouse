@@ -16,7 +16,7 @@
 
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
-                <h2 class="display-4 text-white fw-bold">Administrator Update</h2>
+                <h2 class="display-4 text-white fw-bold">Administrator to Event Organizer</h2>
                 <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
                 <form class="d-flex">
                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
@@ -35,7 +35,7 @@
                 <div class="row form-floating mb-5 rounded-3">
                 <div class="form col-4 mb-3 rounded-3 mb-3">
                     <label for="new-id" class="form-label text-white">Id</label>
-                    <h:inputText class="form-control" id="new-id" " value="#{ShowAdministratorMB.administrator.id}" readonly = "true"/>
+                    <h:inputText class="form-control" id="new-id" value="#{ShowAdministratorMB.administrator.id}" readonly = "true"/>
                 </div>
                 <div class="form col-4 mb-3 rounded-3 mb-3">
                     <label for="new-name" class="form-label text-white">Name</label>
@@ -46,22 +46,11 @@
                     <h:inputText class="form-control" id="new-surname"  value="#{ShowAdministratorMB.administrator.surname}" />
                 </div>
                 </div>
-
-                <div class="row form-floating mb-5 rounded-3">
-                <div class="form col-6 mb-3 rounded-3 mb-3">
-                    <label for="new-email" class="form-label text-white">Email</label>
-                    <h:inputText class="form-control" id="new-email" placeholder="Description" value="#{ShowAdministratorMB.administrator.email}" />
-                </div>
-                <div class="form col-6 mb-3 rounded-3 mb-3">
-                    <label for="new-password" class="form-label text-white">Password</label>
-                    <h:inputText class="form-control" id="new-password"  value="#{ShowAdministratorMB.administrator.password}" />
-                </div>
-                </div>
             </div>
 
-            <h:commandButton value="Update" height="355" width="350"
+            <h:commandButton value="Add" height="355" width="350"
                              action="#{ModifyAdministratorMB.actualizarAdministrator}"
-                             class="btn btn-outline-primary "/>
+                             class="btn btn-outline-success "/>
 
         </div>
 
