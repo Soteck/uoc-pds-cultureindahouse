@@ -104,7 +104,7 @@ public class AdministrationRestService {
     @Path("/administrator/{primaryKey}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAdministrator(@PathParam("primaryKey") int id) {
-        return Response.ok(administrationLocal.showAdministator(id)).build();
+        return Response.ok(administrationLocal.showUser(id)).build();
     }
 
     @GET
@@ -120,7 +120,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addAdministrator(UserVO user) {
 
-        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.addUser(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
     }
 
     @PUT
@@ -129,7 +129,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateAdministrator(@PathParam("primaryKey") int id, UserVO user) {
 
-        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.updateUser(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
     }
 
     @DELETE

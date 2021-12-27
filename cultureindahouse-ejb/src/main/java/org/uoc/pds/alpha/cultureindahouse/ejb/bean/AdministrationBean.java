@@ -105,7 +105,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public UserVO addAdministrator(String email, String password, String name, String surname) {
+    public UserVO addUser(String email, String password, String name, String surname) {
 
         User user = new User();
         user.setName(name);
@@ -118,7 +118,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public UserVO updateAdministrator(int id, String email, String password, String name, String surname) {
+    public UserVO updateUser(int id, String email, String password, String name, String surname) {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
@@ -129,7 +129,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public UserVO showAdministator(int id) {
+    public UserVO showUser(int id) {
 
         return UserMapper.toVO(userRepository.get(id));
     }

@@ -31,11 +31,11 @@ public interface AdministrationLocal {
 
 	void deleteEventOrganizer(int id);
 
-	UserVO addAdministrator (String email, String password, String name, String surname);
+	UserVO addUser(String email, String password, String name, String surname);
 
-	UserVO updateAdministrator(int id, String email, String password, String name, String surname);
+	UserVO updateUser(int id, String email, String password, String name, String surname);
 
-	UserVO showAdministator ( int id);
+	UserVO showUser(int id);
 
 	List<UserVO> listAllAdministrators();
 
