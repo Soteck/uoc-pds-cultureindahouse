@@ -21,7 +21,7 @@ public class ListAdministratorsMB {
     }
 
     public String listAdministrators() {
-        return "AdminsitratorListView.xhtml";
+        return "AdministratorListView.xhtml";
     }
     public String Administration() { return "administrationView.xhtml"; }
     public String errorLabel() { return "ErrorView.xhtml"; }
