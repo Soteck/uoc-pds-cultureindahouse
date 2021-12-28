@@ -76,8 +76,8 @@
                         <h:outputText value="Delete"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:commandLink outcome="listLabelsView.xhtml" class="btn btn-danger" style="margin-left: 25px;" action="#{RemoveLabelMB.deleteLabel}">
-                            <f:setPropertyActionListener target="labelId" value="#{label.id}" />
+                        <h:commandLink class="btn btn-danger" style="margin-left: 25px;" action="#{RemoveLabelMB.deleteLabel}">
+                            <f:param name="labelId" value="#{label.id}"/>
                             <i class="fa fa-trash">&nbsp;</i>
                         </h:commandLink>
                     </div>
