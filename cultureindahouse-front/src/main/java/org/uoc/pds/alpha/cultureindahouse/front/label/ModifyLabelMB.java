@@ -21,6 +21,7 @@ public class ModifyLabelMB {
     protected Integer labelId = null;
     private LabelVO label;
 
+
     public LabelVO getLabel(){
         if(label == null || !(label.getId() == labelId)){
             label = labelLocal.showLabel(labelId);

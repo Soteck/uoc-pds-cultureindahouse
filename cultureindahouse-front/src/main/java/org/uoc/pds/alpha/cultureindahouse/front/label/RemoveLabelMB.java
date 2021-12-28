@@ -24,4 +24,5 @@ public class RemoveLabelMB {
         labelLocal.deleteLabel(labelId);
         return "labelListView.xhtml";
     }
+
 }
