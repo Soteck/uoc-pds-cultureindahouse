@@ -3,12 +3,12 @@ package org.uoc.pds.alpha.cultureindahouse.api;
 import dto.AddOrUpdateEvent;
 import dto.AddOrUpdateUser;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Date;
 
 @Path("/profile")
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,8 +42,8 @@ public class ProfileRestService {
     @Path("/events/{eventId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateEvent(@PathParam("eventId") int eventId,AddOrUpdateEvent dto) {
-        return Response.ok(profileLocal.updateEvent(eventId, dto.name, dto.description, dto.location, dto.image, dto.initDate, dto.endDate,
+    public Response updateEvent(@PathParam("eventId") int eventId, AddOrUpdateEvent dto) {
+        return Response.ok(profileLocal.updateEvent(eventId, dto.name, dto.description, dto.location, dto.image, dateHelper.parse(dto.initDate), dateHelper.parse(dto.endDate),
                 dto.eventOrganizerId)).build();
     }
 
@@ -91,7 +91,7 @@ public class ProfileRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addEvent(AddOrUpdateEvent dto) {
         return Response
-                .ok(profileLocal.addEvent(dto.name, dto.description, dto.location, dto.image, dto.initDate, dto.endDate, dto.eventOrganizerId))
+                .ok(profileLocal.addEvent(dto.name, dto.description, dto.location, dto.image, dateHelper.parse(dto.initDate), dateHelper.parse(dto.endDate), dto.eventOrganizerId))
                 .build();
     }
 

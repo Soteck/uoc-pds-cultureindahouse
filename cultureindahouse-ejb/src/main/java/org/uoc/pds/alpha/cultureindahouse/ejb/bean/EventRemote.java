@@ -9,7 +9,7 @@ import java.util.List;
 @Remote
 public interface EventRemote {
 
-	OrderHistoryVO orderEvent(int eventId, String email);
+	OrderHistoryVO orderEvent(int eventId, int userId);
 
 	List<EventVO> listAllEvents();
 
@@ -22,7 +22,7 @@ public interface EventRemote {
 	EventVO showEvent(int id);
 
 
-	List<OrderHistoryVO> findOrdersByUser(String email);
+	List<OrderHistoryVO> findOrdersByUser(int userId);
 
 	List<OrderHistoryVO> findAllOrders();
 

@@ -13,7 +13,9 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,7 +86,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
-	public EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId) {
+	public EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId) {
 
 		Event event = new Event(name, description, location, image, initDate, endDate);
 
@@ -94,7 +96,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
-	public EventVO updateEvent(int eventId, String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId) {
+	public EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId) {
 
 		Event event = eventRepository.get(eventId);
 
@@ -146,7 +148,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		Label label = labelRepository.get(labelId);
 		Event event = eventRepository.get(eventId);
 
-		List<Event> labelEvents = label.getEvents();
+		Collection<Event> labelEvents = label.getEvents();
 
 		if (labelEvents == null || labelEvents.isEmpty()) {
 			labelEvents = new ArrayList<>();
@@ -165,7 +167,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		Label label = labelRepository.get(labelId);
 
 
-		List<Event> labelEvents = label.getEvents();
+		Collection<Event> labelEvents = label.getEvents();
 
 		if (labelEvents == null || labelEvents.isEmpty()) {
 			labelEvents = new ArrayList<>();

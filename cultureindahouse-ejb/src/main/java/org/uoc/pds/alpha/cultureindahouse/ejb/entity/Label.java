@@ -4,6 +4,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,9 +30,13 @@ public class Label {
 	@Column(name = "description")
 	private String description;
 
-	@ManyToMany(mappedBy = "labels")
-	private List<Event> events;
 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "label_event",
+			joinColumns = @JoinColumn(name = "label_id"),
+			inverseJoinColumns = @JoinColumn(name = "event_id"))
+	private Collection<Event> events;
 
 	@Override
 	public boolean equals(Object o) {

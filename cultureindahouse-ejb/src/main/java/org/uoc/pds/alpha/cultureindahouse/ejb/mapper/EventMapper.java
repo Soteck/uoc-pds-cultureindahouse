@@ -2,6 +2,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
+import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
 
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class EventMapper {
         ret.setDescription(eventVO.getDescription());
         ret.setLocation(eventVO.getLocation());
         ret.setImage(eventVO.getImage());
-        ret.setInitDate(eventVO.getInitDate());
-        ret.setEndDate(eventVO.getEndDate());
+        ret.setInitDate(dateHelper.parse(eventVO.getInitDate()));
+        ret.setEndDate(dateHelper.parse(eventVO.getEndDate()));
 
         EventOrganizerVO eventOrganizer = eventVO.getEventOrganizer();
         if (relations && eventOrganizer != null) {
@@ -72,8 +73,8 @@ public class EventMapper {
         ret.setDescription(event.getDescription());
         ret.setLocation(event.getLocation());
         ret.setImage(event.getImage());
-        ret.setInitDate(event.getInitDate());
-        ret.setEndDate(event.getEndDate());
+        ret.setInitDate(dateHelper.toString(event.getInitDate()));
+        ret.setEndDate(dateHelper.toString(event.getEndDate()));
 
         EventOrganizer eventOrganizer = event.getEventOrganizer();
         if (relations && eventOrganizer != null) {

@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -41,10 +42,10 @@ public class Event {
 	private String image;
 
 	@Column(name = "init_date")
-	private Date initDate;
+	private LocalDate initDate;
 
 	@Column(name = "end_date")
-	private Date endDate;
+	private LocalDate endDate;
 
 	@ManyToOne
 	@JoinColumn(name = "event_organizer_id")
@@ -62,11 +63,7 @@ public class Event {
 	private Category category;
 
 
-	@ManyToMany
-	@JoinTable(
-			name = "label_event",
-			joinColumns = @JoinColumn(name = "event_id"),
-			inverseJoinColumns = @JoinColumn(name = "label_id"))
+	@ManyToMany(mappedBy = "events", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Collection<Label> labels;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -78,7 +75,7 @@ public class Event {
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Question> questions;
 
-	public Event(String name, String description, String location, String image, Date initDate, Date endDate) {
+	public Event(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate) {
 		this.name = name;
 		this.description = description;
 		this.location = location;
