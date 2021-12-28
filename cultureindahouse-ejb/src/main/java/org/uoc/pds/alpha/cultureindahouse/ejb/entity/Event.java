@@ -1,9 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import java.util.*;
 import java.util.List;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -53,7 +51,7 @@ public class Event {
 	private EventOrganizer eventOrganizer;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<OrderHistory> orderHistory;
+	private Collection<OrderHistory> orderHistory;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -69,16 +67,16 @@ public class Event {
 			name = "label_event",
 			joinColumns = @JoinColumn(name = "event_id"),
 			inverseJoinColumns = @JoinColumn(name = "label_id"))
-	private List<Label> labels;
+	private Collection<Label> labels;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Rating> ratings;
+	private Collection<Rating> ratings;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Comment> comments;
+	private Collection<Comment> comments;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Question> questions;
+	private Collection<Question> questions;
 
 	public Event(String name, String description, String location, String image, Date initDate, Date endDate) {
 		this.name = name;

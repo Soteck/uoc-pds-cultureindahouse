@@ -2,9 +2,14 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Comment;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CommentVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CommentMapper {
@@ -14,12 +19,12 @@ public class CommentMapper {
         Comment ret = new Comment();
         ret.setId(commentVO.getId());
         ret.setText(commentVO.getText());
-        var event = commentVO.getEvent();
+        EventVO event = commentVO.getEvent();
 
         if (relations && event != null) {
             ret.setEvent(EventMapper.toEntity(event, false));
         }
-        var user = commentVO.getUser();
+        UserVO user = commentVO.getUser();
 
         if (relations && user != null) {
             ret.setUser(UserMapper.toEntity(user, false));
@@ -32,12 +37,12 @@ public class CommentMapper {
         ret.setId(comment.getId());
         ret.setText(comment.getText());
 
-        var event = comment.getEvent();
+        Event event = comment.getEvent();
 
         if (relations && event != null) {
             ret.setEvent(EventMapper.toVO(event, false));
         }
-        var user = comment.getUser();
+        User user = comment.getUser();
 
         if (relations && user != null) {
             ret.setUser(UserMapper.toVO(user, false));
@@ -46,7 +51,7 @@ public class CommentMapper {
     }
 
 
-    public static List<Comment> toEntity(List<CommentVO> comments, boolean relations) {
+    public static List<Comment> toEntity(Collection<CommentVO> comments, boolean relations) {
         List<Comment> ret = new ArrayList<>();
         for (CommentVO comment : comments) {
             ret.add(toEntity(comment, relations));
@@ -54,7 +59,7 @@ public class CommentMapper {
         return ret;
     }
 
-    public static List<CommentVO> toVO(List<Comment> comments, boolean relations) {
+    public static List<CommentVO> toVO(Collection<Comment> comments, boolean relations) {
         List<CommentVO> ret = new ArrayList<>();
         for (Comment comment : comments) {
             ret.add(toVO(comment, relations));

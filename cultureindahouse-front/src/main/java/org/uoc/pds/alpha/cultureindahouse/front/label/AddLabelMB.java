@@ -26,7 +26,7 @@ public class AddLabelMB {
     }
 
     public String anadirLabel() {
-        labelLocal.addLabel(label.getName(), label.getDescription());
+        labelLocal.addLabel(this.label.getName(), this.label.getDescription());
         label= new LabelVO();
         return "LabelListView.xhtml";
     }

@@ -3,6 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class EventOrganizerVO {
 
     private UserVO administrator;
 
-    private List<EventVO> events;
+    private Collection<EventVO> events;
 
     public EventOrganizerVO(String name, String description) {
         this.name = name;
@@ -30,7 +31,7 @@ public class EventOrganizerVO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventOrganizerVO that = (EventOrganizerVO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(administrator, that.administrator);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description);
     }
 
     @Override

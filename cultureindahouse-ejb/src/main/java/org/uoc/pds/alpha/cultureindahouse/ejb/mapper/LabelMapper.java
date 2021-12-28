@@ -6,6 +6,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class LabelMapper {
@@ -41,7 +42,8 @@ public class LabelMapper {
     }
 
 
-    public static List<Label> toEntity(List<LabelVO> labels, boolean relations) {
+
+    public static List<Label> toEntity(Collection<LabelVO> labels, boolean relations) {
         List<Label> ret = new ArrayList<>();
         for (LabelVO label : labels) {
             ret.add(toEntity(label, relations));
@@ -49,7 +51,8 @@ public class LabelMapper {
         return ret;
     }
 
-    public static List<LabelVO> toVO(List<Label> labels, boolean relations) {
+    public static List<LabelVO> toVO(Collection<Label> labels, boolean relations) {
+
         List<LabelVO> ret = new ArrayList<>();
         for (Label label : labels) {
             ret.add(toVO(label, relations));

@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 @Stateless
@@ -59,7 +60,7 @@ public class EventBean implements EventLocal, EventRemote {
 		ArrayList<EventVO> ret = new ArrayList<EventVO>();
 		Category category = categoryRepository.get(categoryId);
 
-		List<Event> events = category.getEvents();
+		Collection<Event> events = category.getEvents();
 
 		if (events != null && !events.isEmpty()) {
 			ret = new ArrayList<>(EventMapper.toVO(events, true));

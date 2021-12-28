@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,11 +9,15 @@ import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
 
 @Stateless
 @TransactionManagement
+
 public class UserRepository implements UserRepositoryInterface {
 
     @PersistenceContext(unitName = "GAO-PU")

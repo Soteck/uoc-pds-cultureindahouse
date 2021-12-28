@@ -5,6 +5,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class UserMapper {
@@ -101,18 +102,18 @@ public class UserMapper {
     }
 
 
-    public static List<User> toEntity(List<UserVO> categories, boolean relations) {
+    public static List<User> toEntity(Collection<UserVO> users, boolean relations) {
         List<User> ret = new ArrayList<>();
-        for (UserVO User : categories) {
+        for (UserVO User : users) {
             ret.add(toEntity(User, relations));
         }
         return ret;
     }
 
-    public static List<UserVO> toVO(List<User> categories, boolean relations) {
+    public static List<UserVO> toVO(Collection<User> categories, boolean relations) {
         List<UserVO> ret = new ArrayList<>();
         for (User User : categories) {
-            ret.add(toVO(User, relations));
+            ret.add(toVO(User,relations));
         }
         return ret;
     }

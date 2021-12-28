@@ -1,10 +1,15 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class EventOrganizerMapper {
@@ -17,12 +22,12 @@ public class EventOrganizerMapper {
         ret.setName(eventOrganizerVO.getName());
         ret.setDescription(eventOrganizerVO.getDescription());
 
-        var user = eventOrganizerVO.getAdministrator();
+        UserVO user = eventOrganizerVO.getAdministrator();
         if (relations && user != null) {
             ret.setAdministrator(UserMapper.toEntity(user, false));
         }
 
-        var events = eventOrganizerVO.getEvents();
+        Collection<EventVO> events = eventOrganizerVO.getEvents();
 
         if (relations && events != null && !events.isEmpty()){
             ret.setEvents(EventMapper.toEntity(events, false));
@@ -38,12 +43,12 @@ public class EventOrganizerMapper {
         ret.setName(eventOrganizer.getName());
         ret.setDescription(eventOrganizer.getDescription());
 
-        var user = eventOrganizer.getAdministrator();
+        User user = eventOrganizer.getAdministrator();
         if (relations && user != null) {
             ret.setAdministrator(UserMapper.toVO(user, false));
         }
 
-        var events = eventOrganizer.getEvents();
+        List<Event> events = eventOrganizer.getEvents();
 
         if (relations && events != null && !events.isEmpty()){
             ret.setEvents(EventMapper.toVO(events, false));
@@ -51,7 +56,7 @@ public class EventOrganizerMapper {
         return ret;
     }
 
-    public static List<EventOrganizer> toEntity(List<EventOrganizerVO> categories, boolean relations) {
+    public static List<EventOrganizer> toEntity(Collection<EventOrganizerVO> categories, boolean relations) {
         List<EventOrganizer> ret = new ArrayList<>();
         for (EventOrganizerVO eventOrganizer : categories) {
             ret.add(toEntity(eventOrganizer, relations));
@@ -59,7 +64,7 @@ public class EventOrganizerMapper {
         return ret;
     }
 
-    public static List<EventOrganizerVO> toVO(List<EventOrganizer> categories, boolean relations) {
+    public static List<EventOrganizerVO> toVO(Collection<EventOrganizer> categories, boolean relations) {
         List<EventOrganizerVO> ret = new ArrayList<>();
         for (EventOrganizer eventOrganizer : categories) {
             ret.add(toVO(eventOrganizer, relations));

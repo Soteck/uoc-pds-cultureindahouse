@@ -31,15 +31,15 @@ public class UserVO {
 
     private boolean isAdministrator;
 
-    private List<EventOrganizerVO> eventOrganizers;
+    private Collection<EventOrganizerVO> eventOrganizers;
 
-    private List<OrderHistoryVO> orderHistory;
+    private Collection<OrderHistoryVO> orderHistory;
 
-    private List<EventVO> favorites;
+    private Collection<EventVO> favorites;
 
-    private List<RatingVO> ratings;
+    private Collection<RatingVO> ratings;
 
-    private List<CommentVO> comments;
+    private Collection<CommentVO> comments;
 
     public UserVO(String email, String password, String name, String surname) {
         this.email = email;

@@ -9,6 +9,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Stateless
@@ -192,7 +193,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
         ArrayList<Question> ret = new ArrayList<Question>();
 
-        List<Question> questions = event.getQuestions();
+        Collection<Question> questions = event.getQuestions();
 
 		if (questions != null && !questions.isEmpty()) {
 			ret = new ArrayList<>(questions);

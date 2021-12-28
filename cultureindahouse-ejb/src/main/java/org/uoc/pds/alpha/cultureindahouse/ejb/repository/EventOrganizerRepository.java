@@ -1,15 +1,15 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.repository;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
@@ -52,7 +52,6 @@ public class EventOrganizerRepository implements EventOrganizerRepositoryInterfa
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<EventOrganizer> list() {
 		Query query = em.createQuery("select e from EventOrganizer e");
 		return query.getResultList();

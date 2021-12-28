@@ -17,7 +17,7 @@ public class LabelVO {
 
 	private String description;
 
-	private List<EventVO> events;
+	private Collection<EventVO> events;
 
 	public LabelVO(String name, String description) {
 		this.name = name;

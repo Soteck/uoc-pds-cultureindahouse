@@ -26,7 +26,8 @@ public class AddEventOrganizerMB {
     }
 
     public String anadirEventOrganizer() {
-        eventOrganizerLocal.addEventOrganizer(eventOrganizer.getName(), eventOrganizer.getDescription());
+        //TODO: ADD USERID
+        //eventOrganizerLocal.addEventOrganizer(eventOrganizer.getName(), eventOrganizer.getDescription());
         eventOrganizer= new EventOrganizerVO();
         return "EventOrganizerListView.xhtml";
     }

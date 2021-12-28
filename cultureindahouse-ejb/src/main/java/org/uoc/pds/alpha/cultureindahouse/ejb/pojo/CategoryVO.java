@@ -27,7 +27,7 @@ public class CategoryVO implements Serializable {
 
 	private String description;
 
-	private List<EventVO> events;
+	private Collection<EventVO> events;
 
 	@Override
 	public boolean equals(Object o) {
