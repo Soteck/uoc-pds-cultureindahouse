@@ -5,6 +5,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.Remote;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public interface ProfileRemote {
 
 	List<UserVO> listAllUsers();
 
-	EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId);
+	EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
 
-	EventVO updateEvent(int eventId, String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId);
+	EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
 
 	EventVO showEvent(String name);
 

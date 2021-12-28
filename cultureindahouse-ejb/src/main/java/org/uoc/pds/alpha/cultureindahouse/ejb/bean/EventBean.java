@@ -35,11 +35,11 @@ public class EventBean implements EventLocal, EventRemote {
 	private LabelRepositoryInterface labelRepository;
 
 	@Override
-	public OrderHistoryVO orderEvent(int eventId, String email) {
+	public OrderHistoryVO orderEvent(int eventId, int userId) {
 
 		Event event = eventRepository.get(eventId);
 
-		User user = userRepository.getUserByEmail(email);
+		User user = userRepository.get(userId);
 
 		OrderHistoryVO orderHistory = new OrderHistoryVO(Calendar.getInstance().getTime(), EventMapper.toVO(event, true), UserMapper.toVO(user, true));
 
@@ -48,6 +48,8 @@ public class EventBean implements EventLocal, EventRemote {
 
 		return OrderHistoryMapper.toVO(order, true);
 	}
+
+
 
 	@Override
 	public List<EventVO> listAllEvents() {
@@ -79,7 +81,7 @@ public class EventBean implements EventLocal, EventRemote {
 		List<EventVO> ret = null;
 		Label label = labelRepository.get(labelId);
 
-		List<Event> events = label.getEvents();
+		Collection<Event> events = label.getEvents();
 
 		if (events != null && !events.isEmpty()) {
 			ret = EventMapper.toVO(events, true);
@@ -95,12 +97,12 @@ public class EventBean implements EventLocal, EventRemote {
 
 
 	@Override
-	public List<OrderHistoryVO> findOrdersByUser(String email) {
-		List<OrderHistory> orders = userRepository.getUserByEmail(email).getOrderHistory();
+	public List<OrderHistoryVO> findOrdersByUser(int userId) {
+		List<OrderHistory> orders = userRepository.get(userId).getOrderHistory();
 		List<OrderHistoryVO> ret = null;
 
 		if (orders != null && !orders.isEmpty()) {
-			ret = OrderHistoryMapper.toVO(orders, false);
+			ret = OrderHistoryMapper.toVO(orders, true);
 		}
 
 		return ret;
@@ -110,13 +112,13 @@ public class EventBean implements EventLocal, EventRemote {
 	public List<OrderHistoryVO> findAllOrders() {
 
 
-		return OrderHistoryMapper.toVO(orderHistoryRepository.list(), false);
+		return OrderHistoryMapper.toVO(orderHistoryRepository.list(), true);
 	}
 
 	@Override
 	public OrderHistoryVO showOrder(int id) {
 
 
-		return OrderHistoryMapper.toVO(orderHistoryRepository.get(id), false);
+		return OrderHistoryMapper.toVO(orderHistoryRepository.get(id), true);
 	}
 }

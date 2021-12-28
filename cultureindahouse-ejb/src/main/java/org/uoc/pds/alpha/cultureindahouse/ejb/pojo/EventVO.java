@@ -2,8 +2,10 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 
 import lombok.*;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
+import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Data
@@ -21,9 +23,9 @@ public class EventVO {
 
 	private String image;
 
-	private Date initDate;
+	private String initDate;
 
-	private Date endDate;
+	private String endDate;
 
 	private EventOrganizerVO eventOrganizer;
 
@@ -42,13 +44,13 @@ public class EventVO {
 	private Collection<QuestionVO> questions;
 
 
-	public EventVO(String name, String description, String location, String image, Date initDate, Date endDate) {
+	public EventVO(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate) {
 		this.name = name;
 		this.description = description;
 		this.location = location;
 		this.image = image;
-		this.initDate = initDate;
-		this.endDate = endDate;
+		this.initDate = dateHelper.toString(initDate) ;
+		this.endDate = dateHelper.toString(endDate) ;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
 import dto.EventEmail;
+import dto.EventUser;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.EventLocal;
 
 import javax.ejb.EJB;
@@ -23,21 +24,21 @@ public class EventRestService {
     }
 
     @GET
-    @Path("/events?categoryId={categoryId}")
+    @Path("/events/category/{categoryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findEventsByCategory(@PathParam("categoryId") int categoryId) {
         return Response.ok(eventLocal.findEventsByCategory(categoryId)).build();
     }
 
     @GET
-    @Path("/events?name={name}")
+    @Path("/events/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findEventsByName(@PathParam("name") String name) {
         return Response.ok(eventLocal.findEventsByName(name)).build();
     }
 
     @GET
-    @Path("/events?labelId={labelId}")
+    @Path("/events/label/{labelId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findEventsByLabel(@PathParam("labelId") int labelId) {
         return Response.ok(eventLocal.findEventsByLabel(labelId)).build();
@@ -51,10 +52,10 @@ public class EventRestService {
     }
 
     @GET
-    @Path("/orders?email={email}")
+    @Path("/orders/user/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findOrdersByUser(@PathParam("email") String email) {
-        return Response.ok(eventLocal.findOrdersByUser(email)).build();
+    public Response findOrdersByUser(@PathParam("userId") int userId) {
+        return Response.ok(eventLocal.findOrdersByUser(userId)).build();
     }
 
     @GET
@@ -76,8 +77,8 @@ public class EventRestService {
     @Path("/order-event")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response orderEvent(EventEmail dto) {
-        return Response.ok(eventLocal.orderEvent(dto.eventId, dto.email)).build();
+    public Response orderEvent(EventUser dto) {
+        return Response.ok(eventLocal.orderEvent(dto.eventId, dto.userId)).build();
 
     }
 
