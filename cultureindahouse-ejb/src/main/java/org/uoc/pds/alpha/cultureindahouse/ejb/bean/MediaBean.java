@@ -1,7 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
-import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.*;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
@@ -10,24 +9,22 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Stateless
 public class MediaBean implements MediaLocal, MediaRemote {
 
-    @EJB
-    private QuestionRepositoryInterface questionRepository;
+	@EJB
+	private QuestionRepositoryInterface questionRepository;
 
-    @EJB
-    private ResponseRepositoryInterface responseRepository;
+	@EJB
+	private ResponseRepositoryInterface responseRepository;
 
-    @EJB
-    private EventRepositoryInterface eventRepository;
+	@EJB
+	private EventRepositoryInterface eventRepository;
 
-    @EJB
-    private UserRepositoryInterface userRepository;
+	@EJB
+	private UserRepositoryInterface userRepository;
 
 	@EJB
 	private CommentRepositoryInterface commentRepository;
@@ -36,193 +33,194 @@ public class MediaBean implements MediaLocal, MediaRemote {
 	private RatingRepositoryInterface ratingRepository;
 
 
-    @Override
-    public CommentVO sendComment(int eventId, String email, String text){
+	@Override
+	public CommentVO sendComment(int eventId, String email, String text) {
 
-        var event = eventRepository.get(eventId);
-        var user = userRepository.getUserByEmail(email);
+		Event event = eventRepository.get(eventId);
+		User user = userRepository.getUserByEmail(email);
 
-        var comment = new Comment(text,event,user);
-        var ret = commentRepository.add(comment);
+		Comment comment = new Comment(text, event, user);
+		Comment ret = commentRepository.add(comment);
 
-        return CommentMapper.toVO(ret);
-    }
+		return CommentMapper.toVO(ret, false);
+	}
 
-    @Override
-    public CommentVO sendComment(int eventId, int userId, String text){
+	@Override
+	public CommentVO sendComment(int eventId, int userId, String text) {
 
-        var event = eventRepository.get(eventId);
-        var user = userRepository.get(userId);
+		Event event = eventRepository.get(eventId);
+		User user = userRepository.get(userId);
 
-        var comment = new Comment(text,event,user);
-        var ret = commentRepository.add(comment);
+		Comment comment = new Comment(text, event, user);
+		Comment ret = commentRepository.add(comment);
 
-        return CommentMapper.toVO(ret);
-    }
+		return CommentMapper.toVO(ret, false);
+	}
 
-    @Override
-    public RatingVO addRating(int eventId, String email, int rating){
-        var event = eventRepository.get(eventId);
-        var user = userRepository.getUserByEmail(email);
+	@Override
+	public RatingVO addRating(int eventId, String email, int rating) {
+		Event event = eventRepository.get(eventId);
+		User user = userRepository.getUserByEmail(email);
 
-        var ret = new Rating(rating, event, user);
+		Rating ret = new Rating(rating, event, user);
 
-        return RatingMapper.toVO(ratingRepository.add(ret));
+		return RatingMapper.toVO(ratingRepository.add(ret), false);
 
-    }
+	}
 
-    @Override
-    public RatingVO addRating(int eventId, int userId, int rating){
-        var event = eventRepository.get(eventId);
-        var user = userRepository.get(userId);
+	@Override
+	public RatingVO addRating(int eventId, int userId, int rating) {
+		Event event = eventRepository.get(eventId);
+		User user = userRepository.get(userId);
 
-        var ret = new Rating(rating, event, user);
+		Rating ret = new Rating(rating, event, user);
 
-        return RatingMapper.toVO(ratingRepository.add(ret));
+		return RatingMapper.toVO(ratingRepository.add(ret), false);
 
-    }
+	}
 
-    @Override
-    public UserVO addToFavorites(int eventId, String email){
-        var event = eventRepository.get(eventId);
-        var user = userRepository.getUserByEmail(email);
+	@Override
+	public UserVO addToFavorites(int eventId, String email) {
+		Event event = eventRepository.get(eventId);
+		User user = userRepository.getUserByEmail(email);
 
-        var favorites = user.getFavorites();
+		List<Event> favorites = user.getFavorites();
 
-        if (favorites == null){
-            favorites = new ArrayList<Event>();
-        }
+		if (favorites == null) {
+			favorites = new ArrayList<Event>();
+		}
 
-        favorites.add(event);
+		favorites.add(event);
 
-        return UserMapper.toVO(userRepository.update(user.getId(),user));
+		return UserMapper.toVO(userRepository.update(user.getId(), user), false);
 
-    }
+	}
 
-    @Override
-    public UserVO addToFavorites(int eventId, int userId){
-        var event = eventRepository.get(eventId);
-        var user = userRepository.get(userId);
+	@Override
+	public UserVO addToFavorites(int eventId, int userId) {
+        Event event = eventRepository.get(eventId);
+        User user = userRepository.get(userId);
 
-        var favorites = user.getFavorites();
+        List<Event> favorites = user.getFavorites();
 
-        if (favorites == null){
-            favorites = new ArrayList<Event>();
-        }
+		if (favorites == null) {
+			favorites = new ArrayList<Event>();
+		}
 
-        favorites.add(event);
+		favorites.add(event);
 
-        return UserMapper.toVO(userRepository.update(user.getId(),user));
+		return UserMapper.toVO(userRepository.update(user.getId(), user), false);
 
-    }
-    @Override
-    public List<EventVO> listAllFavorites(){
+	}
 
-        var users = userRepository.list();
+	@Override
+	public List<EventVO> listAllFavorites() {
 
-        var events = new ArrayList<Event>();
-        for (User u :users) {
-            var favorites = u.getFavorites();
-            if (favorites != null && !favorites.isEmpty()){
-                events.addAll(u.getFavorites());
-            }
+        List<User> users = userRepository.list();
 
-        }
+        ArrayList<Event> events = new ArrayList<Event>();
+		for (User u : users) {
+            List<Event> favorites = u.getFavorites();
+			if (favorites != null && !favorites.isEmpty()) {
+				events.addAll(u.getFavorites());
+			}
 
-        return EventMapper.toVO(events);
-    }
+		}
 
-    @Override
-    public List<EventVO> listAllFavorites(String email){
+		return EventMapper.toVO(events, false);
+	}
 
-        var user = userRepository.getUserByEmail(email);
+	@Override
+	public List<EventVO> listAllFavorites(String email) {
 
-        var events = new ArrayList<Event>();
+        User user = userRepository.getUserByEmail(email);
 
-        var favorites = user.getFavorites();
-        if (user.getFavorites() !=  null && !favorites.isEmpty()){
-            events = new ArrayList<Event>(favorites);
-        }
+        ArrayList<Event> events = new ArrayList<Event>();
 
-        return EventMapper.toVO(events);
+        List<Event> favorites = user.getFavorites();
+		if (user.getFavorites() != null && !favorites.isEmpty()) {
+			events = new ArrayList<Event>(favorites);
+		}
 
-    }
+		return EventMapper.toVO(events, false);
 
-    @Override
-    public List<EventVO> listAllFavorites(int userId){
+	}
 
-        var user = userRepository.get(userId);
+	@Override
+	public List<EventVO> listAllFavorites(int userId) {
 
-        var events = new ArrayList<Event>();
+        User user = userRepository.get(userId);
 
-        var favorites = user.getFavorites();
-        if (user.getFavorites() !=  null && !favorites.isEmpty()){
-            events = new ArrayList<Event>(favorites);
-        }
+        ArrayList<Event> events = new ArrayList<Event>();
 
-        return EventMapper.toVO(events);
+        List<Event> favorites = user.getFavorites();
+		if (user.getFavorites() != null && !favorites.isEmpty()) {
+			events = new ArrayList<Event>(favorites);
+		}
 
-    }
+		return EventMapper.toVO(events, false);
 
+	}
 
-    @Override
-    public QuestionVO getQuestion(int questionId){
 
-        return QuestionMapper.toVO(questionRepository.get(questionId));
-    }
+	@Override
+	public QuestionVO getQuestion(int questionId) {
 
-    @Override
-    public ResponseVO getResponse(int questionId){
+		return QuestionMapper.toVO(questionRepository.get(questionId), false);
+	}
 
-        var question = questionRepository.get(questionId);
+	@Override
+	public ResponseVO getResponse(int questionId) {
 
-        var response = question.getResponse();
-        var ret = new ResponseVO();
+        Question question = questionRepository.get(questionId);
 
-        if (response != null){
-            ret = ResponseMapper.toVO(response);
-        }
+        Response response = question.getResponse();
+        ResponseVO ret = new ResponseVO();
 
-        return ret;
+		if (response != null) {
+			ret = ResponseMapper.toVO(response, false);
+		}
 
-    }
+		return ret;
 
-    @Override
-    public List<QuestionVO> listAllQuestions(int eventId){
+	}
 
-        var event = eventRepository.get(eventId);
+	@Override
+	public List<QuestionVO> listAllQuestions(int eventId) {
 
-        var ret = new ArrayList<Question>();
+        Event event = eventRepository.get(eventId);
 
-        var questions = event.getQuestions();
+        ArrayList<Question> ret = new ArrayList<Question>();
 
-        if (questions != null && !questions.isEmpty()){
-            ret = new ArrayList<>(questions);
-        }
+        List<Question> questions = event.getQuestions();
 
-        return QuestionMapper.toVO(ret);
+		if (questions != null && !questions.isEmpty()) {
+			ret = new ArrayList<>(questions);
+		}
 
-    }
+		return QuestionMapper.toVO(ret, false);
 
-    @Override
-    public ResponseVO answerQuestion(int questionId, String message){
+	}
 
-        var question = questionRepository.get(questionId);
-        var response = new Response(message,question );
+	@Override
+	public ResponseVO answerQuestion(int questionId, String message) {
 
-        return ResponseMapper.toVO(responseRepository.add(response));
+        Question question = questionRepository.get(questionId);
+        Response response = new Response(message, question);
 
-    }
+		return ResponseMapper.toVO(responseRepository.add(response), false);
 
-    @Override
-    public QuestionVO askQuestion(int eventId, String title, String message){
+	}
 
-        var event = eventRepository.get(eventId);
+	@Override
+	public QuestionVO askQuestion(int eventId, String title, String message) {
 
-        var question = new Question(title,message,event);
+        Event event = eventRepository.get(eventId);
 
-        return QuestionMapper.toVO(questionRepository.add(question));
-    }
+        Question question = new Question(title, message, event);
+
+		return QuestionMapper.toVO(questionRepository.add(question), false);
+	}
 
 
 }

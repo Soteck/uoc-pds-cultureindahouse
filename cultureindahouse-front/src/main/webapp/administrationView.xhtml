@@ -11,7 +11,7 @@
     <ui:define name="content">
 
         <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
-        padding-top: 100px;" >
+        padding-top: 20px;" >
             <img  src="./img/tools-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Administration View</h2>
@@ -37,8 +37,8 @@
                             <li>
                                 <h:form>
                                     <h:commandButton value="Administration menu" height="150" width="150"
-                                                     action="#{ListCategoriesMB.errorAdministration}" immediate="true"
-                                                     class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
+                                                     action="#{ListAdministratorsMB.listAdministrators}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
                                 </h:form>
                             </li>
                         </ul>
@@ -78,8 +78,8 @@
                             <li>
                                 <h:form>
                                     <h:commandButton value="Event Organizer menu" height="150" width="150"
-                                                     action="#{ListCategoriesMB.errorAdministration}" immediate="true"
-                                                     class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
+                                                     action="#{ListEventOrganizerMB.listEventOrganizers}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
                                 </h:form>
                             </li>
                         </ul>

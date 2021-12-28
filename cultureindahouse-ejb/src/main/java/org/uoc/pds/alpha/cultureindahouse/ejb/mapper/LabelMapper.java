@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LabelMapper {
 
-    public static Label toEntity(LabelVO labelVO) {
+    public static Label toEntity(LabelVO labelVO, boolean relations) {
         Label ret = new Label();
 
         ret.setId(labelVO.getId());
@@ -18,14 +18,14 @@ public class LabelMapper {
         ret.setDescription(labelVO.getDescription());
 
         var events = labelVO.getEvents();
-        if (events != null && !events.isEmpty()) {
-            ret.setEvents(EventMapper.toEntity(events));
+        if (relations && events != null && !events.isEmpty()) {
+            ret.setEvents(EventMapper.toEntity(events, false));
         }
 
         return ret;
     }
 
-    public static LabelVO toVO(Label label) {
+    public static LabelVO toVO(Label label, boolean relations) {
         LabelVO ret = new LabelVO();
 
         ret.setId(label.getId());
@@ -34,25 +34,25 @@ public class LabelMapper {
 
         var events = label.getEvents();
 
-        if (events != null && !events.isEmpty()) {
-            ret.setEvents(EventMapper.toVO(new ArrayList<>( events)));
+        if (relations && events != null && !events.isEmpty()) {
+            ret.setEvents(EventMapper.toVO(events, false));
         }
         return ret;
     }
 
 
-    public static List<Label> toEntity(List<LabelVO> labels) {
+    public static List<Label> toEntity(List<LabelVO> labels, boolean relations) {
         List<Label> ret = new ArrayList<>();
         for (LabelVO label : labels) {
-            ret.add(toEntity(label));
+            ret.add(toEntity(label, relations));
         }
         return ret;
     }
 
-    public static List<LabelVO> toVO(List<Label> labels) {
+    public static List<LabelVO> toVO(List<Label> labels, boolean relations) {
         List<LabelVO> ret = new ArrayList<>();
         for (Label label : labels) {
-            ret.add(toVO(label));
+            ret.add(toVO(label, relations));
         }
         return ret;
     }

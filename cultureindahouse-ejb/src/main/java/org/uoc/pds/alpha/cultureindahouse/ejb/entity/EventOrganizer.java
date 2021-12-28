@@ -4,7 +4,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ public class EventOrganizer {
 	private User administrator;
 
 	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<Event> events;
+	private List<Event> events;
 
 	@Override
 	public boolean equals(Object o) {

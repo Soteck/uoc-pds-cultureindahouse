@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pra2.user_id_seq")
     private Integer id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -48,19 +48,19 @@ public class User {
     private boolean isAdministrator;
 
     @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<EventOrganizer> eventOrganizers;
+    private List<EventOrganizer> eventOrganizers;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<OrderHistory> orderHistory;
+    private List<OrderHistory> orderHistory;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Event> favorites;
+    private List<Event> favorites;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Rating> ratings;
+    private List<Rating> ratings;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Comment> comments;
+    private List<Comment> comments;
 
 
     @Override

@@ -19,9 +19,9 @@ public interface AdministrationRemote {
 
 	List<CategoryVO> listAllCategories();
 
-	EventOrganizerVO addEventOrganizer( String name, String description);
+	EventOrganizerVO addEventOrganizer(String name, String description);
 
-	EventOrganizerVO updateEventOrganizer (int id, String name, String description);
+	EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
 	EventOrganizerVO showEventOrganizer(int id);
 
@@ -29,19 +29,19 @@ public interface AdministrationRemote {
 
 	void deleteEventOrganizer(int id);
 
-	UserVO addAdministrator (String email, String password, String name, String surname);
+	UserVO addUser(String email, String password, String name, String surname);
 
-	UserVO updateAdministrator( int id,String email, String password, String name, String surname);
+	UserVO updateUser(int id, String email, String password, String name, String surname);
 
-	UserVO showAdministator ( int id);
+	UserVO showUser(int id);
 
-	List<UserVO> listAllAdministrators();
+	List<UserVO> listAllUsers();
 
-	void deleteAdministrator(int id);
+	void deleteUser(int id);
 
-	LabelVO addLabel (String name, String description);
+	LabelVO addLabel(String name, String description);
 
-	LabelVO updateLabel (int id, String name, String description);
+	LabelVO updateLabel(int id, String name, String description);
 
 	LabelVO showLabel(int id);
 

@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -69,16 +69,16 @@ public class Event {
 			name = "label_event",
 			joinColumns = @JoinColumn(name = "event_id"),
 			inverseJoinColumns = @JoinColumn(name = "label_id"))
-	private Collection<Label> labels;
+	private List<Label> labels;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<Rating> ratings;
+	private List<Rating> ratings;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<Comment> comments;
+	private List<Comment> comments;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<Question> questions;
+	private List<Question> questions;
 
 	public Event(String name, String description, String location, String image, Date initDate, Date endDate) {
 		this.name = name;

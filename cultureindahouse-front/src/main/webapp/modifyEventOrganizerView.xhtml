@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<f:metadata>
+    <f:viewParam name="eventOrganizerId" value="#{ModifyEventOrganizerMB.eventOrganizerId}"/>
+    <ui:param name="new" value="#{ModifyEventOrganizerMB.eventOrganizerId eq null}"/>
+</f:metadata>
+
+<ui:composition template="./headerView.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <div style="padding-top: 50px">
+                <c:choose>
+                    <c:when test="${new}">
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h2 class="display-4 text-white fw-bold">EventOrganizer</h2>
+                                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                                        <span class="fa fa-home"/>
+                                    </h:link>
+                                    <h:link outcome="LabelListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                                        <span class="fa fa-bars"/>
+                                    </h:link>
+                            </div>
+                        </div>
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">EventOrganizer Add</h3>
+                                <div class="mb-3">
+                                    <label for="new-name" class="form-label text-white">Name</label>
+                                    <h:inputText class="form-control" id="new-name" placeholder="Nombre" value="#{AddEventOrganizerMB.eventOrganizer.name}" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-description" class="form-label text-white">Description</label>
+                                    <h:inputText class="form-control" id="new-description" placeholder="Descripcion" value="#{AddEventOrganizerMB.eventOrganizer.description}" />
+                                </div>
+
+                                <h:commandButton value="Add" height="355" width="350"
+                                                 action="#{AddEventOrganizerMB.anadirEventOrganizer}"
+                                                 class="btn btn-outline-success"/>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px" >
+                            <div class="col-3 p-3">
+                                <h:link outcome="EventOrganizerListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                                    <i class="fa fa-undo">&nbsp;</i>
+                                    <span>Return to list</span>
+                                </h:link>
+                            </div>
+                        </div>
+
+                        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+                        <hr class="featurette-divider"/>
+
+                    </c:when>
+
+
+                    <c:otherwise>
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h2 class="display-4 text-white fw-bold">EventOrganizer</h2>
+                                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                                        <span class="fa fa-home"/>
+                                    </h:link>
+                                    <h:link outcome="EventOrganizerListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                                        <span class="fa fa-bars"/>
+                                    </h:link>
+                            </div>
+                        </div>
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">EventOrganizer Update</h3>
+                                <div class="mb-3">
+                                    <label for="update-name" class="form-label">Name</label>
+                                    <h:inputText class="form-control" id="update-name" placeholder="Nombre" value="#{ModifyEventOrganizerMB.eventOrganizer.name}"  />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update-description" class="form-label">Description</label>
+                                    <h:inputText class="form-control" id="update-description" placeholder="Descripcion" value="#{ModifyEventOrganizerMB.eventOrganizer.description}" />
+                                </div>
+
+                                <h:commandButton value="Update" height="355" width="350"
+                                                 action="#{ModifyEventOrganizerMB.actualizarEventOrganizer}"
+                                                 class="btn btn-outline-success "/>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px" >
+                            <div class="col-3 p-3">
+                                <h:link outcome="EventOrganizerListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                                    <i class="fa fa-undo">&nbsp;</i>
+                                    <span>Reurn to list</span>
+                                </h:link>
+                            </div>
+                        </div>
+
+                        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+                        <hr class="featurette-divider"/>
+
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

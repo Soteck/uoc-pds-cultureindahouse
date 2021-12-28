@@ -71,17 +71,6 @@
                     </div>
                 </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Delete"/>
-                    </f:facet>
-                    <div style="padding:2px; display:inline">
-                        <h:commandLink outcome="listCategoryView.xhtml" class="btn btn-danger" style="margin-left: 25px;" action="#{ListCategoriesMB.deleteCategory}">
-                            <f:setPropertyActionListener target="categoryId" value="#{category.id}" />
-                            <i class="fa fa-trash">&nbsp;</i>
-                        </h:commandLink>
-                    </div>
-                </h:column>
 
             </h:dataTable>
 

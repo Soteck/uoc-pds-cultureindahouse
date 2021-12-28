@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="d-flex position-relativep-6 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
+        padding-top: 20px;" >
+            <img  src="./img/photo-video-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Media View</h2>
+                <p class="col-md-8 text-white fs-4">Choose your election</p>
+            </div>
+        </div>
+
+        <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
+        padding-top: 5px;" >
+            <div class="container-fluid py-4">
+                <p class="display-4 text-white fw-bold">Datatable with Event</p>
+                <h:dataTable value="#{ListAdministratorsMB.administrators}" var="administrators"
+                             styleClass="labelTable table table-dark table-striped table-hover"
+                             headerClass="labelTableHeader"
+                             rowClasses="labelTableOddRow,labelTableEvenRow">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText value="#{administrators.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{administrators.name}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Surname</f:facet>
+                        <h:outputText value="#{administrators.surname}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:outputText value="#{administrators.email}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="View"/>
+                        </f:facet>
+
+                        <div style="padding:2px; display:inline">
+                            <h:link outcome="labelDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                <f:param name="labelId" value=""/>
+                                <i class="fa fa-search">&nbsp;</i>
+                            </h:link>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col-3 p-3">
+            </div>
+            <div class="col-6 p-3">
+                <h:link outcome="modifyAdministratorView.xhtml" class="btn btn-lg btn-secondary me-2" style="">
+                    <f:param name="" value=""/>
+                    <i class="fa fa-comments"></i>
+                    <span>List Questions</span>
+                </h:link>
+            </div>
+            <div class="col-lg-3 p-3">
+            </div>
+        </div>
+
+        <div class="pricing-header p-1 pb-md-3 mx-auto text-center">
+            <p class="fs-5 text-muted">Here you can see the different blocks of programmed actions to which you have access.</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 mb-5 text-center">
+            <div class="col-2 p-3">
+                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <f:param name="" value=""/>
+                    <i class="fa fa-star">&nbsp;</i>
+                    <span>List favorites</span>
+                    </h:link>
+            </div>
+            <div class="col-2 p-3">
+                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <f:param name="" value=""/>
+                    <i class="fa fa-bookmark"></i>
+                    <span>Suggest</span>
+                </h:link>
+            </div>
+            <div class="col-2 p-3">
+                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <f:param name="" value=""/>
+                    <i class="fa fa-star-half-alt">&nbsp;</i>
+                    <span>Add Ratting</span>
+                </h:link>
+            </div>
+            <div class="col-2 p-3">
+                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <f:param name="" value=""/>
+                    <i class="fa fa-comment-alt">&nbsp;</i>
+                    <span>Send Comment</span>
+                </h:link>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+         <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>
