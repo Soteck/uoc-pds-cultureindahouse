@@ -17,9 +17,11 @@ public interface AdministrationRemote {
 
 	CategoryVO showCategory(int id);
 
+	void deleteCategory(int id);
+
 	List<CategoryVO> listAllCategories();
 
-	EventOrganizerVO addEventOrganizer(String name, String description);
+	EventOrganizerVO addEventOrganizer(String name, String description, int userId) throws Exception;
 
 	EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
@@ -29,15 +31,15 @@ public interface AdministrationRemote {
 
 	void deleteEventOrganizer(int id);
 
-	UserVO addUser(String email, String password, String name, String surname);
+	UserVO addAdministrator(String email, String password, String name, String surname);
 
-	UserVO updateUser(int id, String email, String password, String name, String surname);
+	UserVO updateAdministrator(int id, String email, String password, String name, String surname);
 
-	UserVO showUser(int id);
+	UserVO showAdministator(int id);
 
-	List<UserVO> listAllUsers();
+	List<UserVO> listAllAdministrators();
 
-	void deleteUser(int id);
+	void deleteAdministrator(int id);
 
 	LabelVO addLabel(String name, String description);
 

@@ -6,6 +6,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.Remote;
 import java.util.Date;
+import java.util.List;
 
 @Remote
 public interface ProfileRemote {
@@ -18,6 +19,12 @@ public interface ProfileRemote {
 	UserVO updateUser(String nif, String email, String password, String name, String surname, String preferedLanguage, String address);
 
 	UserVO showUser(String email);
+
+	UserVO showUser(int userId);
+
+	void deleteUser(int userId);
+
+	List<UserVO> listAllUsers();
 
 	EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId);
 

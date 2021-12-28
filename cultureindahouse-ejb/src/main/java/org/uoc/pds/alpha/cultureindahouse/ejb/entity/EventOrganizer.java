@@ -33,7 +33,7 @@ public class EventOrganizer {
 	@JoinColumn(name = "administrator_id")
 	private User administrator;
 
-	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.PERSIST)
 	private List<Event> events;
 
 	@Override

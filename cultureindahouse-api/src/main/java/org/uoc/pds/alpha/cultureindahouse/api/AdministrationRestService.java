@@ -1,15 +1,24 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
+import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
-import javax.ejb.EJB;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import dto.AddOrUpdateEventOrganizer;
 
 @Path("/administration")
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,9 +30,9 @@ public class AdministrationRestService {
     //CATEGORY
 
     @GET
-    @Path("/category/{primaryKey}")
+    @Path("/category/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCategory(@PathParam("primaryKey") int id) {
+    public Response getCategory(@PathParam("id") int id) {
         return Response.ok(administrationLocal.showCategory(id)).build();
     }
 
@@ -43,17 +52,17 @@ public class AdministrationRestService {
     }
 
     @PUT
-    @Path("/category/{primaryKey}")
+    @Path("/category/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateCategory(@PathParam("primaryKey") int id, CategoryVO cat) {
+    public Response updateCategory(@PathParam("id") int id, CategoryVO cat) {
         return Response.ok(administrationLocal.updateCategory(id, cat.getName(), cat.getDescription())).build();
     }
 
     @DELETE
-    @Path("/category/{primaryKey}")
+    @Path("/category/{id}")
     public Response deleteCategory(
-            @PathParam("primaryKey") int id) {
+            @PathParam("id") int id) {
         administrationLocal.deleteCategory(id);
         return Response.ok().build();
     }
@@ -62,9 +71,9 @@ public class AdministrationRestService {
     //EVENT-ORGANIZER
 
     @GET
-    @Path("/event-organizer/{primaryKey}")
+    @Path("/event-organizer/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getEventOrganizer(@PathParam("primaryKey") int id) {
+    public Response getEventOrganizer(@PathParam("id") int id) {
         return Response.ok(administrationLocal.showEventOrganizer(id)).build();
     }
 
@@ -79,21 +88,21 @@ public class AdministrationRestService {
     @Path("/event-organizer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addEventOrganizer(EventOrganizerVO event) {
-        return Response.ok(administrationLocal.addEventOrganizer(event.getName(), event.getDescription())).build();
+    public Response addEventOrganizer(AddOrUpdateEventOrganizer event) throws Exception {
+        return Response.ok(administrationLocal.addEventOrganizer(event.getName(), event.getDescription(), event.getUserId())).build();
     }
 
     @PUT
-    @Path("/event-organizer/{primaryKey}")
+    @Path("/event-organizer/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateEventOrganizer(@PathParam("primaryKey") int id, EventOrganizerVO event) {
+    public Response updateEventOrganizer(@PathParam("id") int id, EventOrganizerVO event) {
         return Response.ok(administrationLocal.updateEventOrganizer(id, event.getName(), event.getDescription())).build();
     }
 
     @DELETE
-    @Path("/label/{primaryKey}")
-    public Response deleteEventOrganizer(@PathParam("primaryKey") int id) {
+    @Path("/event-organizer/{id}")
+    public Response deleteEventOrganizer(@PathParam("id") int id) {
         administrationLocal.deleteEventOrganizer(id);
         return Response.ok().build();
     }
@@ -101,17 +110,17 @@ public class AdministrationRestService {
     //ADMINISTRATOR
 
     @GET
-    @Path("/administrator/{primaryKey}")
+    @Path("/administrator/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAdministrator(@PathParam("primaryKey") int id) {
-        return Response.ok(administrationLocal.showUser(id)).build();
+    public Response getAdministrator(@PathParam("id") int id) {
+        return Response.ok(administrationLocal.showAdministator(id)).build();
     }
 
     @GET
     @Path("/administrator")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllAdministrators() {
-        return Response.ok(administrationLocal.listAllUsers()).build();
+        return Response.ok(administrationLocal.listAllAdministrators()).build();
     }
 
     @POST
@@ -120,31 +129,31 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addAdministrator(UserVO user) {
 
-        return Response.ok(administrationLocal.addUser(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
     }
 
     @PUT
-    @Path("/administrator/{primaryKey}")
+    @Path("/administrator/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateAdministrator(@PathParam("primaryKey") int id, UserVO user) {
+    public Response updateAdministrator(@PathParam("id") int id, UserVO user) {
 
-        return Response.ok(administrationLocal.updateUser(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
     }
 
     @DELETE
-    @Path("/label/{primaryKey}")
-    public Response deleteAdministrator(@PathParam("primaryKey") int id) {
-        administrationLocal.deleteUser(id);
+    @Path("/administrator/{id}")
+    public Response deleteAdministrator(@PathParam("id") int id) {
+        administrationLocal.deleteAdministrator(id);
         return Response.ok().build();
     }
 
     //LABEL
 
     @GET
-    @Path("/label/{primaryKey}")
+    @Path("/label/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getLabel(@PathParam("primaryKey") int id) {
+    public Response getLabel(@PathParam("id") int id) {
         return Response.ok(administrationLocal.showLabel(id)).build();
     }
 
@@ -164,16 +173,16 @@ public class AdministrationRestService {
     }
 
     @PUT
-    @Path("/label/{primaryKey}")
+    @Path("/label/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateLabel(@PathParam("primaryKey") int id, LabelVO label) {
+    public Response updateLabel(@PathParam("id") int id, LabelVO label) {
         return Response.ok(administrationLocal.updateLabel(id, label.getName(), label.getDescription())).build();
     }
 
     @DELETE
-    @Path("/label/{primaryKey}")
-    public Response deleteLabel(@PathParam("primaryKey") int id) {
+    @Path("/label/{id}")
+    public Response deleteLabel(@PathParam("id") int id) {
         administrationLocal.deleteLabel(id);
         return Response.ok().build();
     }

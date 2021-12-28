@@ -68,6 +68,20 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		return UserMapper.toVO(userRepository.getUserByEmail(email), false);
 	}
 
+	@Override
+	public UserVO showUser(int userId) {
+		return UserMapper.toVO(userRepository.get(userId), false);
+	}
+
+	@Override
+	public List<UserVO> listAllUsers() {
+		return UserMapper.toVO(userRepository.list(), false);
+	}
+
+	@Override
+	public void deleteUser(int userId) {
+		userRepository.delete(userId);
+	}
 
 	@Override
 	public EventVO addEvent(String name, String description, String location, String image, Date initDate, Date endDate, int eventOrganizerId) {
@@ -96,6 +110,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 		return EventMapper.toVO(eventRepository.add(event), false);
 	}
+
 
 
 	@Override

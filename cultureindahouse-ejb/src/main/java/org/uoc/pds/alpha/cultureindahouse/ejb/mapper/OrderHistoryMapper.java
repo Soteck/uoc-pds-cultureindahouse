@@ -1,12 +1,11 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.OrderHistory;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.OrderHistoryVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class OrderHistoryMapper {
@@ -18,12 +17,12 @@ public class OrderHistoryMapper {
         ret.setDate(orderHistoryVO.getDate());
 
         var event = orderHistoryVO.getEvent();
-        if (relations && event != null){
+        if (relations && event != null) {
             ret.setEvent(EventMapper.toEntity(event, false));
         }
 
         var user = orderHistoryVO.getUser();
-        if (relations && user != null){
+        if (relations && user != null) {
             ret.setUser(UserMapper.toEntity(user, false));
         }
 
@@ -39,12 +38,12 @@ public class OrderHistoryMapper {
         ret.setDate(order.getDate());
 
         var event = order.getEvent();
-        if (relations && event != null){
+        if (relations && event != null) {
             ret.setEvent(EventMapper.toVO(event, false));
         }
 
         var user = order.getUser();
-        if (relations && user != null){
+        if (relations && user != null) {
             ret.setUser(UserMapper.toVO(user, false));
         }
 
@@ -53,7 +52,7 @@ public class OrderHistoryMapper {
     }
 
 
-    public static List<OrderHistory> toEntity(List<OrderHistoryVO> events, boolean relations) {
+    public static List<OrderHistory> toEntity(Collection<OrderHistoryVO> events, boolean relations) {
         List<OrderHistory> ret = new ArrayList<>();
         for (OrderHistoryVO event : events) {
             ret.add(toEntity(event, relations));
@@ -61,7 +60,7 @@ public class OrderHistoryMapper {
         return ret;
     }
 
-    public static List<OrderHistoryVO> toVO(List<OrderHistory> events, boolean relations) {
+    public static List<OrderHistoryVO> toVO(Collection<OrderHistory> events, boolean relations) {
         List<OrderHistoryVO> ret = new ArrayList<>();
         for (OrderHistory event : events) {
             ret.add(toVO(event, relations));

@@ -11,17 +11,18 @@ import java.util.List;
 @Local
 public interface AdministrationLocal {
 
+
 	CategoryVO addCategory(String name, String description);
 
 	CategoryVO updateCategory(int id, String name, String description);
 
 	CategoryVO showCategory(int id);
 
-	List<CategoryVO> listAllCategories();
-
 	void deleteCategory(int id);
 
-	EventOrganizerVO addEventOrganizer(String name, String description);
+	List<CategoryVO> listAllCategories();
+
+	EventOrganizerVO addEventOrganizer(String name, String description, int userId) throws Exception;
 
 	EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
@@ -31,15 +32,15 @@ public interface AdministrationLocal {
 
 	void deleteEventOrganizer(int id);
 
-	UserVO addUser(String email, String password, String name, String surname);
+	UserVO addAdministrator(String email, String password, String name, String surname);
 
-	UserVO updateUser(int id, String email, String password, String name, String surname);
+	UserVO updateAdministrator(int id, String email, String password, String name, String surname);
 
-	UserVO showUser(int id);
+	UserVO showAdministator(int id);
 
-	List<UserVO> listAllUsers();
+	List<UserVO> listAllAdministrators();
 
-	void deleteUser(int id);
+	void deleteAdministrator(int id);
 
 	LabelVO addLabel(String name, String description);
 
@@ -50,6 +51,4 @@ public interface AdministrationLocal {
 	List<LabelVO> listAllLabels();
 
 	void deleteLabel(int id);
-
-
 }

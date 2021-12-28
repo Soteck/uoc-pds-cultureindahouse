@@ -5,6 +5,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Rating;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.RatingVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class RatingMapper {
@@ -41,19 +42,19 @@ public class RatingMapper {
         var event = rating.getEvent();
 
         if (relations && event != null) {
-            ret.setEvent(EventMapper.toVO(event, relations));
+            ret.setEvent(EventMapper.toVO(event, false));
         }
         var user = rating.getUser();
 
         if (relations && user != null) {
-            ret.setUser(UserMapper.toVO(user, relations));
+            ret.setUser(UserMapper.toVO(user, false));
         }
 
         return ret;
     }
 
 
-    public static List<Rating> toEntity(List<RatingVO> categories, boolean relations) {
+    public static List<Rating> toEntity(Collection<RatingVO> categories, boolean relations) {
         List<Rating> ret = new ArrayList<>();
         for (RatingVO rating : categories) {
             ret.add(toEntity(rating, relations));
@@ -61,7 +62,7 @@ public class RatingMapper {
         return ret;
     }
 
-    public static List<RatingVO> toVO(List<Rating> categories, boolean relations) {
+    public static List<RatingVO> toVO(Collection<Rating> categories, boolean relations) {
         List<RatingVO> ret = new ArrayList<>();
         for (Rating Rating : categories) {
             ret.add(toVO(Rating, relations));

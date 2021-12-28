@@ -47,19 +47,19 @@ public class User {
     @Column(name = "is_administrator")
     private boolean isAdministrator;
 
-    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<EventOrganizer> eventOrganizers;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<OrderHistory> orderHistory;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Event> favorites;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Rating> ratings;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Comment> comments;
 
 

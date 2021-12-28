@@ -1,10 +1,11 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class EventMapper {
@@ -20,40 +21,40 @@ public class EventMapper {
         ret.setInitDate(eventVO.getInitDate());
         ret.setEndDate(eventVO.getEndDate());
 
-        var eventOrganizer = eventVO.getEventOrganizer();
+        EventOrganizerVO eventOrganizer = eventVO.getEventOrganizer();
         if (relations && eventOrganizer != null) {
             ret.setEventOrganizer(EventOrganizerMapper.toEntity(eventOrganizer, false));
         }
 
-        var orderHistory = eventVO.getOrderHistory();
+        Collection<OrderHistoryVO> orderHistory = eventVO.getOrderHistory();
         if (relations && orderHistory != null && !orderHistory.isEmpty()) {
             ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory, false));
         }
 
-        var user = eventVO.getUser();
+        UserVO user = eventVO.getUser();
         if (relations && user != null) {
             ret.setUser(UserMapper.toEntity(user, false));
         }
 
-        var category = eventVO.getCategory();
+        CategoryVO category = eventVO.getCategory();
         if (relations && category != null) {
             ret.setCategory(CategoryMapper.toEntity(category, false));
         }
 
-        var labels = eventVO.getLabels();
+        Collection<LabelVO> labels = eventVO.getLabels();
         if (relations && labels != null && !labels.isEmpty()) {
             ret.setLabels(LabelMapper.toEntity(labels, false));
         }
 
-        var ratings = eventVO.getRatings();
+        Collection<RatingVO> ratings = eventVO.getRatings();
         if (relations && ratings != null && !ratings.isEmpty()) {
             ret.setRatings(RatingMapper.toEntity(ratings, false));
         }
-        var comments = eventVO.getComments();
+        Collection<CommentVO> comments = eventVO.getComments();
         if (relations && comments != null && !comments.isEmpty()) {
             ret.setComments(CommentMapper.toEntity(comments, false));
         }
-        var questions = eventVO.getQuestions();
+        Collection<QuestionVO> questions = eventVO.getQuestions();
         if (relations && questions != null && !questions.isEmpty()) {
             ret.setQuestions(QuestionMapper.toEntity(questions, false));
         }
@@ -74,40 +75,40 @@ public class EventMapper {
         ret.setInitDate(event.getInitDate());
         ret.setEndDate(event.getEndDate());
 
-        var eventOrganizer = event.getEventOrganizer();
+        EventOrganizer eventOrganizer = event.getEventOrganizer();
         if (relations && eventOrganizer != null) {
             ret.setEventOrganizer(EventOrganizerMapper.toVO(eventOrganizer, false));
         }
 
-        var orderHistory = event.getOrderHistory();
+        Collection<OrderHistory> orderHistory = event.getOrderHistory();
         if (relations && orderHistory != null && !orderHistory.isEmpty()) {
             ret.setOrderHistory(OrderHistoryMapper.toVO(orderHistory, false));
         }
 
-        var user = event.getUser();
+        User user = event.getUser();
         if (relations && user != null) {
             ret.setUser(UserMapper.toVO(user, false));
         }
 
-        var category = event.getCategory();
+        Category category = event.getCategory();
         if (relations && category != null) {
             ret.setCategory(CategoryMapper.toVO(category, false));
         }
 
-        var labels = event.getLabels();
+        Collection<Label> labels = event.getLabels();
         if (relations && labels != null && !labels.isEmpty()) {
             ret.setLabels(LabelMapper.toVO(labels, false));
         }
 
-        var ratings = event.getRatings();
+        Collection<Rating> ratings = event.getRatings();
         if (relations && ratings != null && !ratings.isEmpty()) {
             ret.setRatings(RatingMapper.toVO(ratings, false));
         }
-        var comments = event.getComments();
+        Collection<Comment> comments = event.getComments();
         if (relations && comments != null && !comments.isEmpty()) {
             ret.setComments(CommentMapper.toVO(comments, false));
         }
-        var questions = event.getQuestions();
+        Collection<Question> questions = event.getQuestions();
         if (relations && questions != null && !questions.isEmpty()) {
             ret.setQuestions(QuestionMapper.toVO(questions, false));
         }
@@ -116,7 +117,7 @@ public class EventMapper {
         return ret;
     }
 
-    public static List<Event> toEntity(List<EventVO> events, boolean relations) {
+    public static List<Event> toEntity(Collection<EventVO> events, boolean relations) {
         List<Event> ret = new ArrayList<>();
         for (EventVO event : events) {
             ret.add(toEntity(event, relations));
@@ -124,7 +125,7 @@ public class EventMapper {
         return ret;
     }
 
-    public static List<EventVO> toVO(List<Event> events, boolean relations) {
+    public static List<EventVO> toVO(Collection<Event> events, boolean relations) {
         List<EventVO> ret = new ArrayList<>();
         for (Event event : events) {
             ret.add(toVO(event, relations));

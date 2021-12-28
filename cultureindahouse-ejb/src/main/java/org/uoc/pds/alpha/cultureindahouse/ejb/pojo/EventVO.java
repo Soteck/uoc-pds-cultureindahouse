@@ -4,10 +4,7 @@ import lombok.*;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -34,15 +31,25 @@ public class EventVO {
 
 	private CategoryVO category;
 
-	private List<OrderHistoryVO> orderHistory;
+	private Collection<OrderHistoryVO> orderHistory;
 
-	private List<LabelVO> labels;
+	private Collection<LabelVO> labels;
 
-	private List<RatingVO> ratings;
+	private Collection<RatingVO> ratings;
 
-	private List<CommentVO> comments;
+	private Collection<CommentVO> comments;
 
-	private List<QuestionVO> questions;
+	private Collection<QuestionVO> questions;
+
+
+	public EventVO(String name, String description, String location, String image, Date initDate, Date endDate) {
+		this.name = name;
+		this.description = description;
+		this.location = location;
+		this.image = image;
+		this.initDate = initDate;
+		this.endDate = endDate;
+	}
 
 	@Override
 	public boolean equals(Object o) {

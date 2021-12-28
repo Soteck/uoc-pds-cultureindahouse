@@ -16,7 +16,7 @@ public class ListAdministratorsMB {
     private AdministrationLocal administratorLocal;
 
     public List<UserVO> getAdministrators() {
-        return administratorLocal.listAllUsers();
+        return administratorLocal.listAllAdministrators();
     }
 
     public String listAdministrators() {

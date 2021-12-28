@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,7 @@ public class QuestionMapper {
         return ret;
     }
 
-    public static List<Question> toEntity(List<QuestionVO> categories, boolean relations) {
+    public static List<Question> toEntity(Collection<QuestionVO> categories, boolean relations) {
         List<Question> ret = new ArrayList<>();
         for (QuestionVO Question : categories) {
             ret.add(toEntity(Question, relations));
@@ -56,7 +57,7 @@ public class QuestionMapper {
         return ret;
     }
 
-    public static List<QuestionVO> toVO(List<Question> categories, boolean relations) {
+    public static List<QuestionVO> toVO(Collection<Question> categories, boolean relations) {
         List<QuestionVO> ret = new ArrayList<>();
         for (Question Question : categories) {
             ret.add(toVO(Question, relations));

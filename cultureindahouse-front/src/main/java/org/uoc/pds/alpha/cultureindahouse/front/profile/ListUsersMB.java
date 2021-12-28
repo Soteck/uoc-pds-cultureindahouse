@@ -1,6 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.front.profile;
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
 import javax.ejb.EJB;
@@ -13,12 +13,12 @@ import java.util.List;
 public class ListUsersMB {
 
 	@EJB
-	private AdministrationLocal administrationLocal;
+	private ProfileLocal profileLocal;
 
-	public void deleteUser(int userId){ administrationLocal.deleteUser(userId); }
+	public void deleteUser(int userId){ profileLocal.deleteUser(userId); }
 
 	public List<UserVO> getUsers() {
-		return administrationLocal.listAllUsers();
+		return profileLocal.listAllUsers();
 	}
 
 	public String listCategories() {

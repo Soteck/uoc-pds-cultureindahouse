@@ -2,9 +2,12 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.mapper;
 
 import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CategoryMapper {
@@ -17,7 +20,7 @@ public class CategoryMapper {
         ret.setName(categoryVO.getName());
         ret.setDescription(categoryVO.getDescription());
 
-        var events = categoryVO.getEvents();
+        Collection<EventVO> events = categoryVO.getEvents();
         if (relations && events != null && !events.isEmpty()) {
             ret.setEvents(EventMapper.toEntity(events, false));
         }
@@ -31,7 +34,7 @@ public class CategoryMapper {
         ret.setName(category.getName());
         ret.setDescription(category.getDescription());
 
-        var events = category.getEvents();
+        Collection<Event> events = category.getEvents();
         if (relations && events != null && !events.isEmpty()) {
             ret.setEvents(EventMapper.toVO(events, false));
         }
@@ -39,7 +42,7 @@ public class CategoryMapper {
         return ret;
     }
 
-    public static List<Category> toEntity(List<CategoryVO> categories, boolean relations) {
+    public static List<Category> toEntity(Collection<CategoryVO> categories, boolean relations) {
         List<Category> ret = new ArrayList<>();
         for (CategoryVO category : categories) {
             ret.add(toEntity(category, relations));
@@ -47,7 +50,7 @@ public class CategoryMapper {
         return ret;
     }
 
-    public static List<CategoryVO> toVO(List<Category> categories, boolean relations) {
+    public static List<CategoryVO> toVO(Collection<Category> categories, boolean relations) {
         List<CategoryVO> ret = new ArrayList<>();
         for (Category category : categories) {
             ret.add(toVO(category, relations));
