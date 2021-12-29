@@ -7,6 +7,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
+<f:metadata>
+    <f:viewParam name="eventId" value="3"/>
+</f:metadata>
+
 <ui:composition template="headerView.xhtml">
     <ui:define name="content">
 
@@ -23,43 +27,6 @@
         padding-top: 5px;" >
             <div class="container-fluid py-4">
                 <p class="display-4 text-white fw-bold">Datatable with Event</p>
-                <h:dataTable value="#{ListAdministratorsMB.administrators}" var="administrators"
-                             styleClass="labelTable table table-dark table-striped table-hover"
-                             headerClass="labelTableHeader"
-                             rowClasses="labelTableOddRow,labelTableEvenRow">
-                    <h:column>
-                        <f:facet name="header">Id</f:facet>
-                        <h:outputText value="#{administrators.id}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        <h:outputText value="#{administrators.name}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Surname</f:facet>
-                        <h:outputText value="#{administrators.surname}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        <h:outputText value="#{administrators.email}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="View"/>
-                        </f:facet>
-
-                        <div style="padding:2px; display:inline">
-                            <h:link outcome="labelDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
-                                <f:param name="labelId" value=""/>
-                                <i class="fa fa-search">&nbsp;</i>
-                            </h:link>
-                        </div>
-                    </h:column>
-                </h:dataTable>
             </div>
         </div>
 
@@ -67,7 +34,7 @@
             <div class="col-3 p-3">
             </div>
             <div class="col-6 p-3">
-                <h:link outcome="modifyAdministratorView.xhtml" class="btn btn-lg btn-secondary me-2" style="">
+                <h:link outcome="listQuestionsView.xhtml" class="btn btn-lg btn-secondary me-2" style="">
                     <f:param name="" value=""/>
                     <i class="fa fa-comments"></i>
                     <span>List Questions</span>
@@ -83,28 +50,28 @@
 
         <div class="row row-cols-1 row-cols-md-4 mb-5 text-center">
             <div class="col-2 p-3">
-                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                <h:link outcome="listFavoritesView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <f:param name="" value=""/>
                     <i class="fa fa-star">&nbsp;</i>
                     <span>List favorites</span>
                     </h:link>
             </div>
             <div class="col-2 p-3">
-                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                <h:link outcome="SuggestView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <f:param name="" value=""/>
                     <i class="fa fa-bookmark"></i>
                     <span>Suggest</span>
                 </h:link>
             </div>
             <div class="col-2 p-3">
-                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                <h:link outcome="AddRattingView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <f:param name="" value=""/>
                     <i class="fa fa-star-half-alt">&nbsp;</i>
                     <span>Add Ratting</span>
                 </h:link>
             </div>
             <div class="col-2 p-3">
-                <h:link outcome="listCategoryView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                <h:link outcome="SendCommentView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <f:param name="" value=""/>
                     <i class="fa fa-comment-alt">&nbsp;</i>
                     <span>Send Comment</span>

@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -31,11 +30,13 @@ public class Label {
 	private String description;
 
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "label_event",
+			schema = "pra2",
 			joinColumns = @JoinColumn(name = "label_id"),
 			inverseJoinColumns = @JoinColumn(name = "event_id"))
+	@ToString.Exclude
 	private Collection<Event> events;
 
 	@Override

@@ -148,7 +148,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         user.setPassword(password);
         user.setEmail(email);
         user.setSurname(surname);
-        user.setAdministrator(true);
+        user.setAdministrator(false);
         return UserMapper.toVO(userRepository.update(id, user), true);
     }
 

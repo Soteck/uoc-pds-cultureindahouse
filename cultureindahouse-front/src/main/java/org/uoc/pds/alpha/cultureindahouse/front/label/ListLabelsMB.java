@@ -16,8 +16,6 @@ public class ListLabelsMB {
     @EJB
     private AdministrationLocal labelLocal;
 
-    public void deleteLabel(int labelId){ labelLocal.deleteLabel(labelId); }
-
     public List<LabelVO> getLabels() {
         return labelLocal.listAllLabels();
     }
@@ -27,4 +25,5 @@ public class ListLabelsMB {
     }
     public String Administration() { return "administrationView.xhtml"; }
     public String errorLabel() { return "ErrorView.xhtml"; }
+
 }

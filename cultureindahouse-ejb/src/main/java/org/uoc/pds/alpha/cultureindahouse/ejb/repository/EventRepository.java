@@ -62,7 +62,7 @@ public class EventRepository implements EventRepositoryInterface {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Event> list() {
-		Query query = em.createQuery("select c from Category c");
+		Query query = em.createQuery("select e from Event e");
 		return query.getResultList();
 	}
 

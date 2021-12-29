@@ -20,7 +20,7 @@
                     <h:link outcome="login" type="button" value="Login" styleClass="btn btn-warning text-dark me-2">
                         <span class="fa fa-address-card"/>
                     </h:link>
-                    <h:link outcome="signup" type="button" value="signup" styleClass="btn btn-outline-success me-2" >
+                    <h:link outcome="registerUserView" type="button" value="signup" styleClass="btn btn-outline-success me-2" >
                         <span class="fa fa-edit"/>
                     </h:link>
                 </form>
@@ -88,8 +88,8 @@
                         </ul>
                         <h:form>
                             <h:commandButton value="Event menu" hheight="150" width="150"
-                                             action="#{ListCategoriesMB.errorEvent}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
+                                             action="#{EventMB.eventView}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
                         </h:form>
                     </div>
                 </div>

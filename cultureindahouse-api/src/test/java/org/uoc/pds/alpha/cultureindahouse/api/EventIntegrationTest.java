@@ -1,15 +1,11 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import dto.AddOrUpdateEvent;
 import dto.AddOrUpdateEventOrganizer;
-import dto.EventEmail;
 import dto.EventUser;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -20,18 +16,11 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.*;
 
 import javax.ws.rs.core.MediaType;
-import javax.xml.ws.http.HTTPException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 @Slf4j
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -51,7 +40,7 @@ public class EventIntegrationTest {
 
     private static LabelVO label = new LabelVO("Test event", "test description event");
 
-    private static UserVO user = new UserVO("email@email.com", "pass", "Admin", "Test");
+    private static UserVO user = new UserVO("2email@email.com", "pass", "Admin", "Test");
 
     private static EventOrganizerVO eventOrganizer = new EventOrganizerVO("Test event", "test description event");
 
@@ -125,6 +114,13 @@ public class EventIntegrationTest {
         assert cat.equals(category) && lab.equals(label) && user.equals(u) && event.equals(e) && eventOrganizer.equals(ev);
 
     }
+
+//    @Test
+//    @Ignore
+//    public void insertLabelToEvent() throws IOException{
+//        HttpPut putLabel = new HttpPut(PROFILE_URI + "events/24/label/5");
+//        HttpClientBuilder.create().build().execute(putLabel);
+//    }
 
     @Test
     @Order(2)

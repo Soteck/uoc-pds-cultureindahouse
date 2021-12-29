@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<f:metadata>
+    <f:viewParam name="orderId" value="#{ShowOrderMB.orderId}"/>
+</f:metadata>
+
+<ui:composition template="./headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Order details</h2>
+                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                <h:form class="d-flex">
+                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                        <span class="fa fa-home"/>
+                    </h:link>
+                    <h:link outcome="" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                        <span class="fa fa-bars"/>
+                    </h:link>
+                </h:form>
+            </div>
+        </div>
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h3 class="display-4 text-white fw-bold">Detail view</h3>
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id</label>
+                    <h:inputText class="form-control" id="id" placeholder="id" value="#{ShowOrderMB.order.id}" readonly = "true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="Event name" class="form-label">Event name</label>
+                    <h:inputText class="form-control" id="Event name" placeholder="Name" value="#{ShowOrderMB.order.event.name}" readonly = "true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <h:inputText class="form-control" id="date" placeholder="Description" value="#{ShowOrderMB.order.date}" readonly = "true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">User</label>
+                    <h:inputText class="form-control" id="user" placeholder="Description" value="#{ShowOrderMB.order.user.name}" readonly = "true"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 10px" >
+            <div class="col-3 p-3">
+                <h:link outcome="FindEventView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <i class="fa fa-undo">&nbsp;</i>
+                    <span>Return to list</span>
+                </h:link>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"></hr>
+
+
+    </ui:define>
+</ui:composition>
+</html>

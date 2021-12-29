@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
+        url('#'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Event List View</h2>
+            </div>
+        </div>
+
+        <div style="padding-top: 20px">
+        <h:dataTable value="#{FindEventMB.events}" var="event"
+                     styleClass="categoryTable table table-dark table-striped table-hover"
+                     headerClass="categoryTableHeader"
+                     rowClasses="categoryTableOddRow,categoryTableEvenRow">
+
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{event.id}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{event.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{event.description}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Init Date</f:facet>
+                <h:outputText value="#{event.initDate}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">End Date</f:facet>
+                <h:outputText value="#{event.endDate}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="View"/>
+                </f:facet>
+
+                <div style="padding:2px; display:inline">
+                    <h:link outcome="eventDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                        <f:param name="eventId" value="#{event.id}"/>
+                        <i class="fa fa-search">&nbsp;</i>
+                    </h:link>
+                </div>
+            </h:column>
+
+
+
+        </h:dataTable>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>

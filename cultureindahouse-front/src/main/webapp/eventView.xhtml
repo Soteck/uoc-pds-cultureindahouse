@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
+        padding-top: 20px;" >
+            <img  src="./img/film-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Event View</h2>
+                <p class="col-md-8 text-white fs-4">Choose your election</p>
+            </div>
+        </div>
+
+        <div class="pricing-header p-1 pb-md-3 mx-auto text-center">
+            <p class="fs-5 text-muted">Here you can see the different blocks of programmed actions to which you have access.</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
+
+            <div class="col">
+                <div class="card mb-3 rounded-3 shadow-sm bg-warning">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Event</h4>
+                    </div>
+                    <div class="card-body bg-dark border-warning">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Help</li>
+                            <li>
+                                <h:form>
+                                    <h:commandButton value="Events menu" height="150" width="150"
+                                                     action="#{EventMB.findEvent}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-3 rounded-3 shadow-sm bg-warning">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Order</h4>
+                    </div>
+                    <div class="card-body bg-dark border-warning">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Help</li>
+                            <h:form>
+                                <h:commandButton value="Orders menu" height="150" width="150"
+                                                 action="#{EventMB.findOrder}" immediate="true"
+                                                 class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                            </h:form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+         <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>

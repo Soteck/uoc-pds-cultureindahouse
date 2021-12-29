@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21; padding-top: 20px;">
+                <img  src="./img/search-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+                <div class="container-fluid py-4">
+                    <h2 class="display-4 text-white fw-bold">Event Finder</h2>
+                    <p class="col-md-8 text-white fs-4">Choose your election</p>
+                </div>
+            </div>
+
+            <div class="container col-8 p-5 my-5 border bg-dark border-warning">
+                <h1 class="h3 mb-3 fw-normal text-white">Select your settings</h1>
+                <div class="row form-floating mb-5 rounded-3">
+                    <div class="form-floating col-6 mb-3 rounded-3 form-label" style="padding-top: 5px" >
+                        <p class="text-white">Select search criteria</p>
+                        <h:selectOneMenu value="#{FindEventMB.filterType}" effect="fold" editable="true" styleClass="form-control radius-none">
+                            <f:selectItems value="#{FindEventMB.filterTypes}" var="filterType"></f:selectItems>
+                            <f:ajax/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-floating col-6 mb-3 rounded-3" style="padding-top: 5px;" >
+                        <p class="text-white">Select Category</p>
+                        <h:selectOneMenu value="#{FindEventMB.selectedCategory}" effect="fold" editable="true" styleClass="form-control radius-none" >
+                            <f:selectItem itemLabel="Select One Category" itemValue="-1" />
+                            <f:selectItems value="#{FindEventMB.categories}" var="selectedCategory"></f:selectItems>
+                            <f:ajax/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="row form-floating mb-5 rounded-3">
+                    <div class="form-floating col-6 mb-3 rounded-3" style="padding-top: 5px;" >
+                        <p class="text-white">Select Label</p>
+                        <h:selectOneMenu value="#{FindEventMB.selectedLabel}" effect="fold" editable="true"  styleClass="form-control radius-none">
+                            <f:selectItem itemLabel="Select One Label" itemValue="-1" />
+                            <f:selectItems value="#{FindEventMB.labels}" var="selectedLabel"></f:selectItems>
+                            <f:ajax/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-floating col-6 mb-3 rounded-3" style="padding-top: 5px" >
+                        <p class="text-white">Select filter by name</p>
+                         <h:inputText value="#{FindEventMB.filterName}"  styleClass="form-control radius-none"/>
+                    </div>
+                </div>
+
+                <div style="padding:2px; display:inline" >
+                    <h:link outcome="EventListView.xhtml" value="Search" class="btn btn-secondary" style="margin-left: 0px; ">
+                        <i class="fa fa-search">&nbsp;</i>
+                    </h:link>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 2px" >
+                <div class="col-3 p-3">
+                    <h:link outcome="eventView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                        <i class="fa fa-undo">&nbsp;</i>
+                        <span>Return to Event View</span>
+                    </h:link>
+                </div>
+            </div>
+
+            <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+            <hr class="featurette-divider"> </hr>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

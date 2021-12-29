@@ -11,7 +11,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-
 @Table(name = "response", schema = "pra2")
 public class Response {
 
@@ -26,6 +25,7 @@ public class Response {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "id")
+    @ToString.Exclude
     private Question question;
 
 

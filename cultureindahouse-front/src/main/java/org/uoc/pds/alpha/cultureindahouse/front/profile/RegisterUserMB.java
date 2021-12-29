@@ -20,6 +20,6 @@ public class RegisterUserMB {
 
 	public Object guardarUsuario() {
 		profileLocal.registerUser(user.getNif(),user.getEmail(), user.getPassword(), user.getName(), user.getSurname(), user.getPreferedLanguage(), user.getAddress());
-		return "listCategoryView.xhtml";
+		return "index.xhtml";
 	}
 }

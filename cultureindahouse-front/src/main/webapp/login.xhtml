@@ -10,30 +10,29 @@
 <ui:composition template="headerView.xhtml">
     <ui:define name="content">
 
-        <form action="">
+        <h:form>
             <div class="container col-4 p-5 my-5 border bg-dark border-warning">
-                <h1 class="h3 mb-3 fw-normal text-white">Fill in the form to register</h1>
+                <h3 class="h3 mb-3 fw-normal text-white">Fill in the form to register</h3>
                 <div class="form-floating mb-3 rounded-3 ">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="alpha@uoc.edu" value="#{accountManagedBean.profile.email}"/>
+                    <h:inputText type="email" class="form-control" id="floatingInput" placeholder="alpha@uoc.edu" value="#{accountManagedBean.email}"/>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3 rounded-3 ">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="alpha" value="#{accountManagedBean.profile.password}"/>
+                    <h:inputSecret type="password" class="form-control" id="floatingPassword" placeholder="alpha" value="#{accountManagedBean.password}"/>
                     <label for="floatingPassword">Password</label>
                 </div>
-                <h:outputText value="#{accountManagedBean.message}" />
 
-                <div class="checkbox mb-3 rounded-3 shadow-sm">
-                    <label >
-                        <input type="checkbox" value="remember-me" class="Focus"> Remember me</input>
-                    </label>
-                </div>
-                <h:link outcome="index" type="submit" value="index" styleClass="btn btn-warning text-dark me-2">
-                    <span class="fa fa-cogs"/>
-                </h:link>
+                <span class="mb-3 fw-normal text-white">
+                    <h:outputText value="#{accountManagedBean.message}" />
+                </span>
+
+
+                <h:commandButton type="submit" value="Iniciar sesion" height="355" width="350"
+                                 action="#{accountManagedBean.login}"
+                                 class="btn btn-outline-primary "/>
             </div>
             <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-        </form>
+        </h:form>
 
         <hr class="featurette-divider"/>
 

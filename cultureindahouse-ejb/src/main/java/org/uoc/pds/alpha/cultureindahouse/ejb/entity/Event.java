@@ -19,6 +19,7 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
+
 @Table(name = "event", schema = "pra2")
 public class Event {
 
@@ -51,6 +52,7 @@ public class Event {
 	private EventOrganizer eventOrganizer;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ToString.Exclude
 	private Collection<OrderHistory> orderHistory;
 
 	@ManyToOne
@@ -62,11 +64,12 @@ public class Event {
 	private Category category;
 
 
-	@ManyToMany(mappedBy = "events", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "label_event",
 			joinColumns = @JoinColumn(name = "event_id"),
 			inverseJoinColumns = @JoinColumn(name = "label_id"))
+	@ToString.Exclude
 	private Collection<Label> labels;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)

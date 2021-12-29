@@ -13,7 +13,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-
 @Table(name = "rating", schema = "pra2")
 public class Rating {
 
