@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -34,6 +33,7 @@ public class EventOrganizer {
 	private User administrator;
 
 	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.PERSIST)
+	@ToString.Exclude
 	private List<Event> events;
 
 	@Override

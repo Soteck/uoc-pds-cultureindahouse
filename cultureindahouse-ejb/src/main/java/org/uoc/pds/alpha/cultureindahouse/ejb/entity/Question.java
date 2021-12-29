@@ -11,7 +11,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-
 @Table(name = "question", schema = "pra2")
 public class Question {
 
