@@ -52,6 +52,7 @@ public class Event {
 	private EventOrganizer eventOrganizer;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ToString.Exclude
 	private Collection<OrderHistory> orderHistory;
 
 	@ManyToOne
@@ -68,15 +69,19 @@ public class Event {
 			name = "label_event",
 			joinColumns = @JoinColumn(name = "event_id"),
 			inverseJoinColumns = @JoinColumn(name = "label_id"))
+	@ToString.Exclude
 	private Collection<Label> labels;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ToString.Exclude
 	private Collection<Rating> ratings;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ToString.Exclude
 	private Collection<Comment> comments;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ToString.Exclude
 	private Collection<Question> questions;
 
 	public Event(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate) {

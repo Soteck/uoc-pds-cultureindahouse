@@ -30,6 +30,7 @@ public class Category {
 	private String description;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	private Collection<Event> events;
 
 	public Category(String name, String description) {
