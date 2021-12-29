@@ -90,7 +90,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     public EventOrganizerVO updateEventOrganizer(int id, String name, String description) {
         EventOrganizer eventOrganizer = new EventOrganizer();
         eventOrganizer.setName(name);
-        eventOrganizer.setDescription(description);;
+        eventOrganizer.setDescription(description);
         return EventOrganizerMapper.toVO(eventOrganizerRepository.update(id, eventOrganizer), true);
     }
 

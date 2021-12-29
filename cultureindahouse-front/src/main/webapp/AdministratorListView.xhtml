@@ -92,13 +92,10 @@
                     </f:facet>
                     <div style="padding:2px; display:inline">
                         <h:commandButton  class="btn btn-primary" style="margin-left: 25px;">
-                            <f:param name="userId" value="#{administrators.id}"/>
+                            <f:param name="userId" value="#{administrators.id}"
+                            action="#{ModifyAdministratorMB.actualizarAdministrator}"/>
                             <i class="fa fa-plus-circle">&nbsp;</i>
                         </h:commandButton>
-
-                        <h:commandButton value="Update" height="355" width="350"
-                                         action="#{ModifyAdministratorMB.actualizarAdministrator}"
-                                         class="btn btn-outline-success "/>
                     </div>
                 </h:column>
 
