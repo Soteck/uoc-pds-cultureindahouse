@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+        <h:form>
+
+        <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
+        url('#'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Find Order View</h2>
+            </div>
+        </div>
+        <div class="card mb-3 rounded-3 shadow-sm bg-warning">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Find Order</h4>
+            </div>
+
+            <div class="card-body bg-dark border-warning">
+
+                <div>
+                    <h:inputText value="#{FindOrderMB.userEmail}"/>
+                </div>
+                <div style="padding:2px; display:inline">
+                    <h:link outcome="OrderListView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
+                        <i class="fa fa-edit">&nbsp;</i>
+                    </h:link>
+                </div>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
