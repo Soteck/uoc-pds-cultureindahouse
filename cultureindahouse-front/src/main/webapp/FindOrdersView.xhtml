@@ -12,31 +12,42 @@
     <ui:define name="content">
         <h:form>
 
-        <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
-        url('#'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
-            <div class="container-fluid py-4">
-                <h2 class="display-4 text-white fw-bold">Find Order View</h2>
+            <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21; padding-top: 20px;">
+                <img  src="./img/ticket-alt-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+                <div class="container-fluid py-4">
+                    <h2 class="display-4 text-white fw-bold">Order Finder</h2>
+                    <p class="col-md-8 text-white fs-4">Choose your election</p>
+                </div>
+            </div>
+
+        <div class="container col-8 p-5 my-5 border bg-dark border-warning">
+            <h1 class="h3 mb-3 fw-normal text-white">Imput your email</h1>
+            <div class="row form-floating mb-5 rounded-3">
+                <div class="form-floating col-6 mb-3 rounded-3 form-label" style="padding-top: 10px" >
+                    <p class="text-white">Email</p>
+                    <h:inputText value="#{FindOrderMB.userEmail}" styleClass="form-control radius-none"/>
+                </div>
+            </div>
+
+            <div style="padding:2px; display:inline" >
+                <h:link outcome="OrderListView.xhtml" value="Search" class="btn btn-secondary" >
+                    <i class="fa fa-search">&nbsp;</i>
+                </h:link>
             </div>
         </div>
-        <div class="card mb-3 rounded-3 shadow-sm bg-warning">
-            <div class="card-header py-3">
-                <h4 class="my-0 fw-normal">Find Order</h4>
-            </div>
 
-            <div class="card-body bg-dark border-warning">
-
-                <div>
-                    <h:inputText value="#{FindOrderMB.userEmail}"/>
-                </div>
-                <div style="padding:2px; display:inline">
-                    <h:link outcome="OrderListView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
-                        <i class="fa fa-edit">&nbsp;</i>
+            <div class="row" style="padding-top: 2px" >
+                <div class="col-3 p-3">
+                    <h:link outcome="eventView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                        <i class="fa fa-undo">&nbsp;</i>
+                        <span>Return to Event View</span>
                     </h:link>
                 </div>
             </div>
-        </div>
 
-        <hr class="featurette-divider"></hr>
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"> </hr>
+
         </h:form>
     </ui:define>
 </ui:composition>
