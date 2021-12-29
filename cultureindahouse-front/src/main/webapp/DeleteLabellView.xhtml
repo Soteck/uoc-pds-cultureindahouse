@@ -8,22 +8,19 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="labelId" value="#{ShowLabelMB.labelId}"/>
+    <f:viewParam name="labelId" value="#{RemoveLabelMB.labelId}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
     <ui:define name="content">
-
+        <h:form>
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Delete label</h2>
                 <p class="col-md-8 text-white fs-4">Are you sure?</p>
-                    <f:param name="labelId" value="#{ShowLabelMB.labelId}"/>
-                    <h:commandButton value="ID numero: #{ShowLabelMB.labelId}" height="150" width="150"
-                                         action="#{RemoveLabelMB.deleteLabel}" immediate="true"
-                                         onConfirmComplete="#{RemoveLabelMB.reload}"
+                    <h:commandButton value="Delete label with id: #{RemoveLabelMB.labelId}" height="150" width="150"
+                                         action="#{RemoveLabelMB.deleteLabel()}"
                                          class=" w-100 btn btn-lg btn-outline-success me-2"/>
-
             </div>
         </div>
 
@@ -38,7 +35,7 @@
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
         <hr class="featurette-divider"> </hr>
-
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>
