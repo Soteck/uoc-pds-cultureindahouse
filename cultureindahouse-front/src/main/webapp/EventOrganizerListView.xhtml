@@ -47,7 +47,12 @@
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Administrator email</f:facet>
+                    <f:facet name="header">Admin id</f:facet>
+                    <h:outputText value="#{eventOrganizer.administrator.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Admin email</f:facet>
                     <h:outputText value="#{eventOrganizer.administrator.email}"/>
                 </h:column>
 

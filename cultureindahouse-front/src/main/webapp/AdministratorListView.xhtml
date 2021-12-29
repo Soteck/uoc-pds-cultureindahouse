@@ -91,10 +91,14 @@
                         <h:outputText value="Event Organizator"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="modifyAdministratorView.xhtml" class="btn btn-primary" style="margin-left: 25px;">
+                        <h:commandButton  class="btn btn-primary" style="margin-left: 25px;">
                             <f:param name="userId" value="#{administrators.id}"/>
                             <i class="fa fa-plus-circle">&nbsp;</i>
-                        </h:link>
+                        </h:commandButton>
+
+                        <h:commandButton value="Update" height="355" width="350"
+                                         action="#{ModifyAdministratorMB.actualizarAdministrator}"
+                                         class="btn btn-outline-success "/>
                     </div>
                 </h:column>
 
