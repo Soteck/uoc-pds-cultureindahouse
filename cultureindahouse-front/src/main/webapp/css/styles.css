@@ -12,3 +12,7 @@ html, body{
 .footer {
     bottom: 0;
 }
+
+nav span.navbar-text{
+    margin-right: 15px;
+}

@@ -48,18 +48,23 @@ public class User {
     private boolean isAdministrator;
 
     @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ToString.Exclude
     private List<EventOrganizer> eventOrganizers;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ToString.Exclude
     private List<OrderHistory> orderHistory;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ToString.Exclude
     private List<Event> favorites;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ToString.Exclude
     private List<Rating> ratings;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ToString.Exclude
     private List<Comment> comments;
 
 
