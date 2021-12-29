@@ -52,7 +52,7 @@
                     </f:facet>
 
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="labelDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                        <h:link outcome="labelDetailView.xhmtl" class="btn btn-success" style="margin-left: 10px;">
                             <f:param name="labelId" value="#{label.id}"/>
                             <i class="fa fa-search">&nbsp;</i>
                         </h:link>
@@ -64,7 +64,7 @@
                         <h:outputText value="Edit"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="modifyLabelView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
+                        <h:link outcome="modifyLabelView.xhtml" class="btn btn-warning" style="margin-left: 10px;">
                             <f:param name="labelId" value="#{label.id}"/>
                             <i class="fa fa-edit">&nbsp;</i>
                         </h:link>
@@ -76,10 +76,10 @@
                         <h:outputText value="Delete"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:commandLink class="btn btn-danger" style="margin-left: 25px;" action="#{RemoveLabelMB.deleteLabel}">
+                         <h:link outcome="DeleteLabellView.xhtml"   class="btn btn-danger" style="margin-left: 10px;" >
                             <f:param name="labelId" value="#{label.id}"/>
-                            <i class="fa fa-trash">&nbsp;</i>
-                        </h:commandLink>
+                             <i class="fa fa-trash">&nbsp;</i>
+                        </h:link>
                     </div>
                 </h:column>
 

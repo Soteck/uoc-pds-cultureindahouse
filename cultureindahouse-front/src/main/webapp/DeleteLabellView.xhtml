@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<f:metadata>
+    <f:viewParam name="labelId" value="#{ShowLabelMB.labelId}"/>
+</f:metadata>
+
+<ui:composition template="./headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Delete label</h2>
+                <p class="col-md-8 text-white fs-4">Are you sure?</p>
+                    <f:param name="labelId" value="#{ShowLabelMB.labelId}"/>
+                    <h:commandButton value="ID numero: #{ShowLabelMB.labelId}" height="150" width="150"
+                                         action="#{RemoveLabelMB.deleteLabel}" immediate="true"
+                                         onConfirmComplete="#{RemoveLabelMB.reload}"
+                                         class=" w-100 btn btn-lg btn-outline-success me-2"/>
+
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 10px" >
+            <div class="col-3 p-3">
+                <h:link outcome="LabelListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <i class="fa fa-undo">&nbsp;</i>
+                    <span>Return to list</span>
+                </h:link>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"> </hr>
+
+    </ui:define>
+</ui:composition>
+</html>

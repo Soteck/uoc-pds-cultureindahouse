@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<f:metadata>
+    <f:viewParam name="userId" value="#{ShowAdministratorMB.userId}"/>
+</f:metadata>
+
+<ui:composition template="./headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">Administrator Update</h2>
+                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                <form class="d-flex">
+                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                        <span class="fa fa-home"/>
+                    </h:link>
+                    <h:link outcome="AdministratorListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                        <span class="fa fa-bars"/>
+                    </h:link>
+                </form>
+            </div>
+        </div>
+
+        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+            <div class="container-fluid py-4">
+                <h3 class="display-4 text-white fw-bold">Detail view</h3>
+                <div class="row form-floating mb-5 rounded-3">
+                <div class="form col-4 mb-3 rounded-3 mb-3">
+                    <label for="new-id" class="form-label text-white">Id</label>
+                    <h:inputText class="form-control" id="new-id" " value="#{ShowAdministratorMB.administrator.id}" readonly = "true"/>
+                </div>
+                <div class="form col-4 mb-3 rounded-3 mb-3">
+                    <label for="new-name" class="form-label text-white">Name</label>
+                    <h:inputText class="form-control" id="new-name"  value="#{ShowAdministratorMB.administrator.name}" />
+                </div>
+                <div class="form col-4 mb-3 rounded-3 mb-3">
+                    <label for="new-surname" class="form-label text-white">Surname</label>
+                    <h:inputText class="form-control" id="new-surname"  value="#{ShowAdministratorMB.administrator.surname}" />
+                </div>
+                </div>
+
+                <div class="row form-floating mb-5 rounded-3">
+                <div class="form col-6 mb-3 rounded-3 mb-3">
+                    <label for="new-email" class="form-label text-white">Email</label>
+                    <h:inputText class="form-control" id="new-email" placeholder="Description" value="#{ShowAdministratorMB.administrator.email}" />
+                </div>
+                <div class="form col-6 mb-3 rounded-3 mb-3">
+                    <label for="new-password" class="form-label text-white">Password</label>
+                    <h:inputText class="form-control" id="new-password"  value="#{ShowAdministratorMB.administrator.password}" />
+                </div>
+                </div>
+            </div>
+
+            <h:commandButton value="Update" height="355" width="350"
+                             action="#{ModifyAdministratorMB.actualizarAdministrator}"
+                             class="btn btn-outline-primary "/>
+
+        </div>
+
+
+
+        <div class="row" style="padding-top: 10px" >
+            <div class="col-3 p-3">
+                <h:link outcome="AdministratorListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <i class="fa fa-undo">&nbsp;</i>
+                    <span>Return to list</span>
+                </h:link>
+            </div>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>

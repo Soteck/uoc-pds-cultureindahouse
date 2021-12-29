@@ -16,8 +16,6 @@ public class ListCategoriesMB {
 	@EJB
 	private AdministrationLocal categoryLocal;
 
-	public void deleteCategory(int categoryId){ categoryLocal.deleteCategory(categoryId); }
-
 	public List<CategoryVO> getCategories() {
 		return categoryLocal.listAllCategories();
 	}

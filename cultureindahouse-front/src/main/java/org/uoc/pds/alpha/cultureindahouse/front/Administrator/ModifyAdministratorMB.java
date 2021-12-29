@@ -16,19 +16,9 @@ public class ModifyAdministratorMB {
     @EJB
     private AdministrationLocal administratorLocal;
 
-    @Getter
-    @Setter
+
     protected Integer userId = null;
     private UserVO user;
-
-    /* Error en la liena 28 NullPointerException otras funciones similares funcionan
-    public LabelVO getLabel(){
-        if(label == null || !(label.getId() == labelId)){
-            label = labelLocal.showLabel(labelId);
-        }
-        return label;
-    }
-    */
 
     public UserVO getUser(){
         if(user == null || !(user.getId() == userId)){
