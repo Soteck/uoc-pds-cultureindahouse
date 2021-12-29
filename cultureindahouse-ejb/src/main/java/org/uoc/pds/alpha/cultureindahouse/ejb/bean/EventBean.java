@@ -19,106 +19,116 @@ import java.util.List;
 @Stateless
 public class EventBean implements EventLocal, EventRemote {
 
-	@EJB
-	private OrderHistoryRepositoryInterface orderHistoryRepository;
+    @EJB
+    private OrderHistoryRepositoryInterface orderHistoryRepository;
 
-	@EJB
-	private EventRepositoryInterface eventRepository;
+    @EJB
+    private EventRepositoryInterface eventRepository;
 
-	@EJB
-	private UserRepositoryInterface userRepository;
+    @EJB
+    private UserRepositoryInterface userRepository;
 
-	@EJB
-	private CategoryRepositoryInterface categoryRepository;
+    @EJB
+    private CategoryRepositoryInterface categoryRepository;
 
-	@EJB
-	private LabelRepositoryInterface labelRepository;
+    @EJB
+    private LabelRepositoryInterface labelRepository;
 
-	@Override
-	public OrderHistoryVO orderEvent(int eventId, int userId) {
+    @Override
+    public OrderHistoryVO orderEvent(int eventId, int userId) {
 
-		Event event = eventRepository.get(eventId);
+        Event event = eventRepository.get(eventId);
 
-		User user = userRepository.get(userId);
+        User user = userRepository.get(userId);
 
-		OrderHistoryVO orderHistory = new OrderHistoryVO(Calendar.getInstance().getTime(), EventMapper.toVO(event, true), UserMapper.toVO(user, true));
+        OrderHistoryVO orderHistory = new OrderHistoryVO(Calendar.getInstance().getTime(), EventMapper.toVO(event, true), UserMapper.toVO(user, true));
 
-		OrderHistory order = orderHistoryRepository.add(OrderHistoryMapper.toEntity(orderHistory, true));
-
-
-		return OrderHistoryMapper.toVO(order, true);
-	}
+        OrderHistory order = orderHistoryRepository.add(OrderHistoryMapper.toEntity(orderHistory, true));
 
 
-
-	@Override
-	public List<EventVO> listAllEvents() {
-		return EventMapper.toVO(eventRepository.list(), true);
-	}
-
-	@Override
-	public List<EventVO> findEventsByCategory(int categoryId) {
-
-		ArrayList<EventVO> ret = new ArrayList<EventVO>();
-		Category category = categoryRepository.get(categoryId);
-
-		Collection<Event> events = category.getEvents();
-
-		if (events != null && !events.isEmpty()) {
-			ret = new ArrayList<>(EventMapper.toVO(events, true));
-		}
-
-		return ret;
-	}
-
-	@Override
-	public List<EventVO> findEventsByName(String name) {
-		return EventMapper.toVO(eventRepository.getEventsByName(name), true);
-	}
-
-	@Override
-	public List<EventVO> findEventsByLabel(int labelId) {
-		List<EventVO> ret = null;
-		Label label = labelRepository.get(labelId);
-
-		Collection<Event> events = label.getEvents();
-
-		if (events != null && !events.isEmpty()) {
-			ret = EventMapper.toVO(events, true);
-		}
-
-		return ret;
-	}
-
-	@Override
-	public EventVO showEvent(int id) {
-		return EventMapper.toVO(eventRepository.get(id), true);
-	}
+        return OrderHistoryMapper.toVO(order, true);
+    }
 
 
-	@Override
-	public List<OrderHistoryVO> findOrdersByUser(int userId) {
-		List<OrderHistory> orders = userRepository.get(userId).getOrderHistory();
-		List<OrderHistoryVO> ret = null;
+    @Override
+    public List<EventVO> listAllEvents() {
+        return EventMapper.toVO(eventRepository.list(), true);
+    }
 
-		if (orders != null && !orders.isEmpty()) {
-			ret = OrderHistoryMapper.toVO(orders, true);
-		}
+    @Override
+    public List<EventVO> findEventsByCategory(int categoryId) {
 
-		return ret;
-	}
+        ArrayList<EventVO> ret = new ArrayList<EventVO>();
+        Category category = categoryRepository.get(categoryId);
 
-	@Override
-	public List<OrderHistoryVO> findAllOrders() {
+        Collection<Event> events = category.getEvents();
+
+        if (events != null && !events.isEmpty()) {
+            ret = new ArrayList<>(EventMapper.toVO(events, true));
+        }
+
+        return ret;
+    }
+
+    @Override
+    public List<EventVO> findEventsByName(String name) {
+        return EventMapper.toVO(eventRepository.getEventsByName(name), true);
+    }
+
+    @Override
+    public List<EventVO> findEventsByLabel(int labelId) {
+        List<EventVO> ret = null;
+        Label label = labelRepository.get(labelId);
+
+        Collection<Event> events = label.getEvents();
+
+        if (events != null && !events.isEmpty()) {
+            ret = EventMapper.toVO(events, true);
+        }
+
+        return ret;
+    }
+
+    @Override
+    public EventVO showEvent(int id) {
+        return EventMapper.toVO(eventRepository.get(id), true);
+    }
 
 
-		return OrderHistoryMapper.toVO(orderHistoryRepository.list(), true);
-	}
+    @Override
+    public List<OrderHistoryVO> findOrdersByUser(int userId) {
+        List<OrderHistory> orders = userRepository.get(userId).getOrderHistory();
+        List<OrderHistoryVO> ret = null;
 
-	@Override
-	public OrderHistoryVO showOrder(int id) {
+        if (orders != null && !orders.isEmpty()) {
+            ret = OrderHistoryMapper.toVO(orders, true);
+        }
+
+        return ret;
+    }
+
+    public List<OrderHistoryVO> findOrdersByUser(String email) {
+        List<OrderHistory> orders = userRepository.getUserByEmail(email).getOrderHistory();
+        List<OrderHistoryVO> ret = null;
+
+        if (orders != null && !orders.isEmpty()) {
+            ret = OrderHistoryMapper.toVO(orders, true);
+        }
+
+        return ret;
+    }
+
+    @Override
+    public List<OrderHistoryVO> findAllOrders() {
 
 
-		return OrderHistoryMapper.toVO(orderHistoryRepository.get(id), true);
-	}
+        return OrderHistoryMapper.toVO(orderHistoryRepository.list(), true);
+    }
+
+    @Override
+    public OrderHistoryVO showOrder(int id) {
+
+
+        return OrderHistoryMapper.toVO(orderHistoryRepository.get(id), true);
+    }
 }

@@ -6,8 +6,10 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.EventMapper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.LabelMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 
@@ -48,6 +50,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	public UserVO registerUser(String nif, String email, String password, String name, String surname, String preferedLanguage, String address) {
 		UserVO user = new UserVO(email, password, name, surname, nif, preferedLanguage, address);
 
+		user.setAdministrator(false);
 		return UserMapper.toVO(userRepository.add(UserMapper.toEntity(user, false)), false);
 	}
 
@@ -67,17 +70,17 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 	@Override
 	public UserVO showUser(String email) {
-		return UserMapper.toVO(userRepository.getUserByEmail(email), false);
+		return UserMapper.toVO(userRepository.getUserByEmail(email), true);
 	}
 
 	@Override
 	public UserVO showUser(int userId) {
-		return UserMapper.toVO(userRepository.get(userId), false);
+		return UserMapper.toVO(userRepository.get(userId), true);
 	}
 
 	@Override
 	public List<UserVO> listAllUsers() {
-		return UserMapper.toVO(userRepository.list(), false);
+		return UserMapper.toVO(userRepository.list(), true);
 	}
 
 	@Override
@@ -92,7 +95,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
 
-		return EventMapper.toVO(eventRepository.add(event), false);
+		return EventMapper.toVO(eventRepository.add(event), true);
 	}
 
 	@Override
@@ -110,14 +113,14 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
 
-		return EventMapper.toVO(eventRepository.add(event), false);
+		return EventMapper.toVO(eventRepository.add(event), true);
 	}
 
 
 
 	@Override
 	public EventVO showEvent(String name) {
-		return EventMapper.toVO(eventRepository.getEventByName(name), false);
+		return EventMapper.toVO(eventRepository.getEventByName(name), true);
 	}
 
 
@@ -146,7 +149,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	public void addLabelToEvent(int eventId, int labelId) {
 
 		Label label = labelRepository.get(labelId);
-		Event event = eventRepository.get(eventId);
+		Event event =  eventRepository.get(eventId);
 
 		Collection<Event> labelEvents = label.getEvents();
 

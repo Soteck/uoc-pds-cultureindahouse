@@ -33,8 +33,8 @@ public class ModifyEventOrganizerMB {
         this.eventOrganizer = eventOrganizer;
     }
 
-    public Object actualizarEventOrganizer() {
-        eventOrganizerLocal.updateEventOrganizer(eventOrganizerId,eventOrganizer.getName(), eventOrganizer.getDescription());
+    public Object actualizarEventOrganizer() throws Exception {
+        eventOrganizerLocal.updateEventOrganizer(eventOrganizerId,eventOrganizer.getName(), eventOrganizer.getDescription(), eventOrganizer.getAdministrator().getId());
         this.eventOrganizerId = null;
         this.eventOrganizer = null;
         return "EventOrganizerListView.xhtml";

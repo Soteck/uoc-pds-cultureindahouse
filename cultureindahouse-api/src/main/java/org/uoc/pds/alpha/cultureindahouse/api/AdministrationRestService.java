@@ -96,8 +96,8 @@ public class AdministrationRestService {
     @Path("/event-organizer/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateEventOrganizer(@PathParam("id") int id, EventOrganizerVO event) {
-        return Response.ok(administrationLocal.updateEventOrganizer(id, event.getName(), event.getDescription())).build();
+    public Response updateEventOrganizer(@PathParam("id") int id, AddOrUpdateEventOrganizer event) throws Exception {
+        return Response.ok(administrationLocal.updateEventOrganizer(id, event.getName(), event.getDescription(), event.getUserId())).build();
     }
 
     @DELETE

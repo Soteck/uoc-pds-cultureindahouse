@@ -116,7 +116,7 @@ public class EventIntegrationTest {
         log.info("Evento añadido: " + e.getId() + ". N: " + e.getName() + " D: " + e.getDescription() + " I: " + e.getImage() + " L: " + e.getLocation() + " ID: " + e.getInitDate() + " ED: " + e.getEndDate());
 
         HttpPut putCategory = new HttpPut(PROFILE_URI + "events/"+ event.getId() +"/category/" + category.getId());
-                HttpClientBuilder.create().build().execute(putCategory);
+        HttpClientBuilder.create().build().execute(putCategory);
 
         HttpPut putLabel = new HttpPut(PROFILE_URI + "events/"+ event.getId() +"/label/" + label.getId());
         HttpClientBuilder.create().build().execute(putLabel);

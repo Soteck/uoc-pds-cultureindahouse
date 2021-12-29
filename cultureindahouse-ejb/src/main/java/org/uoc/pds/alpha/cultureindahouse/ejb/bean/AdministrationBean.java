@@ -87,10 +87,28 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public EventOrganizerVO updateEventOrganizer(int id, String name, String description) {
-        EventOrganizer eventOrganizer = new EventOrganizer();
-        eventOrganizer.setName(name);
-        eventOrganizer.setDescription(description);
+    public EventOrganizerVO updateEventOrganizer(int id, String name, String description, Integer userId) throws Exception {
+        EventOrganizer eventOrganizer = eventOrganizerRepository.get(id);
+
+        if (userId != null){
+            var user = userRepository.get(userId);
+
+            if (!user.isAdministrator()){
+                throw new Exception("User must be an admistrator.");
+            }
+
+            eventOrganizer.setAdministrator(user);
+        }
+
+        if (name != null){
+            eventOrganizer.setName(name);
+        }
+
+        if (description != null){
+            eventOrganizer.setDescription(description);
+        }
+
+
         return EventOrganizerMapper.toVO(eventOrganizerRepository.update(id, eventOrganizer), true);
     }
 
