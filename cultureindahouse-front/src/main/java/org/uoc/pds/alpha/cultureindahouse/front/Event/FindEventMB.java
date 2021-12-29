@@ -76,15 +76,19 @@ public class FindEventMB {
         {
             case "0":
                 result = eventLocal.listAllEvents();
+                break;
             case "1":
                 if( this.filterName!= null && !this.filterName.isEmpty())
                     result = eventLocal.findEventsByName(this.filterName);
+                break;
             case "2":
                 if( this.selectedCategory.equals("-1"))
                     result = eventLocal.findEventsByCategory(Integer.parseInt(this.selectedCategory));
+                break;
             case "3":
                 if( this.selectedLabel.equals("-1"))
                     result =  eventLocal.findEventsByLabel(Integer.parseInt(this.selectedLabel));
+                break;
         }
         return result;
     }
