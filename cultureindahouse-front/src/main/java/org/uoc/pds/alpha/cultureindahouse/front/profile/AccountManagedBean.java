@@ -19,24 +19,49 @@ public class AccountManagedBean {
 	@EJB
 	private ProfileLocal profileLocal;
 
-//	@PostConstruct
-//	public void init() {
-//		String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-//
-//		user = profileLocal.showUser(remoteUser);
-//	}
 
-	private UserVO user;
+	@Getter
+	private UserVO loggedUser = null;
 
-	public String getUsername(){
-		if( user == null){
-			return null;
-		}
-		return user.getName();
+	@Getter
+	@Setter
+	private String email;
+
+	@Getter
+	@Setter
+	private String password;
+
+
+	@Getter
+	@Setter
+	private String message;
+
+	public boolean isLogged(){
+		return loggedUser != null;
 	}
 
 
+	public Object login(){
+		message = null;
+		loggedUser = null;
+		loggedUser = profileLocal.login(email, password);
+		password = null;
+		if(loggedUser == null){
+			message = "Username or password not correct";
+			return null;
+		}
+
+		return "index.xhtml";
+	}
 
 
+	public Object logout(){
+		message = null;
+		loggedUser = null;
+		email = null;
+		password = null;
+
+		return "index.xhtml";
+	}
 
 }

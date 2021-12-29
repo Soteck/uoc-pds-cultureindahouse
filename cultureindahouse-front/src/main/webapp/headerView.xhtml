@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
@@ -42,17 +44,34 @@
                             <a class="nav-link enabled" href="./MediaView.xhtml" tabindex="-1" aria-disabled="true">Media</a>
                         </li>
                     </ul>
-                    <span >Hola, <h:outputText value="#{accountManagedBean.username}"/>. Bienvenido!</span>
-                    <div class="dropdown">
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-                            <button  type="button" class="btn btn-outline-success">User</button>
-                        </a>
-                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item link-dark " href="./private/error.xhtml">Profile</a></li>
-                            <li><hr class="dropdown-divider"></hr></li>
-                            <li><a class="dropdown-item link-dark  " href="./index.xhtml">Sign out</a></li>
-                        </ul>
-                    </div>
+                    <c:if test="#{accountManagedBean.logged}">
+                        <span class="navbar-text" >Hola, <h:outputText value="#{accountManagedBean.loggedUser.name}"/>. Bienvenido!</span>
+                        <h:form>
+                            <div class="dropdown">
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <button  type="button" class="btn btn-outline-success">User</button>
+                                </a>
+                                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                                    <li>
+                                        <h:link value="Ver perfil" outcome="userDetailView.xhmtl" styleClass="dropdown-item link-dark">
+                                            <f:param name="userId" value="#{accountManagedBean.loggedUser.id}"/>
+                                        </h:link>
+                                    </li>
+                                    <li>
+                                        <h:link value="Editar perfil" outcome="modifyUserView.xhtml" styleClass="dropdown-item link-dark">
+                                            <f:param name="userId" value="#{accountManagedBean.loggedUser.id}"/>
+                                        </h:link>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider"/>
+                                    </li>
+                                    <li>
+                                        <h:commandLink action="#{accountManagedBean.logout}" class="dropdown-item link-dark" >Sign out</h:commandLink >
+                                    </li>
+                                </ul>
+                            </div>
+                        </h:form>
+                    </c:if>
 
                 </div>
             </div>
