@@ -21,8 +21,9 @@ public interface EventRemote {
 
 	EventVO showEvent(int id);
 
-
 	List<OrderHistoryVO> findOrdersByUser(int userId);
+
+	List<OrderHistoryVO> findOrdersByUser(String email);
 
 	List<OrderHistoryVO> findAllOrders();
 
