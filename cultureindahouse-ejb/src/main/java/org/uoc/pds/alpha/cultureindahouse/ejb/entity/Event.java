@@ -67,6 +67,7 @@ public class Event {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "label_event",
+			schema = "pra2",
 			joinColumns = @JoinColumn(name = "event_id"),
 			inverseJoinColumns = @JoinColumn(name = "label_id"))
 	@ToString.Exclude
