@@ -26,4 +26,7 @@ public class ShowUserMB {
 		return profileLocal.showUser(userId);
 	}
 
+
+
+	public String ProfileView() { return "ProfileView.xhtml"; }
 }

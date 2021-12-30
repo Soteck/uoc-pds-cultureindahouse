@@ -8,7 +8,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="userId" value="#{ShowUserMB.userId}"/>
+    <f:viewParam name="userId" value="#{ShowAdministratorMB.userId}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
@@ -16,7 +16,7 @@
 
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
-                <h2 class="display-4 text-white fw-bold">User detail</h2>
+                <h2 class="display-4 text-white fw-bold">User Update</h2>
                 <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
                 <form class="d-flex">
                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
@@ -28,10 +28,9 @@
                 </form>
             </div>
         </div>
-
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
-                <h3 class="display-4 text-white fw-bold">Data</h3>
+                <p class="display-4 text-white fw-bold">Data</p>
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-2 mb-3 rounded-3 mb-3">
                         <label for="new-id" class="form-label text-white">Id</label>
@@ -39,49 +38,53 @@
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-name" class="form-label text-white">Name</label>
-                        <h:inputText class="form-control" id="new-name"  value="#{ShowUserMB.user.name}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-name"  value="#{ShowUserMB.user.name}" />
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-surname" class="form-label text-white">Surname</label>
-                        <h:inputText class="form-control" id="new-surname"  value="#{ShowUserMB.user.surname}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-surname"  value="#{ShowUserMB.user.surname}" />
                     </div>
                 </div>
 
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-3 mb-3 rounded-3 mb-3">
                         <label for="new-nif" class="form-label text-white">NIF</label>
-                        <h:inputText class="form-control" id="new-nif" placeholder="Description" value="#{ShowUserMB.user.nif}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-nif" placeholder="Description" value="#{ShowUserMB.user.nif}" />
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-email" class="form-label text-white">Email</label>
-                        <h:inputText class="form-control" id="new-email" placeholder="Description" value="#{ShowUserMB.user.email}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-email" placeholder="Description" value="#{ShowUserMB.user.email}" />
                     </div>
                     <div class="form col-4 mb-3 rounded-3 mb-3">
                         <label for="new-password" class="form-label text-white">Password</label>
-                        <h:inputText class="form-control" id="new-password"  value="#{ShowUserMB.user.password}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-password"  value="#{ShowUserMB.user.password}" />
                     </div>
                 </div>
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-6 mb-3 rounded-3 mb-3">
                         <label for="new-address" class="form-label text-white">Address</label>
-                        <h:inputText class="form-control" id="new-address" placeholder="Description" value="#{ShowUserMB.user.address}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-address" placeholder="Description" value="#{ShowUserMB.user.address}" />
                     </div>
                     <div class="form col-3 mb-3 rounded-3 mb-3">
                         <label for="new-administrator" class="form-label text-white">Is administrator</label>
-                        <h:inputText class="form-control" id="new-administrator" placeholder="Description" value="#{ShowUserMB.user.administrator}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-administrator" placeholder="Description" value="#{ShowUserMB.user.administrator}" />
                     </div>
                     <div class="form col-3 mb-3 rounded-3 mb-3">
-                        <label for="new-lenguage" class="form-label text-white">Prefered lenguage</label>
-                        <h:inputText class="form-control" id="new-lenguage"  value="#{ShowUserMB.user.preferedLanguage}" readonly = "true"/>
+                        <label for="new-lenguage" class="form-label text-white">Preferes lenguage</label>
+                        <h:inputText class="form-control" id="new-lenguage"  value="#{ShowUserMB.user.preferedLanguage}" />
                     </div>
                 </div>
+
+            <h:commandButton value="Update" height="355" width="350"
+                             action="#{ShowUserMB.ProfileView}"
+                             class="btn btn-outline-success "/>
+
             </div>
         </div>
 
         <div class="row" style="padding-top: 10px" >
             <div class="col-3 p-3">
-                <h:link outcome="ProfileView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                    <f:param name="userName" value=""/>
+                <h:link outcome="AdministratorListView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                     <i class="fa fa-undo">&nbsp;</i>
                     <span>Return to list</span>
                 </h:link>
@@ -90,7 +93,6 @@
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
         <hr class="featurette-divider"></hr>
-
 
     </ui:define>
 </ui:composition>

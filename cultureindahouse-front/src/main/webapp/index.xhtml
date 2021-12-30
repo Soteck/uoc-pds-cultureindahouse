@@ -5,6 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="./headerView.xhtml">
@@ -45,11 +46,20 @@
                             <li class="text-white">Login options</li>
                             <li>Help</li>
                         </ul>
+                        <c:if test="#{accountManagedBean.logged}">
                         <h:form>
                             <h:commandButton value="Profile menu" height="150" width="150"
-                                             action="#{ListCategoriesMB.errorProfile}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-secondary me-2"/>
+                                             action="#{ListUsersMB.ProfileView}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
                         </h:form>
+                        </c:if>
+                        <c:if test="#{ not accountManagedBean.logged}">
+                        <h:form>
+                            <h:commandButton value="Profile menu" height="150" width="150"
+                                             action="#{ListUsersMB.errorLogin}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-secondary me-2"/>
+                        </h:form>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -66,11 +76,20 @@
                             <li class="text-white">Event Organizer options</li>
                             <li class="text-white">Label options</li>
                         </ul>
+                        <c:if test="#{accountManagedBean.logged}">
                         <h:form>
                             <h:commandButton value="Administration menu" height="150" width="150"
                                              action="#{ListCategoriesMB.Administration}" immediate="true"
                                              class=" w-100 btn btn-lg btn-outline-success me-2"/>
                         </h:form>
+                        </c:if>
+                        <c:if test="#{ not accountManagedBean.logged}">
+                            <h:form>
+                             <h:commandButton value="Administration menu" height="150" width="150"
+                                             action="#{ListUsersMB.errorLogin}" immediate="true"
+                                             class=" w-100 btn btn-lg btn-secondary me-2"/>
+                            </h:form>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -106,11 +125,20 @@
                             <li class="text-white">Comment options</li>
                             <li class="text-white">Ratting and favorites</li>
                         </ul>
+                        <c:if test="#{ accountManagedBean.logged}">
                         <h:form>
                             <h:commandButton value="Media menu" hheight="150" width="150"
                                              action="#{ShowQuestionMB.showMedia}" immediate="true"
                                              class=" w-100 btn btn-lg btn-outline-success me-2"/>
                         </h:form>
+                        </c:if>
+                        <c:if test="#{ not accountManagedBean.logged}">
+                            <h:form>
+                                <h:commandButton value="Media menu" height="150" width="150"
+                                                 action="#{ListUsersMB.errorLogin}" immediate="true"
+                                                 class=" w-100 btn btn-lg btn-secondary me-2"/>
+                            </h:form>
+                        </c:if>
                     </div>
                 </div>
             </div>
