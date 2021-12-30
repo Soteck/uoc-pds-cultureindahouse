@@ -29,23 +29,48 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./index.xhtml">Home</a>
+                            <a class="nav-link active"  href="./index.xhtml">Home</a>
                         </li>
+                        <c:if test="#{accountManagedBean.logged}">
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Profile</a>
+                            <a class="nav-link enabled" href="./ProfileView.xhtml" tabindex="-1" >Profile</a>
                         </li>
+                        </c:if>
+                        <c:if test="#{ not accountManagedBean.logged}">
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Profile</a>
+                            </li>
+                        </c:if>
+
+                        <c:if test="#{accountManagedBean.logged}">
                         <li class="nav-item">
-                            <a class="nav-link enabled" href="./administrationView.xhtml" tabindex="-1" aria-disabled="true">Administration</a>
+                            <a class="nav-link enabled" href="./administrationView.xhtml" tabindex="-1" >Administration</a>
                         </li>
+                        </c:if>
+                        <c:if test="#{not accountManagedBean.logged}">
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Administration</a>
+                            </li>
+                        </c:if>
+
+
                         <li class="nav-item">
-                            <a class="nav-link enabled" href="./eventView.xhtml" tabindex="-1" aria-disabled="true">Event</a>
+                            <a class="nav-link enabled" href="./eventView.xhtml" tabindex="-1" >Event</a>
                         </li>
+
+                        <c:if test="#{accountManagedBean.logged}">
                         <li class="nav-item">
-                            <a class="nav-link enabled" href="./MediaView.xhtml" tabindex="-1" aria-disabled="true">Media</a>
+                            <a class="nav-link enabled" href="./MediaView.xhtml" tabindex="-1" >Media</a>
                         </li>
+                        </c:if>
+                        <c:if test="#{not accountManagedBean.logged}">
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Media</a>
+                            </li>
+                        </c:if>
                     </ul>
                     <c:if test="#{accountManagedBean.logged}">
-                        <span class="navbar-text" >Hola, <h:outputText value="#{accountManagedBean.loggedUser.name}"/>. Bienvenido!</span>
+                        <span class="navbar-text" >Hi, <h:outputText value="#{accountManagedBean.loggedUser.name}"/>. Welcome!</span>
                         <h:form>
                             <div class="dropdown">
                                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
@@ -53,12 +78,12 @@
                                 </a>
                                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                                     <li>
-                                        <h:link value="Ver perfil" outcome="userDetailView.xhmtl" styleClass="dropdown-item link-dark">
+                                        <h:link value="View profile" outcome="userDetailView.xhmtl" styleClass="dropdown-item link-dark">
                                             <f:param name="userId" value="#{accountManagedBean.loggedUser.id}"/>
                                         </h:link>
                                     </li>
                                     <li>
-                                        <h:link value="Editar perfil" outcome="modifyUserView.xhtml" styleClass="dropdown-item link-dark">
+                                        <h:link value="Edit profile" outcome="ModifyUserView.xhtml" styleClass="dropdown-item link-dark">
                                             <f:param name="userId" value="#{accountManagedBean.loggedUser.id}"/>
                                         </h:link>
                                     </li>
