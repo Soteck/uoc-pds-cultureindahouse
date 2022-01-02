@@ -31,35 +31,39 @@
 
         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
             <div class="container-fluid py-4">
-                <h3 class="display-4 text-white fw-bold">Detail view</h3>
+                <h3 class="display-4 text-white fw-bold">Detail edit</h3>
                 <div class="mb-3">
                     <label for="id" class="form-label text-white">Id</label>
-                    <h:inputText class="form-control" id="id" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "true"/>
+                    <h:inputText class="form-control" id="id" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "false"/>
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label text-white">Name</label>
-                    <h:inputText class="form-control" id="name" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "true"/>
+                    <h:inputText class="form-control" id="name" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "false"/>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label text-white">Description</label>
-                    <h:inputText class="form-control" id="description" placeholder="Description" value="#{ShowEventMB.event.description}" readonly = "true"/>
+                    <h:inputText class="form-control" id="description" placeholder="Description" value="#{ShowEventMB.event.description}" readonly = "false"/>
                 </div>
                 <div class="mb-3">
                     <label for="initDate" class="form-label text-white">Init. Date</label>
-                    <h:inputText class="form-control" id="initDate" placeholder="Description" value="#{ShowEventMB.event.initDate}" readonly = "true"/>
+                    <h:inputText class="form-control" id="initDate" placeholder="Description" value="#{ShowEventMB.event.initDate}" readonly = "false"/>
                 </div>
                 <div class="mb-3">
                     <label for="endDate" class="form-label text-white">End Date</label>
-                    <h:inputText class="form-control" id="endDate" placeholder="Description" value="#{ShowEventMB.event.endDate}" readonly = "true"/>
+                    <h:inputText class="form-control" id="endDate" placeholder="Description" value="#{ShowEventMB.event.endDate}" readonly = "false"/>
                 </div>
                 <div class="mb-3">
                     <h:graphicImage value="#{ShowEventMB.event.image}" readonly = "true"/>
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label text-white">Location</label>
-                    <h:inputText class="form-control" id="location" placeholder="Description" value="#{ShowEventMB.event.location}" readonly = "true"/>
+                    <h:inputText class="form-control" id="location" placeholder="Description" value="#{ShowEventMB.event.location}" readonly = "false"/>
                 </div>
             </div>
+
+            <h:commandButton value="Update" height="355" width="350"
+                             action="#{ShowEventMB.ProfileView}"
+                             class="btn btn-outline-success "/>
         </div>
 
         <div class="row" style="padding-top: 10px" >
