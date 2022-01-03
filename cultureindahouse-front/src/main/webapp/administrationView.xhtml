@@ -11,7 +11,7 @@
 
         <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
         padding-top: 20px;">
-            <img src="./img/tools-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo"
+            <img src="./img/wrench-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo"
                  width="150" height="150"></img>
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Administration View</h2>
@@ -20,29 +20,24 @@
         </div>
 
         <div class="pricing-header p-1 pb-md-3 mx-auto text-center">
-            <p class="fs-5 text-muted">Here you can see the different blocks of programmed actions to which you have access.</p>
+            <p class="fs-5 text-muted">Here you can list the diferents Events to manage</p>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+        <div class="row row-cols-1 row-cols-md-3 mb-5 text-center">
 
-            <div class="col">
-                <div class="card mb-3 rounded-3 shadow-sm bg-warning">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Events</h4>
-                    </div>
-                    <div class="card-body bg-dark border-warning">
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>Help</li>
-                            <h:form>
-                                <h:commandButton value="Events menu" height="150" width="150"
-                                                 action="#{ListCategoriesMB.listEvents}" immediate="true"
-                                                 class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                            </h:form>
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-4 p-3">
             </div>
 
+            <div class="col-4 p-3">
+                <h:form>
+                    <h:commandButton value="Events menu" height="150" width="150"
+                                     action="#{ListCategoriesMB.listEvents}" immediate="true"
+                                     class="w-100 btn btn-lg btn btn-outline-dark me-2"/>
+                </h:form>
+            </div>
+
+            <div class="col-4 p-3">
+            </div>
 
         </div>
 
