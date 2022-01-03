@@ -24,7 +24,7 @@ public class ListUsersMB {
 	public String Administration() { return "administrationView.xhtml"; }
 	public String ProfileView() { return "ProfileView.xhtml"; }
 	public String errorLogin() { return "ErrorLoginView.xhtml"; }
-
+	public String errorSALogin() { return "ErrorLoginSAView.xhtml"; }
 	public String errorAdministration() { return "ErrorView.xhtml"; }
 	public String errorEvent() { return "event/ErrorView.xhtml"; }
 	public String errorMedia() { return "media/ErrorView.xhtml"; }
