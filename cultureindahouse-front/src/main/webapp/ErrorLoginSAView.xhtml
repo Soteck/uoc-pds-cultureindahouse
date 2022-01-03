@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="headerView.xhtml">
+    <ui:define name="content">
+
+        <div class="d-flex position-relativep-6 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
+        padding-top: 20px;" >
+            <img  src="./img/user-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+            <div class="container-fluid py-4">
+                <h2 class="display-4 text-white fw-bold">you need to be logged as an Superadministrator</h2>
+                <p class="col-md-8 text-white fs-4">Choose your election</p>
+            </div>
+        </div>
+
+        <form>
+            <div class="container col-6 p-3 my-3 border bg-dark border-warning text-center rounded-3">
+                <h1 class="h3 mb-3 fw-normal text-white align-content-center">Back to home</h1>
+                <h:link outcome="index" type="submit" value="Return Home" styleClass="btn btn-warning text-dark me-2 align-items-center">
+                    <span class="fa fa-poo"/>
+                </h:link>
+            </div>
+            <div class="container col-6 p-3 my-3 border bg-dark border-warning text-center rounded-3">
+                <h1 class="h3 mb-3 fw-normal text-white align-content-center">Go to login</h1>
+                <h:link outcome="login" type="submit" value="login" styleClass="btn btn-warning text-dark me-2 align-items-center">
+                    <span class="fa fa-address-card"/>
+                </h:link>
+            </div>
+        </form>
+
+        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+        <hr class="featurette-divider"></hr>
+
+    </ui:define>
+</ui:composition>
+</html>
