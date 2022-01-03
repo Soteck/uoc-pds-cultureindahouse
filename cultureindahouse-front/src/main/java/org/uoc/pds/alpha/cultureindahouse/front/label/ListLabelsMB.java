@@ -5,11 +5,10 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.io.Console;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "ListLabelsMB")
 public class ListLabelsMB {
 

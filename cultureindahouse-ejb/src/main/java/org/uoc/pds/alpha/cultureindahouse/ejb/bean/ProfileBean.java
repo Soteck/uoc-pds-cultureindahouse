@@ -5,6 +5,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
+import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.DateHelper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.EventMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.LabelMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
@@ -94,9 +95,10 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
-	public EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId) {
+	public EventVO addEvent(String name, String description, String location,
+							String image, String initDate, String endDate, int eventOrganizerId) {
 
-		Event event = new Event(name, description, location, image, initDate, endDate);
+		Event event = new Event(name, description, location, image, DateHelper.parse(initDate), DateHelper.parse(endDate));
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
 
@@ -104,7 +106,8 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
-	public EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId) {
+	public EventVO updateEvent(int eventId, String name, String description,
+							   String location, String image, String initDate, String endDate, int eventOrganizerId) {
 
 		Event event = eventRepository.get(eventId);
 
@@ -113,8 +116,8 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		event.setDescription(description);
 		event.setLocation(location);
 		event.setImage(image);
-		event.setInitDate(initDate);
-		event.setEndDate(endDate);
+		event.setInitDate(DateHelper.parse(initDate));
+		event.setEndDate(DateHelper.parse(endDate));
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
 
@@ -124,7 +127,12 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 
 	@Override
-	public EventVO showEvent(String name) {
+	public EventVO showEvent(int id) {
+		return EventMapper.toVO(eventRepository.get(id), true);
+	}
+
+	@Override
+	public EventVO showEventByName(String name) {
 		return EventMapper.toVO(eventRepository.getEventByName(name), true);
 	}
 

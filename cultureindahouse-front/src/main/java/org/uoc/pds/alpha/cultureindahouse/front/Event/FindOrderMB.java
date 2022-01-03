@@ -2,21 +2,15 @@ package org.uoc.pds.alpha.cultureindahouse.front.Event;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.EventLocal;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.OrderHistoryVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
-import java.util.ArrayList;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "FindOrderMB")
 public class FindOrderMB {
 

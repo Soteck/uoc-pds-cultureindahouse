@@ -8,7 +8,8 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="eventId" value="#{ShowEventMB.eventId}"/>
+    <f:viewParam name="categoryId" value="#{EditEventMB.eventId}"/>
+    <ui:param name="new" value="#{EditEventMB.eventId eq null}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
@@ -62,7 +63,7 @@
             </div>
 
             <h:commandButton value="Update" height="355" width="350"
-                             action="#{ShowEventMB.ProfileView}"
+                             action="#{EditEventMB.updateEvent}"
                              class="btn btn-outline-success "/>
         </div>
 

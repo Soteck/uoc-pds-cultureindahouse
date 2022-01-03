@@ -3,14 +3,13 @@ package org.uoc.pds.alpha.cultureindahouse.front.Event;
 import lombok.Getter;
 import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.EventLocal;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.OrderHistoryVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "ShowOrderMB")
 public class ShowOrderMB {
 

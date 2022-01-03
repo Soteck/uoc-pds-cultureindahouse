@@ -3,7 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.ejb.helpers;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class dateHelper {
+public class DateHelper {
 
     public static LocalDate parse (String date){
         return LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);

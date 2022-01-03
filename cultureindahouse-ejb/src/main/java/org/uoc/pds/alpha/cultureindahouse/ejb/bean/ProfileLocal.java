@@ -28,12 +28,13 @@ public interface ProfileLocal {
 
 	List<EventVO> listAllEvents();
 
-	EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
+	EventVO addEvent(String name, String description, String location, String image, String initDate, String endDate, int eventOrganizerId);
 
-	EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
+	EventVO updateEvent(int eventId, String name, String description, String location, String image, String initDate, String endDate, int eventOrganizerId);
 
-	EventVO showEvent(String name);
+	EventVO showEvent(int id);
 
+	EventVO showEventByName(String name);
 
 	void addCategoryToEvent(int eventId, int categoryId);
 

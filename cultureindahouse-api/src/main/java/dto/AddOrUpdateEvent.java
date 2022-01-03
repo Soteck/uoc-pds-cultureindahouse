@@ -1,11 +1,7 @@
 package dto;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
 
 @Data

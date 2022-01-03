@@ -1,10 +1,8 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 
 import lombok.*;
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.*;
-import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.dateHelper;
+import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.DateHelper;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -49,8 +47,8 @@ public class EventVO {
 		this.description = description;
 		this.location = location;
 		this.image = image;
-		this.initDate = dateHelper.toString(initDate) ;
-		this.endDate = dateHelper.toString(endDate) ;
+		this.initDate = DateHelper.toString(initDate) ;
+		this.endDate = DateHelper.toString(endDate) ;
 	}
 
 	@Override
