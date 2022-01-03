@@ -43,18 +43,12 @@ public class ProfileRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateEvent(@PathParam("eventId") int eventId, AddOrUpdateEvent dto) {
-        return Response.ok(profileLocal.updateEvent(eventId, dto.name, dto.description, dto.location, dto.image, dto.initDate, dto.endDate,
-                dto.eventOrganizerId)).build();
+        return Response.ok(
+                profileLocal.updateEvent(
+                        eventId, dto.name, dto.description, dto.location, dto.image,
+                        dto.initDate, dto.endDate, dto.eventOrganizerId, dto.categoryId)).build();
     }
 
-
-    @PUT
-    @Path("/events/{eventId}/category/{categoryId}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response addCategoryToEvent(@PathParam("eventId") int eventId, @PathParam("categoryId") int categoryId) {
-        profileLocal.addCategoryToEvent(eventId, categoryId);
-        return Response.ok().build();
-    }
 
 
     @PUT
@@ -91,17 +85,12 @@ public class ProfileRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addEvent(AddOrUpdateEvent dto) {
         return Response
-                .ok(profileLocal.addEvent(dto.name, dto.description, dto.location, dto.image, dto.initDate, dto.endDate, dto.eventOrganizerId))
+                .ok(
+                        profileLocal.addEvent(dto.name, dto.description, dto.location, dto.image,
+                                dto.initDate, dto.endDate, dto.eventOrganizerId, dto.categoryId))
                 .build();
     }
 
-
-    @DELETE
-    @Path("/events/{eventId}/category")
-    public Response removeCategoryFromEvent(@PathParam("eventId") int eventId) {
-        profileLocal.removeCategoryFromEvent(eventId);
-        return Response.ok().build();
-    }
 
     @DELETE
     @Path("/events/{eventId}/label/{labelId}")

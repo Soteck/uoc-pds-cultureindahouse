@@ -8,6 +8,7 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import java.util.Objects;
 
 @ViewScoped
 @ManagedBean(name = "EditCategoryMB")
@@ -22,7 +23,7 @@ public class EditCategoryMB {
 	private CategoryVO category;
 
 	public CategoryVO getCategory(){
-		if(category == null || !(category.getId() == categoryId)){
+		if(category == null || !(Objects.equals(category.getId(), categoryId))){
 			category = categoryLocal.showCategory(categoryId);
 		}
 		return category;

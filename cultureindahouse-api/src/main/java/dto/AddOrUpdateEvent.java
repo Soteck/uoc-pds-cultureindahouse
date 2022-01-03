@@ -15,10 +15,11 @@ public class AddOrUpdateEvent {
     public String initDate;
     public String endDate;
     public int eventOrganizerId;
+    public int categoryId;
 
 
 
-    public AddOrUpdateEvent(EventVO event, int eventOrganizerId) {
+    public AddOrUpdateEvent(EventVO event, int eventOrganizerId, int categoryId) {
 
         this.name = event.getName();
         this.description = event.getDescription();
@@ -27,5 +28,6 @@ public class AddOrUpdateEvent {
         this.initDate = event.getInitDate();
         this.endDate = event.getEndDate();
         this.eventOrganizerId = eventOrganizerId;
+        this.categoryId = categoryId;
     }
 }

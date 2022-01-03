@@ -97,7 +97,7 @@ public class EventIntegrationTest {
 
         HttpPost eventRequest = new HttpPost(PROFILE_URI + "events");
         eventRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        eventRequest.setEntity(new StringEntity(gson.toJson(new AddOrUpdateEvent(event, eventOrganizer.getId()))));
+        eventRequest.setEntity(new StringEntity(gson.toJson(new AddOrUpdateEvent(event, eventOrganizer.getId(), category.getId()))));
         HttpResponse eventResponse = HttpClientBuilder.create().build().execute(eventRequest);
         String eventJson = EntityUtils.toString(eventResponse.getEntity());
         EventVO e = gson.fromJson(eventJson, EventVO.class);

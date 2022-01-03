@@ -6,6 +6,8 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
+import java.util.ArrayList;
 import java.util.List;
 
 @ViewScoped
@@ -17,6 +19,18 @@ public class ListCategoriesMB {
 
 	public List<CategoryVO> getCategories() {
 		return categoryLocal.listAllCategories();
+	}
+
+
+	public List<SelectItem> getFilterTypes() {
+		List<SelectItem> filterTypes = new ArrayList<>();
+
+		for (CategoryVO cat : getCategories()) {
+			filterTypes.add(new SelectItem(cat.getId(), cat.getName()));
+
+		}
+
+		return filterTypes;
 	}
 
 	public String listCategories() {

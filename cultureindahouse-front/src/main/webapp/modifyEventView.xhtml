@@ -5,81 +5,177 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="categoryId" value="#{EditEventMB.eventId}"/>
+    <f:viewParam name="eventId" value="#{EditEventMB.eventId}"/>
     <ui:param name="new" value="#{EditEventMB.eventId eq null}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
     <ui:define name="content">
+        <h:form>
+            <div style="padding-top: 50px">
 
-        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
-            <div class="container-fluid py-4">
-                <h2 class="display-4 text-white fw-bold">Event details</h2>
-                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
-                <h:form class="d-flex">
-                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
-                        <span class="fa fa-home"/>
-                    </h:link>
-                    <h:link outcome="EventView" type="button" value="" styleClass="btn btn-outline-success me-2" >
-                        <span class="fa fa-bars"/>
-                    </h:link>
-                </h:form>
+                <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                    <div class="container-fluid py-4">
+                        <h2 class="display-4 text-white fw-bold">Event details</h2>
+                        <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
+                        <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
+                            <span class="fa fa-home"/>
+                        </h:link>
+                        <h:link outcome="EventView" type="button" value="" styleClass="btn btn-outline-success me-2">
+                            <span class="fa fa-bars"/>
+                        </h:link>
+                    </div>
+                </div>
+
+                <c:choose>
+                    <c:when test="${new}">
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">Add Event</h3>
+
+                                <div class="mb-3">
+                                    <label for="name-add" class="form-label text-white">Name</label>
+                                    <h:inputText class="form-control" id="name-add" placeholder="Name"
+                                                 value="#{AddEventMB.event.name}"
+                                                 readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description-add" class="form-label text-white">Description</label>
+                                    <h:inputText class="form-control" id="description-add" placeholder="Description"
+                                                 value="#{AddEventMB.event.description}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="initDate-add" class="form-label text-white">Init. Date</label>
+                                    <h:inputText class="form-control" id="initDate-add" placeholder="Description"
+                                                 value="#{AddEventMB.event.initDate}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="endDate-add" class="form-label text-white">End Date</label>
+                                    <h:inputText class="form-control" id="endDate-add" placeholder="Description"
+                                                 value="#{AddEventMB.event.endDate}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <h:graphicImage value="#{AddEventMB.event.image}" readonly="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location-add" class="form-label text-white">Location</label>
+                                    <h:inputText class="form-control" id="location-add" placeholder="Description"
+                                                 value="#{AddEventMB.event.location}" readonly="false"/>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="eventOrganizer-add"
+                                           class="form-label text-white">Event Organizer</label>
+                                    <h:selectOneMenu id="eventOrganizer-add" value="#{AddEventMB.eventOrganizer}"
+                                                     effect="fold" required="true" editable="true"
+                                                     styleClass="form-control radius-none">
+                                        <f:selectItems value="#{ListEventOrganizerMB.filterTypes}" var="filterType"/>
+                                        <f:ajax/>
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="category-add" class="form-label text-white">Category</label>
+                                    <h:selectOneMenu id="category-add" value="#{AddEventMB.category}" effect="fold"
+                                                     required="true" editable="true"
+                                                     styleClass="form-control radius-none">
+                                        <f:selectItems value="#{ListCategoriesMB.filterTypes}" var="filterType"/>
+                                        <f:ajax/>
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <h:commandButton value="Add" height="355" width="350"
+                                                 action="#{AddEventMB.addEvent}"
+                                                 class="btn btn-outline-success "/>
+
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+
+                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
+                            <div class="container-fluid py-4">
+                                <h3 class="display-4 text-white fw-bold">Update Event</h3>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-white">Name</label>
+                                    <h:inputText class="form-control" id="name" placeholder="Name"
+                                                 value="#{EditEventMB.event.name}"
+                                                 readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label text-white">Description</label>
+                                    <h:inputText class="form-control" id="description" placeholder="Description"
+                                                 value="#{EditEventMB.event.description}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="initDate" class="form-label text-white">Init. Date</label>
+                                    <h:inputText class="form-control" id="initDate" placeholder="Description"
+                                                 value="#{EditEventMB.event.initDate}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="endDate" class="form-label text-white">End Date</label>
+                                    <h:inputText class="form-control" id="endDate" placeholder="Description"
+                                                 value="#{EditEventMB.event.endDate}" readonly="false"/>
+                                </div>
+                                <div class="mb-3">
+                                    <h:graphicImage value="#{EditEventMB.event.image}" readonly="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label text-white">Location</label>
+                                    <h:inputText class="form-control" id="location" placeholder="Description"
+                                                 value="#{EditEventMB.event.location}" readonly="false"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="eventOrganizer" class="form-label text-white">Event Organizer</label>
+                                    <h:selectOneMenu id="eventOrganizer" value="#{EditEventMB.eventOrganizer}"
+                                                     effect="fold"
+                                                     required="true" editable="true"
+                                                     styleClass="form-control radius-none">
+                                        <f:selectItems value="#{ListEventOrganizerMB.filterTypes}" var="filterType"/>
+                                        <f:ajax/>
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="category" class="form-label text-white">Category</label>
+                                    <h:selectOneMenu id="category" value="#{EditEventMB.category}" effect="fold"
+                                                     required="true" editable="true"
+                                                     styleClass="form-control radius-none">
+                                        <f:selectItems value="#{ListCategoriesMB.filterTypes}" var="filterType"/>
+                                        <f:ajax/>
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <h:commandButton value="Update" height="355" width="350"
+                                                 action="#{EditEventMB.updateEvent}"
+                                                 class="btn btn-outline-success "/>
+                            </div>
+                        </div>
+
+                    </c:otherwise>
+                </c:choose>
+
+                <div class="row" style="padding-top: 10px">
+                    <div class="col-3 p-3">
+                        <h:link outcome="listEventView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2"
+                                style="">
+                            <i class="fa fa-undo">&nbsp;</i>
+                            <span>Return to list</span>
+                        </h:link>
+                    </div>
+                </div>
+
+                <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
+                <hr class="featurette-divider"/>
             </div>
-        </div>
-
-        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
-            <div class="container-fluid py-4">
-                <h3 class="display-4 text-white fw-bold">Detail edit</h3>
-                <div class="mb-3">
-                    <label for="id" class="form-label text-white">Id</label>
-                    <h:inputText class="form-control" id="id" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "false"/>
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label text-white">Name</label>
-                    <h:inputText class="form-control" id="name" placeholder="Name" value="#{ShowEventMB.event.name}" readonly = "false"/>
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label text-white">Description</label>
-                    <h:inputText class="form-control" id="description" placeholder="Description" value="#{ShowEventMB.event.description}" readonly = "false"/>
-                </div>
-                <div class="mb-3">
-                    <label for="initDate" class="form-label text-white">Init. Date</label>
-                    <h:inputText class="form-control" id="initDate" placeholder="Description" value="#{ShowEventMB.event.initDate}" readonly = "false"/>
-                </div>
-                <div class="mb-3">
-                    <label for="endDate" class="form-label text-white">End Date</label>
-                    <h:inputText class="form-control" id="endDate" placeholder="Description" value="#{ShowEventMB.event.endDate}" readonly = "false"/>
-                </div>
-                <div class="mb-3">
-                    <h:graphicImage value="#{ShowEventMB.event.image}" readonly = "true"/>
-                </div>
-                <div class="mb-3">
-                    <label for="location" class="form-label text-white">Location</label>
-                    <h:inputText class="form-control" id="location" placeholder="Description" value="#{ShowEventMB.event.location}" readonly = "false"/>
-                </div>
-            </div>
-
-            <h:commandButton value="Update" height="355" width="350"
-                             action="#{EditEventMB.updateEvent}"
-                             class="btn btn-outline-success "/>
-        </div>
-
-        <div class="row" style="padding-top: 10px" >
-            <div class="col-3 p-3">
-                <h:link outcome="FindEventView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                    <i class="fa fa-undo">&nbsp;</i>
-                    <span>Return to list</span>
-                </h:link>
-            </div>
-        </div>
-
-        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-        <hr class="featurette-divider"></hr>
-
-
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>

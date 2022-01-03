@@ -95,19 +95,20 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
-	public EventVO addEvent(String name, String description, String location,
-							String image, String initDate, String endDate, int eventOrganizerId) {
+	public EventVO addEvent(String name, String description, String location, String image,
+							String initDate, String endDate, int eventOrganizerId, int categoryId) {
 
 		Event event = new Event(name, description, location, image, DateHelper.parse(initDate), DateHelper.parse(endDate));
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
+		event.setCategory(categoryRepository.get(categoryId));
 
 		return EventMapper.toVO(eventRepository.add(event), true);
 	}
 
 	@Override
-	public EventVO updateEvent(int eventId, String name, String description,
-							   String location, String image, String initDate, String endDate, int eventOrganizerId) {
+	public EventVO updateEvent(int eventId, String name, String description, String location, String image,
+							   String initDate, String endDate, int eventOrganizerId, int categoryId) {
 
 		Event event = eventRepository.get(eventId);
 
@@ -120,6 +121,7 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		event.setEndDate(DateHelper.parse(endDate));
 
 		event.setEventOrganizer(eventOrganizerRepository.get(eventOrganizerId));
+		event.setCategory(categoryRepository.get(categoryId));
 
 		return EventMapper.toVO(eventRepository.add(event), true);
 	}
@@ -136,27 +138,6 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		return EventMapper.toVO(eventRepository.getEventByName(name), true);
 	}
 
-
-	@Override
-	public void addCategoryToEvent(int eventId, int categoryId) {
-
-		Category category = categoryRepository.get(categoryId);
-		Event event = eventRepository.get(eventId);
-
-		event.setCategory(category);
-
-		eventRepository.update(event.getId(), event);
-	}
-
-	@Override
-	public void removeCategoryFromEvent(int eventId) {
-
-		Event event = eventRepository.get(eventId);
-
-		event.setCategory(null);
-
-		eventRepository.update(event.getId(), event);
-	}
 
 	@Override
 	public void addLabelToEvent(int eventId, int labelId) {
