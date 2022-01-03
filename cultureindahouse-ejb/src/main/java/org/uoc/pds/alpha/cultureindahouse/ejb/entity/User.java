@@ -47,6 +47,9 @@ public class User {
     @Column(name = "is_administrator")
     private boolean isAdministrator;
 
+    @Column(name = "is_super_administrator")
+    private boolean isSuperAdministrator;
+
     @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = false)
     @ToString.Exclude
     private List<EventOrganizer> eventOrganizers;
