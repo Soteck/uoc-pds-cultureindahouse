@@ -43,13 +43,24 @@
                         </c:if>
 
                         <c:if test="#{accountManagedBean.logged}">
-                        <li class="nav-item">
-                            <a class="nav-link enabled" href="./administrationView.xhtml" tabindex="-1" >Administration</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./administrationView.xhtml" tabindex="-1" >Administration</a>
+                            </li>
                         </c:if>
                         <c:if test="#{not accountManagedBean.logged}">
                             <li class="nav-item">
                                 <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Administration</a>
+                            </li>
+                        </c:if>
+
+                        <c:if test="#{accountManagedBean.logged}">
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./superAdministrationView.xhtml" tabindex="-1" >Super Admin</a>
+                            </li>
+                        </c:if>
+                        <c:if test="#{not accountManagedBean.logged}">
+                            <li class="nav-item">
+                                <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Super Admin</a>
                             </li>
                         </c:if>
 
@@ -76,7 +87,7 @@
                                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
                                     <button  type="button" class="btn btn-outline-success">User</button>
                                 </a>
-                                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                                <ul class="dropdown-menu text-small dropdown-menu-right" aria-labelledby="dropdownUser1">
                                     <li>
                                         <h:link value="View profile" outcome="userDetailView.xhmtl" styleClass="dropdown-item link-dark">
                                             <f:param name="userId" value="#{accountManagedBean.loggedUser.id}"/>

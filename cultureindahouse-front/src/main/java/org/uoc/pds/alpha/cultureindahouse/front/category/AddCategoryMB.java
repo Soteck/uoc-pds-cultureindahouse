@@ -5,9 +5,9 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "AddCategoryMB")
 public class AddCategoryMB {
 

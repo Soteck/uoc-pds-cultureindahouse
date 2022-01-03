@@ -31,6 +31,8 @@ public class UserVO {
 
     private boolean isAdministrator;
 
+    private boolean isSuperAdministrator;
+
     private Collection<EventOrganizerVO> eventOrganizers;
 
     private Collection<OrderHistoryVO> orderHistory;

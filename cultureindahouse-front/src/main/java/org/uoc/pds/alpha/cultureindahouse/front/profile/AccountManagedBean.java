@@ -5,12 +5,9 @@ import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 @SessionScoped
 @ManagedBean(name = "accountManagedBean")
@@ -36,17 +33,17 @@ public class AccountManagedBean {
 	@Setter
 	private String message;
 
-	public boolean isLogged(){
+	public boolean isLogged() {
 		return loggedUser != null;
 	}
 
 
-	public Object login(){
+	public Object login() {
 		message = null;
 		loggedUser = null;
 		loggedUser = profileLocal.login(email, password);
 		password = null;
-		if(loggedUser == null){
+		if (loggedUser == null) {
 			message = "Username or password not correct";
 			return null;
 		}
@@ -55,7 +52,7 @@ public class AccountManagedBean {
 	}
 
 
-	public Object logout(){
+	public Object logout() {
 		message = null;
 		loggedUser = null;
 		email = null;

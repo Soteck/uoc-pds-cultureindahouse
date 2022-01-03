@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="headerView.xhtml">
@@ -59,10 +60,12 @@
                         <f:param name="eventId" value="#{event.id}"/>
                         <i class="fa fa-search">&nbsp;</i>
                     </h:link>
-                    <h:link outcome="ModifyEventDetailView.xhmtl" class="btn btn-warning" style="margin-left: 25px;">
-                        <f:param name="eventId" value="#{event.id}"/>
-                        <i class="fa fa-edit">&nbsp;</i>
-                    </h:link>
+                    <c:if test="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
+                        <h:link outcome="modifyEventView.xhmtl" class="btn btn-warning" style="margin-left: 25px;">
+                            <f:param name="eventId" value="#{event.id}"/>
+                            <i class="fa fa-edit">&nbsp;</i>
+                        </h:link>
+                    </c:if>
                 </div>
             </h:column>
             

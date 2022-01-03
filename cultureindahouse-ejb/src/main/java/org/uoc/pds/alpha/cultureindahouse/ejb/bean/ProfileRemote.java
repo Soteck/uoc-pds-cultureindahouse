@@ -27,15 +27,14 @@ public interface ProfileRemote {
 
 	List<UserVO> listAllUsers();
 
-	EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
+	EventVO addEvent(String name, String description, String location, String image,
+					 String initDate, String endDate, int eventOrganizerId, int categoryId);
 
-	EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
+	EventVO updateEvent(int eventId, String name, String description, String location, String image,
+						String initDate, String endDate, int eventOrganizerId, int categoryId);
+	EventVO showEvent(int id);
 
-	EventVO showEvent(String name);
-
-	void addCategoryToEvent(int eventId, int categoryId);
-
-	void removeCategoryFromEvent(int eventId);
+	EventVO showEventByName(String name);
 
 	void addLabelToEvent(int eventId, int labelId);
 

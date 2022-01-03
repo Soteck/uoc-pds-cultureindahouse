@@ -2,15 +2,14 @@ package org.uoc.pds.alpha.cultureindahouse.front.Media;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.MediaLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.QuestionVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "ShowQuestionMB")
 public class ShowQuestionMB {
 

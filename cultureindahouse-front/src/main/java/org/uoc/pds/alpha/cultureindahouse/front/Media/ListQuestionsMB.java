@@ -7,11 +7,10 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.QuestionVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.io.Console;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "ListQuestionsMB")
 public class ListQuestionsMB {
 

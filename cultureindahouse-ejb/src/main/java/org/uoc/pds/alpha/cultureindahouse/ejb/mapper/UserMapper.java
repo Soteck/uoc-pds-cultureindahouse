@@ -22,6 +22,7 @@ public class UserMapper {
         ret.setPreferedLanguage(userVO.getPreferedLanguage());
         ret.setAddress(userVO.getAddress());
         ret.setAdministrator(userVO.isAdministrator());
+        ret.setSuperAdministrator(userVO.isSuperAdministrator());
 
         var eventOrganizers = userVO.getEventOrganizers();
 
@@ -68,6 +69,7 @@ public class UserMapper {
         ret.setPreferedLanguage(user.getPreferedLanguage());
         ret.setAddress(user.getAddress());
         ret.setAdministrator(user.isAdministrator());
+        ret.setSuperAdministrator(user.isSuperAdministrator());
 
         var eventOrganizers = user.getEventOrganizers();
 
