@@ -67,7 +67,7 @@
             <div class="col">
                 <div class="card mb-3 rounded-3 shadow-sm bg-warning ">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Administration</h4>
+                        <h4 class="my-0 fw-normal">Super Administration</h4>
                     </div>
                     <div class="card-body bg-dark border-warning">
                         <ul class="list-unstyled mt-3 mb-4">
@@ -76,20 +76,48 @@
                             <li class="text-white">Event Organizer options</li>
                             <li class="text-white">Label options</li>
                         </ul>
-                        <c:if test="#{accountManagedBean.logged}">
-                        <h:form>
-                            <h:commandButton value="Administration menu" height="150" width="150"
-                                             action="#{ListCategoriesMB.Administration}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                        </h:form>
-                        </c:if>
-                        <c:if test="#{ not accountManagedBean.logged}">
-                            <h:form>
-                             <h:commandButton value="Administration menu" height="150" width="150"
-                                             action="#{ListUsersMB.errorLogin}" immediate="true"
-                                             class=" w-100 btn btn-lg btn-secondary me-2"/>
-                            </h:form>
-                        </c:if>
+                        <c:choose >
+                            <c:when test="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
+                                <h:form>
+                                    <h:commandButton value="SuperAdmin menu" height="150" width="150"
+                                                     action="#{ListCategoriesMB.SuperAdministration}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                                </h:form>
+                            </c:when>
+                            <c:otherwise>
+                                <h:form>
+                                    <h:commandButton value="SuperAdmin menu" height="150" width="150"
+                                                     action="#{ListUsersMB.errorLogin}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-secondary me-2"/>
+                                </h:form>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+                <div class="card mb-3 rounded-3 shadow-sm bg-warning ">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Administration</h4>
+                    </div>
+                    <div class="card-body bg-dark border-warning">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li class="text-white">Event options</li>
+                        </ul>
+                        <c:choose >
+                            <c:when test="#{accountManagedBean.logged and accountManagedBean.loggedUser.administrator}">
+                                <h:form>
+                                    <h:commandButton value="Administration menu" height="150" width="150"
+                                                     action="#{ListCategoriesMB.Administration}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
+                                </h:form>
+                            </c:when>
+                            <c:otherwise>
+                                <h:form>
+                                    <h:commandButton value="Administration menu" height="150" width="150"
+                                                     action="#{ListUsersMB.errorLogin}" immediate="true"
+                                                     class=" w-100 btn btn-lg btn-secondary me-2"/>
+                                </h:form>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
