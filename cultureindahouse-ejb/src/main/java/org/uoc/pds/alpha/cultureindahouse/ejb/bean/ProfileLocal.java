@@ -26,6 +26,8 @@ public interface ProfileLocal {
 
 	List<UserVO> listAllUsers();
 
+	List<EventVO> listAllEvents();
+
 	EventVO addEvent(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);
 
 	EventVO updateEvent(int eventId, String name, String description, String location, String image, LocalDate initDate, LocalDate endDate, int eventOrganizerId);

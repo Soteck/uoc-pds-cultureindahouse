@@ -84,6 +84,11 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	}
 
 	@Override
+	public List<EventVO> listAllEvents() {
+		return EventMapper.toVO(eventRepository.list(), true);
+	}
+
+	@Override
 	public void deleteUser(int userId) {
 		userRepository.delete(userId);
 	}
