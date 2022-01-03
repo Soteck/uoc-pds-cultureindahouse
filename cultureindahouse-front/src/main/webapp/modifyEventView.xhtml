@@ -90,6 +90,15 @@
                                     </h:selectOneMenu>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="labels-add" class="form-label text-white">Labels</label>
+                                    <h:selectManyListbox id="labels-add"  value="#{AddEventMB.labels}"
+                                                         styleClass="list-group form-control radius-none" style="padding: 0;" >
+                                        <f:selectItems value="#{ListLabelsMB.filterTypes}" />
+                                    </h:selectManyListbox>
+                                </div>
+
+
                                 <h:commandButton value="Add" height="355" width="350"
                                                  action="#{AddEventMB.addEvent}"
                                                  class="btn btn-outline-success "/>
@@ -153,6 +162,14 @@
                                     </h:selectOneMenu>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="labels" class="form-label text-white">Labels</label>
+                                    <h:selectManyListbox id="labels"  value="#{EditEventMB.labels}"
+                                                         styleClass="list-group form-control radius-none" style="padding: 0;" >
+                                        <f:selectItems value="#{ListLabelsMB.filterTypes}" />
+                                    </h:selectManyListbox>
+                                </div>
+
                                 <h:commandButton value="Update" height="355" width="350"
                                                  action="#{EditEventMB.updateEvent}"
                                                  class="btn btn-outline-success "/>
@@ -175,6 +192,18 @@
                 <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
                 <hr class="featurette-divider"/>
             </div>
+            <script type="application/javascript">
+                let selectsHtml = document.getElementsByTagName("select");
+                for(let selectHtml of selectsHtml){
+                    if(!!selectHtml.attributes.multiple){
+                        if(!!selectHtml.children){
+                            for(let childrenHtml of selectHtml.children){
+                                childrenHtml.className = childrenHtml.className + "list-group-item";
+                            }
+                        }
+                    }
+                }
+            </script>
         </h:form>
     </ui:define>
 </ui:composition>

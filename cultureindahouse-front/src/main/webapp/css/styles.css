@@ -43,3 +43,7 @@ html, body{
 nav span.navbar-text{
     margin-right: 15px;
 }
+
+select option:checked {
+    background-color: rgb(153, 200, 255) !important;
+}
