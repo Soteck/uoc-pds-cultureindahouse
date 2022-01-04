@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
@@ -59,6 +60,32 @@
                     <label for="location" class="form-label text-white">Location</label>
                     <h:inputText class="form-control" id="location" placeholder="Description" value="#{ShowEventMB.event.location}" readonly = "true"/>
                 </div>
+                <c:if test="#{not (ShowEventMB.event.labels eq null)}">
+                    <div class="mb-3">
+                        <label class="form-label text-white">Labels</label>
+                        <h:dataTable value="#{ShowEventMB.event.labels}" var="label"
+                                     styleClass="labelTable table table-dark table-striped table-hover"
+                                     headerClass="labelTableHeader"
+                                     rowClasses="labelTableOddRow,labelTableEvenRow">
+
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            <h:outputText value="#{label.id}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{label.name}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Description</f:facet>
+                            <h:outputText value="#{label.description}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    </div>
+                </c:if>
             </div>
         </div>
 
