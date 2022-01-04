@@ -10,12 +10,13 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import java.util.ArrayList;
 import java.util.List;
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "FindEventMB")
 public class FindEventMB {
 
