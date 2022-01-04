@@ -36,9 +36,11 @@
                         <h3 class="display-4 text-white fw-bold">Add your rating </h3>
                         <div class="row form-floating mb-5 rounded-3">
                         <div class="form col-8 mb-3 rounded-3 mb-3">
-                            <label for="new-name" class="form-label text-white">Description</label>
-                            <h:inputText class="form-control" id="new-name" placeholder="Nombre"
-                                         value="#{AddRattingMB.ratting}"/>
+                            <label for="new-name" class="form-label text-white">Ratting</label>
+                            <h:selectOneMenu value="#{AddRattingMB.ratting}" effect="fold" editable="true" styleClass="form-control radius-none" id="new-name">
+                                <f:selectItems value="#{AddRattingMB.rattings}" var="filterType"></f:selectItems>
+                                <f:ajax/>
+                            </h:selectOneMenu>
                         </div>
                         </div>
 
