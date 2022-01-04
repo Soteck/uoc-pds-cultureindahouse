@@ -20,7 +20,6 @@ public class ListQuestionsMB {
     @Getter
     @Setter
     protected Integer eventId = null;
-    private QuestionVO question;
 
     public List<QuestionVO> getQuestions() {
         return questionLocal.listAllQuestions(eventId);

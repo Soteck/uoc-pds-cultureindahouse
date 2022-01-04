@@ -8,7 +8,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="eventId" value="3"/>
+    <f:viewParam name="eventId" value="#{MediaMB.eventId}"/>
 </f:metadata>
 
 <ui:composition template="headerView.xhtml">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-6 p-3">
                 <h:link outcome="listQuestionsView.xhtml" class="btn btn-lg btn-secondary me-2" style="">
-                    <f:param name="" value=""/>
+                    <f:param name="eventId" value="#{MediaMB.eventId}"/>
                     <i class="fa fa-comments"></i>
                     <span>List Questions</span>
                 </h:link>

@@ -20,7 +20,8 @@ public class ShowOrderMB {
     @Setter
     private Integer orderId = null;
 
-    public OrderHistoryVO getOrder(){
+    public OrderHistoryVO getOrder()
+    {
         return eventLocal.showOrder(orderId);
     }
 
