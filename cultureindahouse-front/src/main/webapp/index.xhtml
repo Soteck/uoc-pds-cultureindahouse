@@ -17,14 +17,39 @@
                 <h2 class="display-4 text-white fw-bold">Culture without leaving home</h2>
                 <p class="col-md-8 text-white fs-4">Do you want to have access to different cultural programs live and delayed without leaving home?</p>
                 <p class="col-md-8 text-white fs-4">What are you waiting for, sign up?</p>
-                <form class="d-flex" action="summit">
-                    <h:link outcome="login" type="button" value="Login" styleClass="btn btn-warning text-dark me-2">
-                        <span class="fa fa-address-card"/>
-                    </h:link>
-                    <h:link outcome="registerUserView" type="button" value="signup" styleClass="btn btn-outline-success me-2" >
-                        <span class="fa fa-edit"/>
-                    </h:link>
-                </form>
+                <h:form class="d-flex">
+
+                    <c:choose>
+                        <c:when test="#{accountManagedBean.logged}">
+                            <h:commandLink
+                                    type="button"
+                                    value="Sign out"
+                                    styleClass="btn btn-warning text-dark me-2"
+                                    action="#{accountManagedBean.logout}"
+                                    >
+                                <span class="fa fa-times"/>
+                            </h:commandLink>
+                        </c:when>
+                        <c:otherwise>
+                            <h:link
+                                    outcome="login"
+                                    type="button"
+                                    value="Login"
+                                    styleClass="btn btn-warning text-dark me-2">
+                                <span class="fa fa-address-card"/>
+                            </h:link>
+                            <h:link
+                                    outcome="registerUserView"
+                                    type="button"
+                                    value="Register"
+                                    styleClass="btn btn-outline-success me-2" >
+                                <span class="fa fa-edit"/>
+                            </h:link>
+
+                        </c:otherwise>
+                    </c:choose>
+
+                </h:form>
             </div>
         </div>
 
