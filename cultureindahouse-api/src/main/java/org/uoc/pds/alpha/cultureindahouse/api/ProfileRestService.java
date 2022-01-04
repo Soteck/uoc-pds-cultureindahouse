@@ -3,7 +3,6 @@ package org.uoc.pds.alpha.cultureindahouse.api;
 import dto.AddOrUpdateEvent;
 import dto.AddOrUpdateUser;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
-import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.DateHelper;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -48,7 +47,6 @@ public class ProfileRestService {
                         eventId, dto.name, dto.description, dto.location, dto.image,
                         dto.initDate, dto.endDate, dto.eventOrganizerId, dto.categoryId)).build();
     }
-
 
 
     @PUT
@@ -98,6 +96,26 @@ public class ProfileRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response removeLabelFromEvent(@PathParam("eventId") int eventId, @PathParam("labelId") int labelId) {
         profileLocal.removeLabelFromEvent(eventId, labelId);
+        return Response.ok().build();
+    }
+
+
+    @DELETE
+    @Path("/users/{userId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteUser(@PathParam("userId") int userId) {
+        profileLocal.deleteUser(userId);
+        return Response.ok().build();
+    }
+
+
+    @DELETE
+    @Path("/events/{eventId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteEvent(@PathParam("eventId") int eventId ) {
+        profileLocal.deleteEvent(eventId);
         return Response.ok().build();
     }
 

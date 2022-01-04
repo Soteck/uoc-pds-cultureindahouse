@@ -32,7 +32,7 @@ public class EventOrganizer {
 	@JoinColumn(name = "administrator_id")
 	private User administrator;
 
-	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@ToString.Exclude
 	private List<Event> events;
 

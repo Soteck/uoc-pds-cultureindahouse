@@ -31,14 +31,16 @@ public class EventMapper {
             ret.setOrderHistory(OrderHistoryMapper.toEntity(orderHistory, false));
         }
 
-        UserVO user = eventVO.getUser();
-        if (relations && user != null) {
-            ret.setUser(UserMapper.toEntity(user, false));
-        }
+
 
         CategoryVO category = eventVO.getCategory();
         if (relations && category != null) {
             ret.setCategory(CategoryMapper.toEntity(category, false));
+        }
+
+        Collection<UserVO> users = eventVO.getUserFavorites();
+        if (relations && users != null && !users.isEmpty()) {
+            ret.setUserFavorites(UserMapper.toEntity(users, false));
         }
 
         Collection<LabelVO> labels = eventVO.getLabels();
@@ -85,14 +87,16 @@ public class EventMapper {
             ret.setOrderHistory(OrderHistoryMapper.toVO(orderHistory, false));
         }
 
-        User user = event.getUser();
-        if (relations && user != null) {
-            ret.setUser(UserMapper.toVO(user, false));
-        }
+
 
         Category category = event.getCategory();
         if (relations && category != null) {
             ret.setCategory(CategoryMapper.toVO(category, false));
+        }
+
+        Collection<User> users = event.getUserFavorites();
+        if (relations && users != null && !users.isEmpty()) {
+            ret.setUserFavorites(UserMapper.toVO(users, false));
         }
 
         Collection<Label> labels = event.getLabels();

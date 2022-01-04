@@ -94,6 +94,11 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 		userRepository.delete(userId);
 	}
 
+
+	public void deleteEvent(int eventId) {
+		eventRepository.delete(eventId);
+	}
+
 	@Override
 	public EventVO addEvent(String name, String description, String location, String image,
 							String initDate, String endDate, int eventOrganizerId, int categoryId) {
