@@ -28,7 +28,6 @@ public class AccountManagedBean {
 	@Setter
 	private String password;
 
-
 	@Getter
 	@Setter
 	private String message;
@@ -59,6 +58,12 @@ public class AccountManagedBean {
 		password = null;
 
 		return "index.xhtml";
+	}
+
+	public void checkUserAndUpdateIfNeeded(UserVO user){
+		if(user.getEmail().equals(this.getEmail())){
+			this.loggedUser = user;
+		}
 	}
 
 }
