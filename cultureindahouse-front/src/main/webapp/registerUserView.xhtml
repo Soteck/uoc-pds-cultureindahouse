@@ -30,43 +30,49 @@
                 <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
                     <div class="container-fluid py-4">
                         <h3 class="display-4 text-white fw-bold">We need your data </h3>
+
                         <div class="row form-floating mb-5 rounded-3">
-                        <div class="form col-6 mb-3 rounded-3 mb-3">
-                            <label for="new-name" class="form-label text-white">Name</label>
-                            <h:inputText class="form-control" id="new-name" placeholder="Nombre"
-                                         value="#{RegisterUserMB.user.name}"/>
-                        </div>
-                        <div class="form col-6 mb-3 rounded-3 mb-3">
-                            <label for="new-surname" class="form-label text-white">Surname</label>
-                            <h:inputText class="form-control" id="new-surname" placeholder="Nombre"
-                                         value="#{RegisterUserMB.user.surname}"/>
-                        </div>
+
+                            <div class="form col-5 mb-3 rounded-3 mb-3">
+                                <label for="new-name" class="form-label text-white">Name</label>
+                                <h:inputText class="form-control" id="new-name"  value="#{RegisterUserMB.user.name}" placeholder="name"  />
+                            </div>
+                            <div class="form col-5 mb-3 rounded-3 mb-3">
+                                <label for="new-surname" class="form-label text-white">Surname</label>
+                                <h:inputText class="form-control" id="new-surname"  value="#{RegisterUserMB.user.surname}" placeholder="surname" />
+                            </div>
+                            <div class="form col-2 mb-3 rounded-3 mb-3">
+                                <label for="new-nif" class="form-label text-white">NIF</label>
+                                <h:inputText class="form-control" id="new-nif" value="#{RegisterUserMB.user.nif}" placeholder="nif"  />
+                            </div>
                         </div>
 
-                        <div class="form col-8 mb-3 rounded-3 mb-3">
-                            <label for="new-email" class="form-label text-white">Email</label>
-                            <h:inputText class="form-control" id="new-email" placeholder="Nombre"
-                                         value="#{RegisterUserMB.user.email}"/>
+                        <div class="row form-floating mb-5 rounded-3">
+                            <div class="form col-6 mb-3 rounded-3 mb-3">
+                                <label for="new-email" class="form-label text-white">Email</label>
+                                <h:inputText class="form-control" id="new-email" placeholder="email" value="#{RegisterUserMB.user.email}"  />
+                            </div>
+                            <div class="form col-4 mb-3 rounded-3 mb-3">
+                                <label for="new-password" class="form-label text-white">Password</label>
+                                <h:inputSecret type="password" class="form-control" id="new-password"  placeholder="Password"
+                                               value="#{RegisterUserMB.user.password}"/>
+                            </div>
                         </div>
-                        <div class="form col-8 mb-3 rounded-3 mb-3">
-                            <label for="new-password" class="form-label text-white">Password</label>
-                            <h:inputSecret type="password" class="form-control" id="new-password"  placeholder="Password"
-                                         value="#{RegisterUserMB.user.password}"/>
+
+                        <div class="row form-floating mb-5 rounded-3">
+                            <div class="form col-6 mb-3 rounded-3 mb-3">
+                                <label for="new-address" class="form-label text-white">Address</label>
+                                <h:inputText class="form-control" id="new-address" placeholder="address" value="#{RegisterUserMB.user.address}" />
+                            </div>
+                            <div class="form col-3 mb-3 rounded-3 mb-3">
+                                <label for="new-lenguage" class="form-label text-white">Prefered lenguage</label>
+                                <h:inputText class="form-control" id="new-lenguage" placeholder="preferedLenguage"  value="#{RegisterUserMB.user.preferedLanguage}" />
+                            </div>
                         </div>
 
                         <h:commandButton value="Add" height="355" width="350"
                                          action="#{RegisterUserMB.guardarUsuario()}"
                                          class="btn btn-outline-success"/>
-                    </div>
-                </div>
-
-                <div class="row" style="padding-top: 10px">
-                    <div class="col-3 p-3">
-                        <h:link outcome="index.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2"
-                                style="">
-                            <i class="fa fa-undo">&nbsp;</i>
-                            <span>Return to list</span>
-                        </h:link>
                     </div>
                 </div>
 
