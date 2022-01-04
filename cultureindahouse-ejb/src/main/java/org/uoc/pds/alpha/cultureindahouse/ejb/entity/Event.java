@@ -47,24 +47,21 @@ public class Event {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "event_organizer_id")
 	private EventOrganizer eventOrganizer;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@ToString.Exclude
 	private Collection<OrderHistory> orderHistory;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
+	@ToString.Exclude
 	private Category category;
 
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "label_event",
 			schema = "pra2",
@@ -73,13 +70,25 @@ public class Event {
 	@ToString.Exclude
 	private Collection<Label> labels;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "favorites",
+			schema = "pra2",
+			joinColumns = @JoinColumn(name = "event_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@ToString.Exclude
+	private Collection<User> userFavorites;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	private Collection<Rating> ratings;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	private Collection<Comment> comments;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	private Collection<Question> questions;
 
 	public Event(String name, String description, String location, String image, LocalDate initDate, LocalDate endDate) {

@@ -129,7 +129,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addAdministrator(UserVO user) {
 
-        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname(), true)).build();
     }
 
     @PUT
@@ -138,7 +138,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateAdministrator(@PathParam("id") int id, UserVO user) {
 
-        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname(), true)).build();
     }
 
     @DELETE

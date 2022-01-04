@@ -1,6 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.pojo;
 
 import lombok.*;
+import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.DateHelper;
 
 import java.time.LocalDate;
@@ -27,9 +28,9 @@ public class EventVO {
 
 	private EventOrganizerVO eventOrganizer;
 
-	private UserVO user;
-
 	private CategoryVO category;
+
+	private Collection<UserVO> userFavorites;
 
 	private Collection<OrderHistoryVO> orderHistory;
 

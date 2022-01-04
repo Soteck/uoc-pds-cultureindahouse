@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,25 +51,30 @@ public class User {
     @Column(name = "is_super_administrator")
     private boolean isSuperAdministrator;
 
-    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<EventOrganizer> eventOrganizers;
+    private Collection<EventOrganizer> eventOrganizers;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<OrderHistory> orderHistory;
+    private Collection<OrderHistory> orderHistory;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "favorites",
+            schema = "pra2",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
     @ToString.Exclude
-    private List<Event> favorites;
+    private Collection<Event> favorites;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Rating> ratings;
+    private Collection<Rating> ratings;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Comment> comments;
+    private Collection<Comment> comments;
 
 
     @Override

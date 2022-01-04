@@ -29,7 +29,7 @@ public class Category {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@ToString.Exclude
 	private Collection<Event> events;
 

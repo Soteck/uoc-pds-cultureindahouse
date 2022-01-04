@@ -31,9 +31,9 @@ public interface AdministrationRemote {
 
     void deleteEventOrganizer(int id);
 
-    UserVO addAdministrator(String email, String password, String name, String surname);
+    UserVO addAdministrator(String email, String password, String name, String surname, boolean isSuperAdministrator);
 
-    UserVO updateAdministrator(int id, String email, String password, String name, String surname);
+    UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator);
 
     UserVO showAdministator(int id);
 

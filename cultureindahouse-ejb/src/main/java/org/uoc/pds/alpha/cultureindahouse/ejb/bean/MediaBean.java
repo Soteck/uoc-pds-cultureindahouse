@@ -43,7 +43,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 		Comment comment = new Comment(text, event, user);
 		Comment ret = commentRepository.add(comment);
 
-		return CommentMapper.toVO(ret, false);
+		return CommentMapper.toVO(ret, true);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 		Comment comment = new Comment(text, event, user);
 		Comment ret = commentRepository.add(comment);
 
-		return CommentMapper.toVO(ret, false);
+		return CommentMapper.toVO(ret, true);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
 		Rating ret = new Rating(rating, event, user);
 
-		return RatingMapper.toVO(ratingRepository.add(ret), false);
+		return RatingMapper.toVO(ratingRepository.add(ret), true);
 
 	}
 
@@ -76,7 +76,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
 		Rating ret = new Rating(rating, event, user);
 
-		return RatingMapper.toVO(ratingRepository.add(ret), false);
+		return RatingMapper.toVO(ratingRepository.add(ret), true);
 
 	}
 
@@ -85,7 +85,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 		Event event = eventRepository.get(eventId);
 		User user = userRepository.getUserByEmail(email);
 
-		List<Event> favorites = user.getFavorites();
+		Collection<Event> favorites = user.getFavorites();
 
 		if (favorites == null) {
 			favorites = new ArrayList<Event>();
@@ -93,7 +93,9 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
 		favorites.add(event);
 
-		return UserMapper.toVO(userRepository.update(user.getId(), user), false);
+		user.setFavorites(favorites);
+
+		return UserMapper.toVO(userRepository.update(user.getId(), user), true);
 
 	}
 
@@ -102,7 +104,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
         Event event = eventRepository.get(eventId);
         User user = userRepository.get(userId);
 
-        List<Event> favorites = user.getFavorites();
+        Collection<Event> favorites = user.getFavorites();
 
 		if (favorites == null) {
 			favorites = new ArrayList<Event>();
@@ -110,7 +112,9 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
 		favorites.add(event);
 
-		return UserMapper.toVO(userRepository.update(user.getId(), user), false);
+		user.setFavorites(favorites);
+
+		return UserMapper.toVO(userRepository.update(user.getId(), user), true);
 
 	}
 
@@ -121,14 +125,14 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
         ArrayList<Event> events = new ArrayList<Event>();
 		for (User u : users) {
-            List<Event> favorites = u.getFavorites();
+			Collection<Event> favorites = u.getFavorites();
 			if (favorites != null && !favorites.isEmpty()) {
 				events.addAll(u.getFavorites());
 			}
 
 		}
 
-		return EventMapper.toVO(events, false);
+		return EventMapper.toVO(events, true);
 	}
 
 	@Override
@@ -138,12 +142,12 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
         ArrayList<Event> events = new ArrayList<Event>();
 
-        List<Event> favorites = user.getFavorites();
+        Collection<Event> favorites = user.getFavorites();
 		if (user.getFavorites() != null && !favorites.isEmpty()) {
 			events = new ArrayList<Event>(favorites);
 		}
 
-		return EventMapper.toVO(events, false);
+		return EventMapper.toVO(events, true);
 
 	}
 
@@ -154,12 +158,12 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
         ArrayList<Event> events = new ArrayList<Event>();
 
-        List<Event> favorites = user.getFavorites();
+		Collection<Event> favorites = user.getFavorites();
 		if (user.getFavorites() != null && !favorites.isEmpty()) {
 			events = new ArrayList<Event>(favorites);
 		}
 
-		return EventMapper.toVO(events, false);
+		return EventMapper.toVO(events, true);
 
 	}
 
@@ -167,7 +171,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 	@Override
 	public QuestionVO getQuestion(int questionId) {
 
-		return QuestionMapper.toVO(questionRepository.get(questionId), false);
+		return QuestionMapper.toVO(questionRepository.get(questionId), true);
 	}
 
 	@Override
@@ -179,7 +183,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
         ResponseVO ret = new ResponseVO();
 
 		if (response != null) {
-			ret = ResponseMapper.toVO(response, false);
+			ret = ResponseMapper.toVO(response, true);
 		}
 
 		return ret;
@@ -199,7 +203,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 			ret = new ArrayList<>(questions);
 		}
 
-		return QuestionMapper.toVO(ret, false);
+		return QuestionMapper.toVO(ret, true);
 
 	}
 
@@ -209,7 +213,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
         Question question = questionRepository.get(questionId);
         Response response = new Response(message, question);
 
-		return ResponseMapper.toVO(responseRepository.add(response), false);
+		return ResponseMapper.toVO(responseRepository.add(response), true);
 
 	}
 
@@ -220,7 +224,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 
         Question question = new Question(title, message, event);
 
-		return QuestionMapper.toVO(questionRepository.add(question), false);
+		return QuestionMapper.toVO(questionRepository.add(question), true);
 	}
 
 

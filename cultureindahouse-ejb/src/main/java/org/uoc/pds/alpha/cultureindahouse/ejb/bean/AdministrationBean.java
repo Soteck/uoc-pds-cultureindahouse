@@ -1,12 +1,7 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
+import lombok.var;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.EventOrganizer;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
@@ -24,7 +19,10 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.repository.EventOrganizerRepositor
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.LabelRepositoryInterface;
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.UserRepositoryInterface;
 
-import lombok.var;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class AdministrationBean implements AdministrationLocal, AdministrationRemote {
@@ -76,7 +74,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         EventOrganizer eventOrganizer = new EventOrganizer();
         var user = userRepository.get(userId);
 
-        if (!user.isAdministrator()){
+        if (!user.isAdministrator()) {
             throw new Exception("User must be an admistrator.");
         }
         eventOrganizer.setName(name);
@@ -90,21 +88,21 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     public EventOrganizerVO updateEventOrganizer(int id, String name, String description, Integer userId) throws Exception {
         EventOrganizer eventOrganizer = eventOrganizerRepository.get(id);
 
-        if (userId != null){
+        if (userId != null) {
             var user = userRepository.get(userId);
 
-            if (!user.isAdministrator()){
+            if (!user.isAdministrator()) {
                 throw new Exception("User must be an admistrator.");
             }
 
             eventOrganizer.setAdministrator(user);
         }
 
-        if (name != null){
+        if (name != null) {
             eventOrganizer.setName(name);
         }
 
-        if (description != null){
+        if (description != null) {
             eventOrganizer.setDescription(description);
         }
 
@@ -129,7 +127,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public UserVO addAdministrator(String email, String password, String name, String surname) {
+    public UserVO addAdministrator(String email, String password, String name, String surname, boolean isSuperAdministrator) {
 
         User user = new User();
         user.setName(name);
@@ -137,18 +135,20 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         user.setEmail(email);
         user.setSurname(surname);
         user.setAdministrator(true);
+        user.setSuperAdministrator(isSuperAdministrator);
         return UserMapper.toVO(userRepository.add(user), true);
 
     }
 
     @Override
-    public UserVO updateAdministrator(int id, String email, String password, String name, String surname) {
+    public UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator) {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
         user.setEmail(email);
         user.setSurname(surname);
-        user.setAdministrator(false);
+        user.setAdministrator(true);
+        user.setSuperAdministrator(isSuperAdministrator);
         return UserMapper.toVO(userRepository.update(id, user), true);
     }
 
