@@ -25,6 +25,15 @@ public class ListQuestionsMB {
         return questionLocal.listAllQuestions(eventId);
     }
 
+    public boolean isQuestionAnswered(Integer questionId)
+    {
+        QuestionVO question = questionLocal.getQuestion(questionId);
+
+        if(question.getResponse() != null) return true;
+
+        return false;
+    }
+
 }
 
 

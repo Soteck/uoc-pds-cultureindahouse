@@ -8,6 +8,10 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 
+<f:metadata>
+    <f:viewParam name="eventId" value="#{AddRattingMB.eventId}"/>
+</f:metadata>
+
 <ui:composition template="./headerView.xhtml">
     <ui:define name="content">
         <h:form>
@@ -34,12 +38,12 @@
                         <div class="form col-8 mb-3 rounded-3 mb-3">
                             <label for="new-name" class="form-label text-white">Description</label>
                             <h:inputText class="form-control" id="new-name" placeholder="Nombre"
-                                         value="#{RegisterUserMB.user.name}"/>
+                                         value="#{AddRattingMB.ratting}"/>
                         </div>
                         </div>
 
                         <h:commandButton value="Add" height="355" width="350"
-                                         action="#{RegisterUserMB.guardarUsuario()}"
+                                         action="#{AddRattingMB.AddRatting(accountManagedBean.loggedUser.id)}"
                                          class="btn btn-outline-success"/>
                     </div>
                 </div>
