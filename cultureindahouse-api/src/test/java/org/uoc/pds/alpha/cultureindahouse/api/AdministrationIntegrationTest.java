@@ -204,13 +204,13 @@ public class AdministrationIntegrationTest {
     public void addEventOrganizer() throws IOException {
 
 
-        EventOrganizerVO ev = HttpHelper.post(BASE_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()), EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.post(BASE_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
 
         eventOrganizer = ev;
 
         log.info("Event Organizer añadido: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
 
-        assert ev.getAdministrator() != null;
+        assert ev != null;
 
 
     }
@@ -259,6 +259,7 @@ public class AdministrationIntegrationTest {
 
     }
 
+
     @Test
     @Order(12)
     public void updateEventOrganizer() throws IOException {
@@ -266,7 +267,7 @@ public class AdministrationIntegrationTest {
         eventOrganizer.setDescription("new test updated event organizer");
         eventOrganizer.setName("new event organizer test");
 
-        EventOrganizerVO ev = HttpHelper.put(BASE_URI + "event-organizer/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()), EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.put(BASE_URI + "event-organizer/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
 
         log.info("Event Organizer actualizado: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
 
@@ -274,10 +275,27 @@ public class AdministrationIntegrationTest {
     }
 
 
+    @Test
+    @Order(13)
+    public void assignAdministratorToEventOrganizer() throws IOException {
+
+
+        EventOrganizerVO ev = HttpHelper.put(BASE_URI + "event-organizer/assign/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer, user.getEmail()), EventOrganizerVO.class);
+
+        eventOrganizer = ev;
+
+        log.info("Event Organizer añadido: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
+
+        assert ev.getAdministrator() != null;
+
+
+    }
+
+
 
 
     @Test
-    @Order(13)
+    @Order(14)
     public void addLabel() throws IOException {
         HttpPost request = new HttpPost(BASE_URI + "label");
 
@@ -302,7 +320,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(14)
+    @Order(15)
     public void getLabel() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "label/" + label.getId());
 
@@ -320,7 +338,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(15)
+    @Order(16)
     public void getLabels() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "label");
 
@@ -346,7 +364,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(16)
+    @Order(17)
     public void updateLabel() throws IOException {
         HttpPut request = new HttpPut(BASE_URI + "label/" + label.getId());
 
@@ -370,7 +388,7 @@ public class AdministrationIntegrationTest {
 
 
     @Test
-    @Order(17)
+    @Order(18)
     public void deleteCategory() throws IOException {
 
         HttpHelper.delete(BASE_URI + "category/" + category.getId());
@@ -388,7 +406,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(18)
+    @Order(19)
     public void deleteLabel() throws IOException {
         HttpDelete request = new HttpDelete(BASE_URI + "label/" + label.getId());
 
@@ -407,7 +425,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(19)
+    @Order(20)
     public void deleteEventOrganizer() throws IOException {
 
         HttpDelete request = new HttpDelete(BASE_URI + "event-organizer/" + eventOrganizer.getId());
@@ -429,7 +447,7 @@ public class AdministrationIntegrationTest {
 
 
     @Test
-    @Order(20)
+    @Order(21)
     public void deleteAdministrator() throws IOException {
         HttpDelete request = new HttpDelete(BASE_URI + "administrator/" + user.getId());
 

@@ -65,8 +65,10 @@ public class EventIntegrationTest {
         log.info("Administrator añadido: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
 
 
-        EventOrganizerVO ev = HttpHelper.post(ADMINISTRATION_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()), EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.post(ADMINISTRATION_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
         eventOrganizer.setId(ev.getId());
+
+        EventOrganizerVO assigned = HttpHelper.put(ADMINISTRATION_URI + "event-organizer/assign/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer, user.getEmail()), EventOrganizerVO.class);
         eventOrganizer.setAdministrator((user));
 
         EventVO e = HttpHelper.post(PROFILE_URI + "events", new AddOrUpdateEvent(event, eventOrganizer.getId(), category.getId()), EventVO.class);

@@ -54,7 +54,7 @@ public class MediaIntegrationTest {
         user.setId(u.getId());
         log.info("Administrator añadido: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
 
-        EventOrganizerVO ev = HttpHelper.post(ADMINISTRATION_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()), EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.post(ADMINISTRATION_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
         eventOrganizer.setId(ev.getId());
         eventOrganizer.setAdministrator((user));
 

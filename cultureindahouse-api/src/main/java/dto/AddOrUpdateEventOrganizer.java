@@ -10,12 +10,18 @@ public class AddOrUpdateEventOrganizer {
 
     public String name;
     public String description;
-    public int userId;
+    public String email;
 
 
-    public AddOrUpdateEventOrganizer(EventOrganizerVO vo, int userId) {
+    public AddOrUpdateEventOrganizer(EventOrganizerVO vo) {
         this.name = vo.getName();
         this.description = vo.getDescription();
-        this.userId = userId;
+    }
+
+    public AddOrUpdateEventOrganizer(EventOrganizerVO vo, String email) {
+        this.name = vo.getName();
+        this.description = vo.getDescription();
+        this.email = email;
+
     }
 }

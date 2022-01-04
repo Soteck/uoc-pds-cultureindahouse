@@ -70,45 +70,61 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     }
 
     @Override
-    public EventOrganizerVO addEventOrganizer(String name, String description, int userId) throws Exception {
+    public EventOrganizerVO addEventOrganizer(String name, String description) {
         EventOrganizer eventOrganizer = new EventOrganizer();
-        var user = userRepository.get(userId);
 
-        if (!user.isAdministrator()) {
-            throw new Exception("User must be an admistrator.");
-        }
         eventOrganizer.setName(name);
         eventOrganizer.setDescription(description);
 
-        eventOrganizer.setAdministrator(user);
         return EventOrganizerMapper.toVO(eventOrganizerRepository.add(eventOrganizer), true);
     }
 
     @Override
-    public EventOrganizerVO updateEventOrganizer(int id, String name, String description, Integer userId) throws Exception {
+    public EventOrganizerVO updateEventOrganizer(int id, String name, String description){
         EventOrganizer eventOrganizer = eventOrganizerRepository.get(id);
 
-        if (userId != null) {
-            var user = userRepository.get(userId);
-
-            if (!user.isAdministrator()) {
-                throw new Exception("User must be an admistrator.");
-            }
-
-            eventOrganizer.setAdministrator(user);
-        }
-
-        if (name != null) {
-            eventOrganizer.setName(name);
-        }
-
-        if (description != null) {
-            eventOrganizer.setDescription(description);
-        }
-
+        eventOrganizer.setName(name);
+        eventOrganizer.setDescription(description);
 
         return EventOrganizerMapper.toVO(eventOrganizerRepository.update(id, eventOrganizer), true);
     }
+
+
+    @Override
+    public EventOrganizerVO assignAdministratorToEventOrganizer(String email, int eventOrganizerId) throws Exception {
+        EventOrganizer eventOrganizer = eventOrganizerRepository.get(eventOrganizerId);
+
+        User user = userRepository.getUserByEmail(email);
+
+
+        if (!user.isAdministrator()){
+            throw new Exception("User is not an administrator");
+
+        }
+        eventOrganizer.setAdministrator(user);
+
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.update(eventOrganizerId, eventOrganizer), true);
+
+    }
+
+
+    @Override
+    public EventOrganizerVO assignAdministratorToEventOrganizer(int userId, int eventOrganizerId) throws Exception {
+        EventOrganizer eventOrganizer = eventOrganizerRepository.get(eventOrganizerId);
+
+        User user = userRepository.get(userId);
+
+
+        if (!user.isAdministrator()){
+            throw new Exception("User is not an administrator");
+
+        }
+        eventOrganizer.setAdministrator(user);
+
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.update(eventOrganizerId, eventOrganizer), true);
+
+    }
+
 
     @Override
     public EventOrganizerVO showEventOrganizer(int id) {

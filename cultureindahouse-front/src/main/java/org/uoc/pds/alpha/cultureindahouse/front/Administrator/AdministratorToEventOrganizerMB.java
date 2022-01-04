@@ -22,7 +22,7 @@ public class AdministratorToEventOrganizerMB {
     private UserVO user;
 
     public Object addEventOrganizer() {
-        //falta la funcion
+
         this.user = null;
         return "AdministrationListView.xhtml";
     }

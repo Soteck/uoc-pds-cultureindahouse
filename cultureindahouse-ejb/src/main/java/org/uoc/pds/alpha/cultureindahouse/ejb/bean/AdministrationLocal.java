@@ -22,9 +22,9 @@ public interface AdministrationLocal {
 
     List<CategoryVO> listAllCategories();
 
-    EventOrganizerVO addEventOrganizer(String name, String description, int userId) throws Exception;
+    EventOrganizerVO addEventOrganizer(String name, String description);
 
-    EventOrganizerVO updateEventOrganizer(int id, String name, String description, Integer userId) throws Exception;
+    EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
     EventOrganizerVO showEventOrganizer(int id);
 
@@ -37,6 +37,10 @@ public interface AdministrationLocal {
     UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator);
 
     UserVO showAdministator(int id);
+
+    EventOrganizerVO assignAdministratorToEventOrganizer(String email, int eventOrganizerId) throws Exception;
+
+    EventOrganizerVO assignAdministratorToEventOrganizer(int userId, int eventOrganizerId) throws Exception;
 
     List<UserVO> listAllAdministrators();
 
