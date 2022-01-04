@@ -1,13 +1,21 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
-import dto.AddOrUpdateEvent;
-import dto.AddOrUpdateUser;
-import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
-
 import javax.ejb.EJB;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.ProfileLocal;
+
+import dto.AddOrUpdateEvent;
+import dto.AddOrUpdateUser;
 
 @Path("/profile")
 @Produces(MediaType.APPLICATION_JSON)
@@ -17,21 +25,21 @@ public class ProfileRestService {
     private ProfileLocal profileLocal;
 
     @GET
-    @Path("/login?email={email}&password={password}")
+    @Path("/login/email/{email}/{password}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@PathParam("email") String email, @PathParam("password") String password) {
         return Response.ok(profileLocal.login(email, password)).build();
     }
 
     @GET
-    @Path("/events?name={name}")
+    @Path("/events/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response showEvent(@PathParam("name") String name) {
         return Response.ok(profileLocal.showEventByName(name)).build();
     }
 
     @GET
-    @Path("/users?email={email}")
+    @Path("/users/email/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response showUser(@PathParam("email") String email) {
         return Response.ok(profileLocal.showUser(email)).build();
