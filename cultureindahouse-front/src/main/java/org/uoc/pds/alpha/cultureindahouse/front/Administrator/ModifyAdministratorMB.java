@@ -14,7 +14,6 @@ public class ModifyAdministratorMB {
     @EJB
     private AdministrationLocal administratorLocal;
 
-
     protected Integer userId = null;
     private UserVO user;
 
@@ -29,8 +28,7 @@ public class ModifyAdministratorMB {
         this.user = user;
     }
 
-
-    public Object actualizarAdministrator() {
+    public Object updateAdministrator() {
         administratorLocal.updateAdministrator(userId,user.getName(), user.getSurname(), user.getPassword(), user.getEmail());
         this.userId = null;
         this.user = null;

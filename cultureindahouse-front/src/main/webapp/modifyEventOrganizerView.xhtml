@@ -9,7 +9,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="eventOrganizerId" value="#{ModifyEventOrganizerMB.eventOrganizerId}"/>
+    <f:viewParam name="eventOrganizerId" value="#{ModifyEventOrganizerMB.eventOrganizerId}" required="false"/>
     <ui:param name="new" value="#{ModifyEventOrganizerMB.eventOrganizerId eq null}"/>
 </f:metadata>
 
@@ -38,11 +38,11 @@
                                 <h3 class="display-4 text-white fw-bold">EventOrganizer Add</h3>
                                 <div class="mb-3">
                                     <label for="new-name" class="form-label text-white">Name</label>
-                                    <h:inputText class="form-control" id="new-name" placeholder="Nombre" value="#{AddEventOrganizerMB.eventOrganizer.name}" />
+                                    <h:inputText class="form-control" id="new-name" placeholder="Name" value="#{AddEventOrganizerMB.eventOrganizer.name}" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="new-description" class="form-label text-white">Description</label>
-                                    <h:inputText class="form-control" id="new-description" placeholder="Descripcion" value="#{AddEventOrganizerMB.eventOrganizer.description}" />
+                                    <h:inputText class="form-control" id="new-description" placeholder="Description" value="#{AddEventOrganizerMB.eventOrganizer.description}" />
                                 </div>
 
                                 <h:commandButton value="Add" height="355" width="350"
