@@ -67,14 +67,40 @@
                                 <h:outputText value="#{question.message}"/>
                             </h:column>
 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Answer"/>
+                                </f:facet>
+                            <h:form rendered="#{not ListQuestionsMB.isQuestionAnswered(question.id)}" >
+                                <div style="padding:2px; display:inline">
+                                    <h:link outcome="AnswerQuestionView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                        <f:param name="questionId" value="#{question.id}"/>
+                                        <i class="fa fa-plus">&nbsp;</i>
+                                    </h:link>
+                                </div>
+                            </h:form>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Response"/>
+                                </f:facet>
+                            <h:form rendered="#{ListQuestionsMB.isQuestionAnswered(question.id)}" >
+                                <div style="padding:2px; display:inline">
+                                    <h:link outcome="showResponseView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                        <f:param name="questionId" value="#{question.id}"/>
+                                        <i class="fa fa-search">&nbsp;</i>
+                                    </h:link>
+                                </div>
+                            </h:form>
+                            </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="View"/>
                                 </f:facet>
                                 <div style="padding:2px; display:inline">
-                                    <h:link outcome="eventDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
-                                        <f:param name="eventId" value="#{event.id}"/>
+                                    <h:link outcome="showQuestionView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                        <f:param name="questionId" value="#{question.id}"/>
                                         <i class="fa fa-search">&nbsp;</i>
                                     </h:link>
                                 </div>

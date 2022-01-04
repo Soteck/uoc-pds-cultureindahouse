@@ -3,6 +3,7 @@ package org.uoc.pds.alpha.cultureindahouse.front.Media;
 import lombok.Getter;
 import lombok.Setter;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.MediaLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import javax.ejb.EJB;
@@ -14,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 public class MediaMB {
 
     @EJB
-    private AdministrationLocal labelLocal;
+    private MediaLocal mediaLocal;
 
     @Getter
     @Setter

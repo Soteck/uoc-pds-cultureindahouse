@@ -33,6 +33,68 @@
                             </div>
                         </div>
 
+                        <h:dataTable value="#{ListFavoritesMB.favorites}" var="event"
+                                     styleClass="eventTable table table-dark table-striped table-hover"
+                                     headerClass="eventTableHeader"
+                                     rowClasses="eventTableOddRow,eventTableEvenRow">
+
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>
+                                <h:outputText value="#{event.id}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:outputText value="#{event.name}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Description</f:facet>
+                                <h:outputText value="#{event.description}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Init Date</f:facet>
+                                <h:outputText value="#{event.initDate}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">End Date</f:facet>
+                                <h:outputText value="#{event.endDate}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Location</f:facet>
+                                <h:outputText value="#{event.location}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="View"/>
+                                </f:facet>
+
+                                <div style="padding:2px; display:inline">
+                                    <h:link outcome="eventDetailView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                        <f:param name="eventId" value="#{event.id}"/>
+                                        <i class="fa fa-search">&nbsp;</i>
+                                    </h:link>
+                                </div>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Edit"/>
+                                </f:facet>
+                                <div style="padding:2px; display:inline">
+                                    <h:link outcome="modifyEventView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
+                                        <f:param name="eventId" value="#{event.id}"/>
+                                        <i class="fa fa-edit">&nbsp;</i>
+                                    </h:link>
+                                </div>
+                            </h:column>
+
+
+                        </h:dataTable>
 
 
                         <div class="row" style="padding-top: 10px" >

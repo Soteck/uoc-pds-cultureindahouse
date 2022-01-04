@@ -167,7 +167,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 	@Override
 	public QuestionVO getQuestion(int questionId) {
 
-		return QuestionMapper.toVO(questionRepository.get(questionId), false);
+		return QuestionMapper.toVO(questionRepository.get(questionId), true);
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class MediaBean implements MediaLocal, MediaRemote {
 			ret = new ArrayList<>(questions);
 		}
 
-		return QuestionMapper.toVO(ret, false);
+		return QuestionMapper.toVO(ret, true);
 
 	}
 
