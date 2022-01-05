@@ -69,16 +69,6 @@
                             <a class="nav-link enabled" href="./eventView.xhtml" tabindex="-1" >Event</a>
                         </li>
 
-                        <c:if test="#{accountManagedBean.logged}">
-                        <li class="nav-item">
-                            <a class="nav-link enabled" href="./MediaView.xhtml" tabindex="-1" >Media</a>
-                        </li>
-                        </c:if>
-                        <c:if test="#{not accountManagedBean.logged}">
-                            <li class="nav-item">
-                                <a class="nav-link enabled" href="./ErrorLoginView.xhtml" tabindex="-1" >Media</a>
-                            </li>
-                        </c:if>
                     </ul>
                     <c:if test="#{accountManagedBean.logged}">
                         <span class="navbar-text" >Hi, <h:outputText value="#{accountManagedBean.loggedUser.name}"/>. Welcome!</span>

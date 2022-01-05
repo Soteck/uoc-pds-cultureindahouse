@@ -184,15 +184,15 @@
                             <li class="text-white">Comment options</li>
                             <li class="text-white">Ratting and favorites</li>
                         </ul>
-                        <c:if test="#{ accountManagedBean.logged}">
-                            <h:link outcome="MediaView.xhtml"
+                        <c:if test="#{ accountManagedBean.logged and not accountManagedBean.logged}">
+                            <h:link outcome="ErrorMediaView.xhtml"
                                     height="150" width="150"
-                                    class=" w-100 btn btn-lg btn-outline-success me-2">
+                                    class="w-100 btn btn-lg btn-secondary me-2">
                                 Media
                             </h:link>
                         </c:if>
                         <c:if test="#{ not accountManagedBean.logged}">
-                            <h:link outcome="ErrorLoginView.xhtml"
+                            <h:link outcome="ErrorMediaView.xhtml"
                                     height="150" width="150"
                                     class="w-100 btn btn-lg btn-secondary me-2">
                                 Media
