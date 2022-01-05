@@ -71,7 +71,14 @@
                 <i class="fa fa-star-half-alt">&nbsp;</i>
                 <span>Add Ratting</span>
             </h:link>
+
         </div>
+        <h:form>
+            <div class="col-2 p-3">
+                <h:commandButton class="w-100 btn btn-lg btn btn-outline-dark me-2" style="" action="#{AddToFavoritesMB.AddToFavourites(accountManagedBean.loggedUser.id, MediaMB.eventId)}">
+                </h:commandButton>
+            </div>
+        </h:form>
         <div class="col-2 p-3">
             <h:link outcome="SendCommentView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                 <f:param name="eventId" value="#{MediaMB.eventId}"/>
