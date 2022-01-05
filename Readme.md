@@ -36,7 +36,7 @@
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
 ```
-###Configuración de elytron security 
+###Configuración de elytron security !! DEPRECATED: No necesaria !! 
 - Dentro del XML, buscar el tag `<subsystem xmlns="urn:wildfly:elytron:6.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto">`
 - Buscar el tag `<security-domains>` y agregar el siguiente:
 ```
