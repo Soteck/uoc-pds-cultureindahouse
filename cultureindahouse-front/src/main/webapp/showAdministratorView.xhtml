@@ -23,7 +23,7 @@
                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                         <span class="fa fa-home"/>
                     </h:link>
-                    <h:link outcome="ProfileView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                    <h:link outcome="ProfileView" type="button" value="" styleClass="btn btn-outline-success me-2">
                         <span class="fa fa-bars"/>
                     </h:link>
                 </h:form>
@@ -36,48 +36,59 @@
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-2 mb-3 rounded-3 mb-3">
                         <label for="new-id" class="form-label text-white">Id</label>
-                        <h:inputText class="form-control" id="new-id" value="#{ShowAdministratorMB.user.id}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-id" value="#{ShowAdministratorMB.user.id}"
+                                     readonly="true"/>
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-name" class="form-label text-white">Name</label>
-                        <h:inputText class="form-control" id="new-name"  value="#{ShowAdministratorMB.user.name}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-name" value="#{ShowAdministratorMB.user.name}"
+                                     readonly="true"/>
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-surname" class="form-label text-white">Surname</label>
-                        <h:inputText class="form-control" id="new-surname"  value="#{ShowAdministratorMB.user.surname}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-surname" value="#{ShowAdministratorMB.user.surname}"
+                                     readonly="true"/>
                     </div>
                 </div>
 
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-3 mb-3 rounded-3 mb-3">
                         <label for="new-nif" class="form-label text-white">NIF</label>
-                        <h:inputText class="form-control" id="new-nif" placeholder="Description" value="#{ShowAdministratorMB.user.nif}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-nif" placeholder="Description"
+                                     value="#{ShowAdministratorMB.user.nif}" readonly="true"/>
                     </div>
                     <div class="form col-5 mb-3 rounded-3 mb-3">
                         <label for="new-email" class="form-label text-white">Email</label>
-                        <h:inputText class="form-control" id="new-email" placeholder="Description" value="#{ShowAdministratorMB.user.email}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-email" placeholder="Description"
+                                     value="#{ShowAdministratorMB.user.email}" readonly="true"/>
                     </div>
                     <div class="form col-4 mb-3 rounded-3 mb-3">
                         <label for="new-password" class="form-label text-white">Password</label>
-                        <h:inputText class="form-control" id="new-password"  value="#{ShowAdministratorMB.user.password}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-password" value="#{ShowAdministratorMB.user.password}"
+                                     readonly="true"/>
                     </div>
                 </div>
                 <div class="row form-floating mb-5 rounded-3">
                     <div class="form col-6 mb-3 rounded-3 mb-3">
                         <label for="new-address" class="form-label text-white">Address</label>
-                        <h:inputText class="form-control" id="new-address" placeholder="Description" value="#{ShowAdministratorMB.user.address}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-address" placeholder="Description"
+                                     value="#{ShowAdministratorMB.user.address}" readonly="true"/>
                     </div>
                     <div class="form col-3 mb-3 rounded-3 mb-3">
                         <label for="new-administrator" class="form-label text-white">Is administrator</label>
-                        <h:inputText class="form-control" id="new-administrator" placeholder="Is admin" value="#{ShowAdministratorMB.user.administrator}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-administrator" placeholder="Is admin"
+                                     value="#{ShowAdministratorMB.user.administrator}" readonly="true"/>
                     </div>
                     <div class="form col-3 mb-3 rounded-3 mb-3">
-                        <label for="new-super-administrator" class="form-label text-white">Is super administrator</label>
-                        <h:inputText class="form-control" id="new-super-administrator" placeholder="is super admin" value="#{ShowAdministratorMB.user.superAdministrator}" readonly = "true"/>
+                        <label for="new-super-administrator"
+                               class="form-label text-white">Is super administrator</label>
+                        <h:inputText class="form-control" id="new-super-administrator" placeholder="is super admin"
+                                     value="#{ShowAdministratorMB.user.superAdministrator}" readonly="true"/>
                     </div>
                     <div class="form col-3 mb-3 rounded-3 mb-3">
                         <label for="new-lenguage" class="form-label text-white">Prefered lenguage</label>
-                        <h:inputText class="form-control" id="new-lenguage"  value="#{ShowAdministratorMB.user.preferedLanguage}" readonly = "true"/>
+                        <h:inputText class="form-control" id="new-lenguage"
+                                     value="#{ShowAdministratorMB.user.preferedLanguage}" readonly="true"/>
                     </div>
                 </div>
 
@@ -111,9 +122,10 @@
             </div>
         </div>
 
-        <div class="row" style="padding-top: 10px" >
+        <div class="row" style="padding-top: 10px">
             <div class="col-3 p-3">
-                <h:link outcome="ProfileView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                <h:link outcome="listAdministratorsView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2"
+                        style="">
                     <f:param name="userName" value=""/>
                     <i class="fa fa-undo">&nbsp;</i>
                     <span>Return to list</span>
@@ -122,7 +134,7 @@
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-        <hr class="featurette-divider"></hr>
+        <hr class="featurette-divider"/>
 
 
     </ui:define>
