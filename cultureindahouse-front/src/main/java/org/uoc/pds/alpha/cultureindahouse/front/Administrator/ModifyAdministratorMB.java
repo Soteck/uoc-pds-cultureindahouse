@@ -48,8 +48,9 @@ public class ModifyAdministratorMB {
 	}
 
 	public Object updateAdministrator() throws Exception {
-		administratorLocal.updateAdministrator(userId, user.getName(), user.getSurname(),
-				user.getPassword(), user.getEmail(), user.isSuperAdministrator());
+		administratorLocal.updateAdministrator(
+				userId, user.getEmail(), user.getPassword(),
+				user.getName(), user.getSurname(), user.isSuperAdministrator());
 
 
 		if (user.getEventOrganizers() != null) {

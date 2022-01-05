@@ -36,13 +36,9 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 
 	@Override
 	public UserVO login(String email, String password) {
-		User user;
-		try {
-			user = userRepository.getUserByEmail(email);
-		} catch (NoResultException e) {
-			return null;
-		}
-		if (user.getPassword().equals(password)) {
+		User user = userRepository.getUserByEmail(email);
+
+		if (user != null && user.getPassword().equals(password)) {
 			return UserMapper.toVO(user, false);
 		}
 		return null;
