@@ -27,4 +27,6 @@ public class FindOrderMB {
         return eventLocal.findOrdersByUser(this.userEmail);
     }
 
+    public String ListOrders(){ return "OrderListView.xhtml";}
+
 }
