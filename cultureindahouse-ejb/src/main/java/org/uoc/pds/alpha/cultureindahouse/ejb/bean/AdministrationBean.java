@@ -125,6 +125,15 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
 
     }
 
+    @Override
+    public EventOrganizerVO unAssignAdministratorToEventOrganizer(int eventOrganizerId) {
+        EventOrganizer eventOrganizer = eventOrganizerRepository.get(eventOrganizerId);
+
+        eventOrganizer.setAdministrator(null);
+
+        return EventOrganizerMapper.toVO(eventOrganizerRepository.update(eventOrganizerId, eventOrganizer), true);
+    }
+
 
     @Override
     public EventOrganizerVO showEventOrganizer(int id) {
