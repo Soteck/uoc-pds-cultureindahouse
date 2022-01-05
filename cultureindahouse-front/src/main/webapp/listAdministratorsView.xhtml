@@ -103,7 +103,7 @@
                     </f:facet>
 
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="AdministratorDetailView.xhmtl" class="btn btn-success"
+                        <h:link outcome="showAdministratorView.xhtml" class="btn btn-success"
                                 style="margin-left: 25px;">
                             <f:param name="userId" value="#{administrators.id}"/>
                             <i class="fa fa-search">&nbsp;</i>
@@ -116,22 +116,9 @@
                         <h:outputText value="Edit"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="modifyUserView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
+                        <h:link outcome="modifyAdministratorView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
                             <f:param name="userId" value="#{administrators.id}"/>
                             <i class="fa fa-edit">&nbsp;</i>
-                        </h:link>
-                    </div>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Event Organizer"/>
-                    </f:facet>
-                    <div style="padding:2px; display:inline">
-                        <h:link outcome="ModifyAdministratorView.xhtml" class="btn btn-primary"
-                                style="margin-left: 25px;">
-                            <f:param name="userId" value="#{administrators.id}"/>
-                            <i class="fa fa-plus-circle">&nbsp;</i>
                         </h:link>
                     </div>
                 </h:column>

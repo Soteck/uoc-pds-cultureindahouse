@@ -12,52 +12,55 @@ import java.util.List;
 public interface AdministrationLocal {
 
 
-    CategoryVO addCategory(String name, String description);
+	CategoryVO addCategory(String name, String description);
 
-    CategoryVO updateCategory(int id, String name, String description);
+	CategoryVO updateCategory(int id, String name, String description);
 
-    CategoryVO showCategory(int id);
+	CategoryVO showCategory(int id);
 
-    void deleteCategory(int id);
+	void deleteCategory(int id);
 
-    List<CategoryVO> listAllCategories();
+	List<CategoryVO> listAllCategories();
 
-    EventOrganizerVO addEventOrganizer(String name, String description);
+	EventOrganizerVO addEventOrganizer(String name, String description);
 
-    EventOrganizerVO updateEventOrganizer(int id, String name, String description);
+	EventOrganizerVO updateEventOrganizer(int id, String name, String description);
 
-    EventOrganizerVO showEventOrganizer(int id);
+	EventOrganizerVO showEventOrganizer(int id);
 
-    List<EventOrganizerVO> listAllEventOrganizers();
+	List<EventOrganizerVO> listAllEventOrganizers();
 
-    void deleteEventOrganizer(int id);
+	void deleteEventOrganizer(int id);
 
-    UserVO addAdministrator(String email, String password, String name, String surname, boolean isSuperAdministrator);
+	UserVO addAdministrator(String email, String password, String name, String surname, boolean isSuperAdministrator);
 
-    UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator);
+	UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator);
 
-    UserVO showAdministator(int id);
+	UserVO showAdministator(int id);
 
-    EventOrganizerVO assignAdministratorToEventOrganizer(String email, int eventOrganizerId) throws Exception;
+	EventOrganizerVO assignAdministratorToEventOrganizer(String email, int eventOrganizerId) throws Exception;
 
-    EventOrganizerVO assignAdministratorToEventOrganizer(int userId, int eventOrganizerId) throws Exception;
+	EventOrganizerVO assignAdministratorToEventOrganizer(int userId, int eventOrganizerId) throws Exception;
 
-    List<UserVO> listAllAdministrators();
+	List<UserVO> listAllAdministrators();
 
-    void deleteAdministrator(int id);
+	void deleteAdministrator(int id);
 
-    LabelVO addLabel(String name, String description);
+	LabelVO addLabel(String name, String description);
 
-    LabelVO updateLabel(int id, String name, String description);
+	LabelVO updateLabel(int id, String name, String description);
 
-    LabelVO showLabel(int id);
+	LabelVO showLabel(int id);
 
-    List<LabelVO> listAllLabels();
+	List<LabelVO> listAllLabels();
 
-    void deleteLabel(int id);
+	void deleteLabel(int id);
 
-    void revokeAdministrator(int userId);
-    void promoteAdministrator(int userId);
-    void promoteSuperAdministrator(int userId);
-    void revokeSuperAdministrator(int userId);
+	void revokeAdministrator(int userId);
+
+	void promoteAdministrator(int userId);
+
+	void promoteSuperAdministrator(int userId);
+
+	void revokeSuperAdministrator(int userId);
 }

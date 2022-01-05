@@ -20,7 +20,7 @@ public class ShowAdministratorMB {
     @Setter
     private Integer userId = null;
 
-    public UserVO getAdministrator(){
+    public UserVO getUser(){
         return administrationLocal.showAdministator(userId);
     }
 }
