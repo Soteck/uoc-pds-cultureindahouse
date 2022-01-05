@@ -12,8 +12,9 @@
     <ui:define name="content">
 
         <div class="d-flex position-relativep-6 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
-        padding-top: 20px;" >
-            <img  src="./img/users-cog-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+        padding-top: 20px;">
+            <img src="./img/users-cog-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo"
+                 width="150" height="150"/>
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Profile View</h2>
                 <p class="col-md-8 text-white fs-4">Choose your election</p>
@@ -43,12 +44,12 @@
             </div>
 
             <div class="col-2 p-3">
-                <c:if test="#{accountManagedBean.loggedUser.name eq 'Super'}">
-                <h:link outcome="listUserView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                    <f:param name="" value=""/>
-                    <i class="fa fa-edit">&nbsp;</i>
-                    <span>List of users</span>
-                </h:link>
+                <c:if test="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
+                    <h:link outcome="listUserView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                        <f:param name="" value=""/>
+                        <i class="fa fa-edit">&nbsp;</i>
+                        <span>List of users</span>
+                    </h:link>
                 </c:if>
             </div>
             <div class="col-3 p-3">
@@ -57,7 +58,7 @@
 
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-         <hr class="featurette-divider"></hr>
+        <hr class="featurette-divider"/>
 
     </ui:define>
 </ui:composition>

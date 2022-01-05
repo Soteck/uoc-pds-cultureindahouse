@@ -41,6 +41,8 @@ public interface AdministrationRemote {
 
     EventOrganizerVO assignAdministratorToEventOrganizer(int userId, int eventOrganizerId) throws Exception;
 
+    EventOrganizerVO unAssignAdministratorToEventOrganizer(int eventOrganizerId);
+
     List<UserVO> listAllAdministrators();
 
     void deleteAdministrator(int id);
@@ -54,5 +56,10 @@ public interface AdministrationRemote {
     List<LabelVO> listAllLabels();
 
     void deleteLabel(int id);
+
+    void revokeAdministrator(int userId);
+    void promoteAdministrator(int userId);
+    void promoteSuperAdministrator(int userId);
+    void revokeSuperAdministrator(int userId);
 
 }

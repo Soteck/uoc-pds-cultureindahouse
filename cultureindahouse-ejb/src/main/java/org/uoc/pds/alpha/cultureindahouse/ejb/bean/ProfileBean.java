@@ -1,25 +1,21 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.bean;
 
 
-import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Category;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Event;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.Label;
 import org.uoc.pds.alpha.cultureindahouse.ejb.entity.User;
 import org.uoc.pds.alpha.cultureindahouse.ejb.helpers.DateHelper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.EventMapper;
-import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.LabelMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.repository.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.time.LocalDate;
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +37,8 @@ public class ProfileBean implements ProfileLocal, ProfileRemote {
 	@Override
 	public UserVO login(String email, String password) {
 		User user = userRepository.getUserByEmail(email);
-		if (user.getPassword().equals(password)) {
+
+		if (user != null && user.getPassword().equals(password)) {
 			return UserMapper.toVO(user, false);
 		}
 		return null;

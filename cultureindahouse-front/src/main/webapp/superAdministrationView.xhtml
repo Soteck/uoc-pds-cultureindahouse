@@ -4,15 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="headerView.xhtml">
     <ui:define name="content">
 
         <div class="d-flex position-relativep-4 my-5 bg-dark border-warning rounded-3" style="background-color: #1a1e21;
-        padding-top: 20px;" >
-            <img  src="./img/tools-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo" width="150" height="150"></img>
+        padding-top: 20px;">
+            <img src="./img/tools-solid.svg" style="padding-left: 20px;" class="flex-shrink-0 me-3" alt="logo"
+                 width="150" height="150"/>
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Super administration View</h2>
                 <p class="col-md-8 text-white fs-4">Choose your election</p>
@@ -34,11 +34,11 @@
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Help</li>
                             <li>
-                                <h:form>
-                                    <h:commandButton value="Administration menu" height="150" width="150"
-                                                     action="#{ListAdministratorsMB.listAdministrators}" immediate="true"
-                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                                </h:form>
+                                <h:link outcome="listAdministratorsView.xhtml"
+                                               height="150" width="150"
+                                               class="w-100 btn btn-lg btn-outline-success me-2">
+                                    Administration menu
+                                </h:link>
                             </li>
                         </ul>
                     </div>
@@ -53,11 +53,11 @@
                     <div class="card-body bg-dark border-warning">
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Help</li>
-                            <h:form>
-                                <h:commandButton value="Categories menu" height="150" width="150"
-                                                 action="#{ListCategoriesMB.listCategories}" immediate="true"
-                                                 class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                            </h:form>
+                            <h:link outcome="listCategoryView.xhtml"
+                                    height="150" width="150"
+                                    class="w-100 btn btn-lg btn-outline-success me-2">
+                                Categories menu
+                            </h:link>
                         </ul>
                     </div>
                 </div>
@@ -73,11 +73,11 @@
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Help</li>
                             <li>
-                                <h:form>
-                                    <h:commandButton value="Event Organizer menu" height="150" width="150"
-                                                     action="#{ListEventOrganizerMB.listEventOrganizers}" immediate="true"
-                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                                </h:form>
+                                <h:link outcome="EventOrganizerListView.xhtml"
+                                        height="150" width="150"
+                                        class="w-100 btn btn-lg btn-outline-success me-2">
+                                    Event Organizer menu
+                                </h:link>
                             </li>
                         </ul>
                     </div>
@@ -93,11 +93,11 @@
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Help</li>
                             <li>
-                                <h:form>
-                                    <h:commandButton value="Labels menu" height="150" width="150"
-                                                     action="#{ListLabelsMB.listLabels}" immediate="true"
-                                                     class=" w-100 btn btn-lg btn-outline-success me-2"/>
-                                </h:form>
+                                <h:link outcome="LabelListView.xhtml"
+                                        height="150" width="150"
+                                        class="w-100 btn btn-lg btn-outline-success me-2">
+                                    Labels menu
+                                </h:link>
                             </li>
                         </ul>
                     </div>
@@ -107,8 +107,7 @@
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-         <hr class="featurette-divider"></hr>
-
+        <hr class="featurette-divider"/>
     </ui:define>
 </ui:composition>
 </html>

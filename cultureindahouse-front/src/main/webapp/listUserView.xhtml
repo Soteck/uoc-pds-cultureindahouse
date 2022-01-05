@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="./headerView.xhtml">
@@ -24,6 +25,15 @@
                 </form>
             </div>
         </div>
+
+        <ui:fragment rendered="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
+            <div class="row" style="padding-top: 20px">
+                <div class="col-12">
+                    <span>Note: Promoting super admin implies promoting to normal admin aswell</span>
+                </div>
+            </div>
+
+        </ui:fragment>
 
         <div style="padding-top: 20px">
             <h:dataTable value="#{ListUsersMB.users}" var="user"
@@ -51,10 +61,42 @@
                     <h:outputText value="#{user.email}"/>
                 </h:column>
 
-                <h:column>
-                    <f:facet name="header">Adminsitrator</f:facet>
-                    <h:outputText value="#{user.administrator}"/>
-                </h:column>
+                <c:if test="#{accountManagedBean.logged and accountManagedBean.loggedUser.superAdministrator}">
+                    <h:column>
+                        <f:facet name="header">Adminsitrator</f:facet>
+                        <h:outputText value="#{user.administrator}"/>
+                        <h:form rendered="#{not user.administrator}" style="display: inline-block;">
+                            <div style="padding:2px; display:inline-block">
+                                <div style="padding:2px; display:inline">
+                                    <h:commandLink
+                                            action="#{ListUsersMB.promoteAdmin(user.id)}"
+                                            class="btn btn-success"
+                                            style="margin-left: 25px;">
+                                        Promote
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </h:form>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Super adminsitrator</f:facet>
+                        <h:outputText value="#{user.superAdministrator}"/>
+                        <h:form rendered="#{not user.superAdministrator}" style="display: inline-block;">
+                            <div style="padding:2px; display:inline-block">
+                                <div style="padding:2px; display:inline">
+                                    <h:commandLink
+                                            action="#{ListUsersMB.promoteSuperAdmin(user.id)}"
+                                            class="btn btn-success"
+                                            style="margin-left: 25px;">
+                                        Promote
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </h:form>
+                    </h:column>
+                </c:if>
+
 
                 <h:column>
                     <f:facet name="header">
@@ -95,7 +137,7 @@
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-        <hr class="featurette-divider"></hr>
+        <hr class="featurette-divider"/>
 
     </ui:define>
 </ui:composition>
