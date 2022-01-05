@@ -9,16 +9,13 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <f:metadata>
-    <f:viewParam name="userId" value="#{ShowAdministratorMB.userId}"/>
-    <ui:param name="new" value="#{ShowAdministratorMB.userId eq null}"/>
+    <f:viewParam name="userId" value="#{ListFavoritesMB.userId}"/>
 </f:metadata>
 
 <ui:composition template="./headerView.xhtml">
     <ui:define name="content">
         <h:form>
             <div style="padding-top: 50px">
-                <c:choose>
-                    <c:when test="${new}">
 
                         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
                             <div class="container-fluid py-4">
@@ -80,20 +77,6 @@
                                     </h:link>
                                 </div>
                             </h:column>
-
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Edit"/>
-                                </f:facet>
-                                <div style="padding:2px; display:inline">
-                                    <h:link outcome="modifyEventView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
-                                        <f:param name="eventId" value="#{event.id}"/>
-                                        <i class="fa fa-edit">&nbsp;</i>
-                                    </h:link>
-                                </div>
-                            </h:column>
-
-
                         </h:dataTable>
 
 
@@ -109,39 +92,6 @@
                         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
                         <hr class="featurette-divider"/>
 
-                    </c:when>
-
-
-                    <c:otherwise>
-
-                        <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
-                            <div class="container-fluid py-4">
-                                <h2 class="display-4 text-white fw-bold">Error favorites</h2>
-                                <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
-                                    <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
-                                        <span class="fa fa-home"/>
-                                    </h:link>
-                                    <h:link outcome="AdministrationListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
-                                        <span class="fa fa-bars"/>
-                                    </h:link>
-                            </div>
-                        </div>
-
-
-                        <div class="row" style="padding-top: 10px" >
-                            <div class="col-3 p-3">
-                                <h:link outcome="MediaView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
-                                    <i class="fa fa-undo">&nbsp;</i>
-                                    <span>Return to media</span>
-                                </h:link>
-                            </div>
-                        </div>
-
-                        <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
-                        <hr class="featurette-divider"/>
-
-                    </c:otherwise>
-                </c:choose>
             </div>
         </h:form>
     </ui:define>
