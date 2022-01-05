@@ -7,23 +7,26 @@ import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.OrderHistoryVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import java.util.List;
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "FindOrderMB")
 public class FindOrderMB {
 
     @EJB
     private EventLocal eventLocal;
 
-    @Getter @Setter
-    private String userEmail;
+    @Getter
+    @Setter
+    private String userEmail = "";
 
     public List<OrderHistoryVO> getOrders()
     {
-        //TODO: Pasar como patrámetro el id del usuario
-        return eventLocal.findOrdersByUser(71);
+        return eventLocal.findOrdersByUser(this.userEmail);
     }
+
+    public String ListOrders(){ return "OrderListView.xhtml";}
 
 }

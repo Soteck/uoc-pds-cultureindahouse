@@ -30,7 +30,7 @@ public class Question {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @OneToOne(mappedBy = "question")
+    @OneToOne(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Response response;
 
 

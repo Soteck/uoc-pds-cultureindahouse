@@ -44,7 +44,7 @@ public class EventRepository implements EventRepositoryInterface {
 		bddData.setEndDate(data.getEndDate());
 		bddData.setEventOrganizer(data.getEventOrganizer());
 		bddData.setOrderHistory(data.getOrderHistory());
-		bddData.setUser(data.getUser());
+		bddData.setUserFavorites(data.getUserFavorites());
 		bddData.setCategory(data.getCategory());
 		bddData.setLabels(data.getLabels());
 		bddData.setRatings(data.getRatings());

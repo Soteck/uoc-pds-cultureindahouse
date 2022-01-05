@@ -38,14 +38,14 @@ public class MediaRestService {
     }
 
     @GET
-    @Path("/events/favorites?email={email}")
+    @Path("/events/favorites/email/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllFavorites(@PathParam("email") String email){
         return Response.ok(mediaLocal.listAllFavorites(email)).build();
     }
 
     @GET
-    @Path("/events/favorites?userId={userId}")
+    @Path("/events/favorites/userId/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllFavorites(@PathParam("userId")int userId){
         return Response.ok(mediaLocal.listAllFavorites(userId)).build();
@@ -66,7 +66,7 @@ public class MediaRestService {
     }
 
     @GET
-    @Path("/questions?eventId={eventId}")
+    @Path("/questions/eventId/{eventId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllQuestions(@PathParam("eventId")int eventId){
         return Response.ok(mediaLocal.listAllQuestions(eventId)).build();

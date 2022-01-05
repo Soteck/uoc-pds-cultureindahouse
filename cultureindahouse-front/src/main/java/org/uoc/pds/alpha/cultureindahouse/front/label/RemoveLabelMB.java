@@ -27,7 +27,7 @@ public class RemoveLabelMB {
     public String deleteLabel(){
         labelLocal.deleteLabel(labelId);
         this.labelId = null;
-        return "administrationView.xhtml";
+        return "LabelListView.xhtml";
     }
 
     public void reload() throws IOException {

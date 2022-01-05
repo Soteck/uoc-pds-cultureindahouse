@@ -2,29 +2,23 @@ package org.uoc.pds.alpha.cultureindahouse.front.Media;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.MediaLocal;
+import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 @ViewScoped
-@ManagedBean(name = "SendCommentMB")
-public class SendCommentMB {
+@ManagedBean(name = "MediaMB")
+public class MediaMB {
 
     @EJB
-    public MediaLocal mediaLocal;
+    private MediaLocal mediaLocal;
 
     @Getter
     @Setter
-    private Integer eventId;
+    protected Integer eventId = null;
 
-    @Getter
-    @Setter
-    private String comment;
-
-    public void SendComment(Integer userId)
-    {
-        mediaLocal.sendComment(eventId, userId, comment);
-    }
 }

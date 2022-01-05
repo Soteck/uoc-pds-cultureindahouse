@@ -97,7 +97,7 @@ public class EventBean implements EventLocal, EventRemote {
 
     @Override
     public List<OrderHistoryVO> findOrdersByUser(int userId) {
-        List<OrderHistory> orders = userRepository.get(userId).getOrderHistory();
+        Collection<OrderHistory> orders = userRepository.get(userId).getOrderHistory();
         List<OrderHistoryVO> ret = null;
 
         if (orders != null && !orders.isEmpty()) {
@@ -108,7 +108,7 @@ public class EventBean implements EventLocal, EventRemote {
     }
 
     public List<OrderHistoryVO> findOrdersByUser(String email) {
-        List<OrderHistory> orders = userRepository.getUserByEmail(email).getOrderHistory();
+        Collection<OrderHistory> orders = userRepository.getUserByEmail(email).getOrderHistory();
         List<OrderHistoryVO> ret = null;
 
         if (orders != null && !orders.isEmpty()) {

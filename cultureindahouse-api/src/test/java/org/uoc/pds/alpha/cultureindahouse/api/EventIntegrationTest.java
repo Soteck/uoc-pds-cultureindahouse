@@ -4,10 +4,11 @@ import com.google.gson.Gson;
 import dto.AddOrUpdateEvent;
 import dto.AddOrUpdateEventOrganizer;
 import dto.EventUser;
+import helpers.HttpHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -40,87 +41,47 @@ public class EventIntegrationTest {
 
     private static LabelVO label = new LabelVO("Test event", "test description event");
 
-    private static UserVO user = new UserVO("2email@email.com", "pass", "Admin", "Test");
+    private static UserVO user = new UserVO("EventTesting@email.com", "pass", "Admin", "Test");
 
     private static EventOrganizerVO eventOrganizer = new EventOrganizerVO("Test event", "test description event");
 
     private static Integer orderHistoryId = null;
 
 
-
-
     @Test
     @Order(1)
     public void prepareTesting() throws IOException {
 
-        HttpPost categoryRequest = new HttpPost(ADMINISTRATION_URI + "category");
-        categoryRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        categoryRequest.setEntity(new StringEntity(gson.toJson(category)));
-        HttpResponse categoryResponse = HttpClientBuilder.create().build().execute(categoryRequest);
-        String jsonCategory = EntityUtils.toString(categoryResponse.getEntity());
-        CategoryVO cat = gson.fromJson(jsonCategory, CategoryVO.class);
+        CategoryVO cat = HttpHelper.post(ADMINISTRATION_URI + "category", category, CategoryVO.class);
         category.setId(cat.getId());
         log.info("Categoria añadida: " + cat.getId() + ". N: " + cat.getName() + " D: " + cat.getDescription());
 
-
-
-        HttpPost labelRequest = new HttpPost(ADMINISTRATION_URI + "label");
-        labelRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        labelRequest.setEntity(new StringEntity(gson.toJson(label)));
-        HttpResponse labelResponse = HttpClientBuilder.create().build().execute(labelRequest);
-        String jsonLabel = EntityUtils.toString(labelResponse.getEntity());
-        LabelVO lab = gson.fromJson(jsonLabel, LabelVO.class);
+        LabelVO lab = HttpHelper.post(ADMINISTRATION_URI + "label", label, LabelVO.class);
         label.setId(lab.getId());
         log.info("Label añadida: " + lab.getId() + ". N: " + lab.getName() + " D: " + lab.getDescription());
 
-
-        HttpPost adminRequest = new HttpPost(ADMINISTRATION_URI + "administrator");
-        adminRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        adminRequest.setEntity(new StringEntity(gson.toJson(user)));
-        HttpResponse adminResponse = HttpClientBuilder.create().build().execute(adminRequest);
-        String adminJson = EntityUtils.toString(adminResponse.getEntity());
-        UserVO u = gson.fromJson(adminJson, UserVO.class);
+        UserVO u = HttpHelper.post(ADMINISTRATION_URI + "administrator", user, UserVO.class);
         user.setId(u.getId());
         log.info("Administrator añadido: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
 
 
-        HttpPost eventOrganizerRequest = new HttpPost(ADMINISTRATION_URI + "event-organizer");
-        eventOrganizerRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        eventOrganizerRequest.setEntity(new StringEntity(gson.toJson(new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()))));
-        HttpResponse eventOrganizerResponse = HttpClientBuilder.create().build().execute(eventOrganizerRequest);
-        String eventOrganizerJson = EntityUtils.toString(eventOrganizerResponse.getEntity());
-        EventOrganizerVO ev = gson.fromJson(eventOrganizerJson, EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.post(ADMINISTRATION_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
         eventOrganizer.setId(ev.getId());
+
+        EventOrganizerVO assigned = HttpHelper.put(ADMINISTRATION_URI + "event-organizer/assign/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer, user.getEmail()), EventOrganizerVO.class);
         eventOrganizer.setAdministrator((user));
 
-
-
-        HttpPost eventRequest = new HttpPost(PROFILE_URI + "events");
-        eventRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        eventRequest.setEntity(new StringEntity(gson.toJson(new AddOrUpdateEvent(event, eventOrganizer.getId(), category.getId()))));
-        HttpResponse eventResponse = HttpClientBuilder.create().build().execute(eventRequest);
-        String eventJson = EntityUtils.toString(eventResponse.getEntity());
-        EventVO e = gson.fromJson(eventJson, EventVO.class);
+        EventVO e = HttpHelper.post(PROFILE_URI + "events", new AddOrUpdateEvent(event, eventOrganizer.getId(), category.getId()), EventVO.class);
         event.setId(e.getId());
         log.info("Evento añadido: " + e.getId() + ". N: " + e.getName() + " D: " + e.getDescription() + " I: " + e.getImage() + " L: " + e.getLocation() + " ID: " + e.getInitDate() + " ED: " + e.getEndDate());
 
-        HttpPut putCategory = new HttpPut(PROFILE_URI + "events/"+ event.getId() +"/category/" + category.getId());
-        HttpClientBuilder.create().build().execute(putCategory);
 
-        HttpPut putLabel = new HttpPut(PROFILE_URI + "events/"+ event.getId() +"/label/" + label.getId());
-        HttpClientBuilder.create().build().execute(putLabel);
+        HttpHelper.put(PROFILE_URI + "events/" + event.getId() + "/label/" + label.getId(), null);
 
-
-        assert cat.equals(category) && lab.equals(label) && user.equals(u) && event.equals(e) && eventOrganizer.equals(ev);
+        assert cat.equals(category) && lab.equals(label) && u.getId() != null && event.equals(e) && eventOrganizer.equals(ev);
 
     }
 
-//    @Test
-//    @Ignore
-//    public void insertLabelToEvent() throws IOException{
-//        HttpPut putLabel = new HttpPut(PROFILE_URI + "events/24/label/5");
-//        HttpClientBuilder.create().build().execute(putLabel);
-//    }
 
     @Test
     @Order(2)
@@ -128,7 +89,7 @@ public class EventIntegrationTest {
 
         HttpPut request = new HttpPut(EVENT_URI + "order-event");
         request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-        request.setEntity(new StringEntity(gson.toJson(new EventUser(user.getId(),event.getId()))));
+        request.setEntity(new StringEntity(gson.toJson(new EventUser(user.getId(), event.getId()))));
         OrderHistoryVO orderHistoryVO = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), OrderHistoryVO.class);
 
         orderHistoryId = orderHistoryVO.getId();
@@ -143,7 +104,7 @@ public class EventIntegrationTest {
     @Order(3)
     public void findEventsByCategory() throws IOException {
 
-        HttpGet request = new HttpGet(EVENT_URI + "events/category/"+ category.getId());
+        HttpGet request = new HttpGet(EVENT_URI + "events/category/" + category.getId());
         EventVO[] events = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), EventVO[].class);
 
         assert events.length > 0 && events[0].getCategory().getId() == category.getId();
@@ -155,7 +116,7 @@ public class EventIntegrationTest {
     @Order(4)
     public void findEventsByName() throws IOException {
 
-        HttpGet request = new HttpGet(EVENT_URI + "events/name/"+ event.getName());
+        HttpGet request = new HttpGet(EVENT_URI + "events/name/" + event.getName());
         EventVO[] events = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), EventVO[].class);
 
         assert events.length > 0 && events[0].getName().equals(event.getName());
@@ -167,8 +128,7 @@ public class EventIntegrationTest {
     @Order(5)
     public void findEventsByLabel() throws IOException {
 
-        HttpGet request = new HttpGet(EVENT_URI + "events/label/"+ label.getId());
-        EventVO[] events = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), EventVO[].class);
+        EventVO[] events = HttpHelper.get(EVENT_URI + "events/label/" + label.getId(), EventVO[].class);
 
         assert events.length > 0;
 
@@ -180,7 +140,7 @@ public class EventIntegrationTest {
     @Order(6)
     public void showEvent() throws IOException {
 
-        HttpGet request = new HttpGet(EVENT_URI + "events/"+ event.getId());
+        HttpGet request = new HttpGet(EVENT_URI + "events/" + event.getId());
         EventVO e = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), EventVO.class);
 
         assert e.getId() == event.getId();
@@ -192,7 +152,7 @@ public class EventIntegrationTest {
     @Order(7)
     public void findOrdersByUser() throws IOException {
 
-        HttpGet request = new HttpGet(EVENT_URI + "orders/user/"+ user.getId());
+        HttpGet request = new HttpGet(EVENT_URI + "orders/user/" + user.getId());
         OrderHistoryVO[] orders = gson.fromJson(EntityUtils.toString(HttpClientBuilder.create().build().execute(request).getEntity()), OrderHistoryVO[].class);
 
         assert orders.length > 0;
@@ -210,7 +170,6 @@ public class EventIntegrationTest {
         assert orders.length > 0;
 
 
-
     }
 
 
@@ -226,9 +185,22 @@ public class EventIntegrationTest {
 
     }
 
+    @Test
+    @Order(10)
+    public void deleteTesting() throws IOException {
+
+        HttpHelper.delete(PROFILE_URI + "events/" + event.getId());
+
+        HttpHelper.delete(ADMINISTRATION_URI + "label/" + label.getId());
+
+        HttpHelper.delete(ADMINISTRATION_URI + "category/" + category.getId());
+
+        HttpHelper.delete(ADMINISTRATION_URI + "event-organizer/" + eventOrganizer.getId());
+
+        HttpHelper.delete(PROFILE_URI + "users/" + user.getId());
 
 
-
+    }
 
 
 }

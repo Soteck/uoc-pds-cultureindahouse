@@ -20,10 +20,18 @@ public class ListQuestionsMB {
     @Getter
     @Setter
     protected Integer eventId = null;
-    private QuestionVO question;
 
     public List<QuestionVO> getQuestions() {
         return questionLocal.listAllQuestions(eventId);
+    }
+
+    public boolean isQuestionAnswered(Integer questionId)
+    {
+        QuestionVO question = questionLocal.getQuestion(questionId);
+
+        if(question.getResponse() != null) return true;
+
+        return false;
     }
 
 }

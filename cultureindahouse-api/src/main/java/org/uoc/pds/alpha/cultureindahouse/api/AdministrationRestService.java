@@ -1,24 +1,15 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
-import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
+import dto.AddOrUpdateEventOrganizer;
 import org.uoc.pds.alpha.cultureindahouse.ejb.bean.AdministrationLocal;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
-import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.UserVO;
 
-import dto.AddOrUpdateEventOrganizer;
+import javax.ejb.EJB;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/administration")
 @Produces(MediaType.APPLICATION_JSON)
@@ -89,7 +80,7 @@ public class AdministrationRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addEventOrganizer(AddOrUpdateEventOrganizer event) throws Exception {
-        return Response.ok(administrationLocal.addEventOrganizer(event.getName(), event.getDescription(), event.getUserId())).build();
+        return Response.ok(administrationLocal.addEventOrganizer(event.getName(), event.getDescription())).build();
     }
 
     @PUT
@@ -97,7 +88,15 @@ public class AdministrationRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateEventOrganizer(@PathParam("id") int id, AddOrUpdateEventOrganizer event) throws Exception {
-        return Response.ok(administrationLocal.updateEventOrganizer(id, event.getName(), event.getDescription(), event.getUserId())).build();
+        return Response.ok(administrationLocal.updateEventOrganizer(id, event.getName(), event.getDescription())).build();
+    }
+
+    @PUT
+    @Path("/event-organizer/assign/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response assignAdministratorToEventOrganizer(@PathParam("id") int id, AddOrUpdateEventOrganizer event) throws Exception {
+        return Response.ok(administrationLocal.assignAdministratorToEventOrganizer(event.getEmail(), id)).build();
     }
 
     @DELETE
@@ -129,7 +128,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addAdministrator(UserVO user) {
 
-        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.addAdministrator(user.getEmail(), user.getPassword(), user.getName(), user.getSurname(), true)).build();
     }
 
     @PUT
@@ -138,7 +137,7 @@ public class AdministrationRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateAdministrator(@PathParam("id") int id, UserVO user) {
 
-        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname())).build();
+        return Response.ok(administrationLocal.updateAdministrator(id, user.getEmail(), user.getPassword(), user.getName(), user.getSurname(), true)).build();
     }
 
     @DELETE

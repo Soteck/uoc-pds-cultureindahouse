@@ -38,6 +38,8 @@ public interface ProfileLocal {
 
 	EventVO showEventByName(String name);
 
+	void deleteEvent(int eventId);
+
 	void addLabelToEvent(int eventId, int labelId);
 
 	void removeLabelFromEvent(int eventId, int labelId);

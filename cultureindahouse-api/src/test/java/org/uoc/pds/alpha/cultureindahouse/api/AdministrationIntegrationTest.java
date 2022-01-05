@@ -1,8 +1,8 @@
 package org.uoc.pds.alpha.cultureindahouse.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import dto.AddOrUpdateEventOrganizer;
+import helpers.HttpHelper;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.apache.http.HttpResponse;
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.uoc.pds.alpha.cultureindahouse.ejb.mapper.UserMapper;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.CategoryVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.EventOrganizerVO;
 import org.uoc.pds.alpha.cultureindahouse.ejb.pojo.LabelVO;
@@ -49,18 +48,8 @@ public class AdministrationIntegrationTest {
     @Test
     @Order(1)
     public void addCategory() throws IOException {
-        HttpPost request = new HttpPost(BASE_URI + "category");
 
-        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-
-        request.setEntity(new StringEntity(gson.toJson(category)));
-
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var cat = gson.fromJson(jsonFromResponse, CategoryVO.class);
+        CategoryVO cat = HttpHelper.post(BASE_URI + "category", category, CategoryVO.class);
 
         category.setId(cat.getId());
 
@@ -73,13 +62,8 @@ public class AdministrationIntegrationTest {
     @Test
     @Order(2)
     public void getCategory() throws IOException {
-        HttpGet request = new HttpGet(BASE_URI + "category/" + category.getId());
 
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var cat = gson.fromJson(jsonFromResponse, CategoryVO.class);
+        CategoryVO cat = HttpHelper.get(BASE_URI + "category/" + category.getId(), CategoryVO.class);
 
         log.info("Categoria: " + cat.getId() + ". N: " + cat.getName() + " D: " + cat.getDescription());
 
@@ -91,13 +75,8 @@ public class AdministrationIntegrationTest {
     @Test
     @Order(3)
     public void getCategories() throws IOException {
-        HttpGet request = new HttpGet(BASE_URI + "category");
 
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var categories = gson.fromJson(jsonFromResponse, CategoryVO[].class);
+        CategoryVO[] categories = HttpHelper.get(BASE_URI + "category", CategoryVO[].class);
 
         boolean founded = false;
 
@@ -117,93 +96,127 @@ public class AdministrationIntegrationTest {
     @Test
     @Order(4)
     public void updateCategory() throws IOException {
-        HttpPut request = new HttpPut(BASE_URI + "category/" + category.getId());
-
-        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
 
         category.setDescription("new test updated category");
-        category.setName("new category test");
 
-        request.setEntity(new StringEntity(gson.toJson(category)));
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var cat = gson.fromJson(jsonFromResponse, CategoryVO.class);
+        CategoryVO cat = HttpHelper.put(BASE_URI + "category/" + category.getId(), category, CategoryVO.class);
 
         log.info("Categoria actualizada: " + cat.getId() + ". N: " + cat.getName() + " D: " + cat.getDescription());
 
         assert cat.equals(category);
     }
 
+
     @Test
     @Order(5)
-    public void deleteCategory() throws IOException {
-        HttpDelete request = new HttpDelete(BASE_URI + "category/" + category.getId());
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        try {
-            HttpGet getRequest = new HttpGet(BASE_URI + "category/" + category.getId());
-
-            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
-
-            assert resp.getStatusLine().getStatusCode() == 500;
-
-        } catch (HTTPException e) {
-            assert e.getStatusCode() == 500;
-        }
-    }
-
-
-    @Test
-    @Order(6)
-    public void addEventOrganizer() throws IOException {
-
-        HttpPost userRequest = new HttpPost(BASE_URI + "administrator");
-
-        userRequest.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-
-        userRequest.setEntity(new StringEntity(gson.toJson(new UserVO("eventOrganizer@mail.com", "pass", "name", "surname"))));
-
-
-        HttpResponse userResponse = HttpClientBuilder.create().build().execute(userRequest);
-
-        var user =  gson.fromJson(EntityUtils.toString(userResponse.getEntity()), UserVO.class);
-
-        if (user == null || user.getId() == null){
-            assert false;
-        }
-
-        eventOrganizerUserId = user.getId();
-
-        HttpPost request = new HttpPost(BASE_URI + "event-organizer");
+    public void addAdministrator() throws IOException {
+        HttpPost request = new HttpPost(BASE_URI + "administrator");
 
         request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
 
-        request.setEntity(new StringEntity(gson.toJson(new AddOrUpdateEventOrganizer(eventOrganizer, user.getId()))));
+        request.setEntity(new StringEntity(gson.toJson(user)));
 
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
         String jsonFromResponse = EntityUtils.toString(response.getEntity());
 
-        var ev = gson.fromJson(jsonFromResponse, EventOrganizerVO.class);
+        var u = gson.fromJson(jsonFromResponse, UserVO.class);
 
-        eventOrganizer.setId(ev.getId());
+        user.setId(u.getId());
 
-        eventOrganizer.setAdministrator((user));
+        log.info("User añadido: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
 
-        log.info("Event Organizer añadido: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
+        assert u != null && u.getId() != null;
 
-        assert ev.equals(eventOrganizer) && ev.getAdministrator() != null;
+
+    }
+
+    @Test
+    @Order(6)
+    public void getAdministrator() throws IOException {
+        HttpGet request = new HttpGet(BASE_URI + "administrator/" + user.getId());
+
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
+        String jsonFromResponse = EntityUtils.toString(response.getEntity());
+
+        var u = gson.fromJson(jsonFromResponse, UserVO.class);
+
+        log.info("User: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
+
+        assert u != null && u.getId() != null;
 
 
     }
 
     @Test
     @Order(7)
+    public void getAdministrators() throws IOException {
+        HttpGet request = new HttpGet(BASE_URI + "administrator");
+
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
+        String jsonFromResponse = EntityUtils.toString(response.getEntity());
+
+        var users = gson.fromJson(jsonFromResponse, UserVO[].class);
+
+        boolean founded = false;
+
+        for (UserVO u : users) {
+
+            if (u.getId().equals(user.getId())) {
+                founded = true;
+            }
+            log.info("Listando Users:  User " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
+        }
+
+        assert founded;
+
+
+    }
+
+    @Test
+    @Order(8)
+    public void updateAdministrator() throws IOException {
+        HttpPut request = new HttpPut(BASE_URI + "administrator/" + user.getId());
+
+        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
+
+        user.setAddress("testing address");
+
+        request.setEntity(new StringEntity(gson.toJson(user)));
+
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
+        String jsonFromResponse = EntityUtils.toString(response.getEntity());
+
+        var u = gson.fromJson(jsonFromResponse, UserVO.class);
+
+        log.info("User: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
+
+        assert u != null && u.getId() != null;
+    }
+
+
+    @Test
+    @Order(9)
+    public void addEventOrganizer() throws IOException {
+
+
+        EventOrganizerVO ev = HttpHelper.post(BASE_URI + "event-organizer", new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
+
+        eventOrganizer = ev;
+
+        log.info("Event Organizer añadido: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
+
+        assert ev != null;
+
+
+    }
+
+    @Test
+    @Order(10)
     public void getEventOrganizer() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "event-organizer/" + eventOrganizer.getId());
 
@@ -221,7 +234,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(8)
+    @Order(11)
     public void getEventOrganizers() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "event-organizer");
 
@@ -246,168 +259,43 @@ public class AdministrationIntegrationTest {
 
     }
 
-    @Test
-    @Order(9)
-    public void updateEventOrganizer() throws IOException {
-        HttpPut request = new HttpPut(BASE_URI + "event-organizer/" + eventOrganizer.getId());
 
-        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
+    @Test
+    @Order(12)
+    public void updateEventOrganizer() throws IOException {
 
         eventOrganizer.setDescription("new test updated event organizer");
         eventOrganizer.setName("new event organizer test");
 
-        request.setEntity(new StringEntity(gson.toJson(eventOrganizer)));
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var ev = gson.fromJson(jsonFromResponse, EventOrganizerVO.class);
+        EventOrganizerVO ev = HttpHelper.put(BASE_URI + "event-organizer/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer), EventOrganizerVO.class);
 
         log.info("Event Organizer actualizado: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
 
         assert ev.equals(eventOrganizer);
     }
 
-    @Test
-    @Order(10)
-    public void deleteEventOrganizer() throws IOException {
-
-        HttpDelete userRequest = new HttpDelete(BASE_URI + "administrator/" + eventOrganizerUserId);
-
-        HttpResponse userResponse = HttpClientBuilder.create().build().execute(userRequest);
-
-        HttpDelete request = new HttpDelete(BASE_URI + "event-organizer/" + eventOrganizer.getId());
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-
-        try {
-            HttpGet getRequest = new HttpGet(BASE_URI + "event-organizer/" + eventOrganizer.getId());
-
-            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
-
-            assert resp.getStatusLine().getStatusCode() == 500;
-
-        } catch (HTTPException e) {
-            assert e.getStatusCode() == 500;
-        }
-    }
-
-
-    @Test
-    @Order(11)
-    public void addAdministrator() throws IOException {
-        HttpPost request = new HttpPost(BASE_URI + "administrator");
-
-        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-
-        request.setEntity(new StringEntity(gson.toJson(user)));
-
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var u = gson.fromJson(jsonFromResponse, UserVO.class);
-
-        user.setId(u.getId());
-
-        log.info("User añadido: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
-
-        assert u.equals(user);
-
-
-    }
-
-    @Test
-    @Order(12)
-    public void getAdministrator() throws IOException {
-        HttpGet request = new HttpGet(BASE_URI + "administrator/" + user.getId());
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var u = gson.fromJson(jsonFromResponse, UserVO.class);
-
-        log.info("User: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
-
-        assert u.equals(user);
-
-
-    }
 
     @Test
     @Order(13)
-    public void getAdministrators() throws IOException {
-        HttpGet request = new HttpGet(BASE_URI + "administrator");
+    public void assignAdministratorToEventOrganizer() throws IOException {
 
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
+        EventOrganizerVO ev = HttpHelper.put(BASE_URI + "event-organizer/assign/" + eventOrganizer.getId(), new AddOrUpdateEventOrganizer(eventOrganizer, user.getEmail()), EventOrganizerVO.class);
 
-        var users = gson.fromJson(jsonFromResponse, UserVO[].class);
+        eventOrganizer = ev;
 
-        boolean founded = false;
+        log.info("Event Organizer añadido: " + ev.getId() + ". N: " + ev.getName() + " D: " + ev.getDescription());
 
-        for (UserVO u : users) {
-
-            if (u.equals(user)) {
-                founded = true;
-            }
-            log.info("Listando Users:  User " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
-        }
-
-        assert founded;
+        assert ev.getAdministrator() != null;
 
 
     }
+
+
+
 
     @Test
     @Order(14)
-    public void updateAdministrator() throws IOException {
-        HttpPut request = new HttpPut(BASE_URI + "administrator/" + user.getId());
-
-        request.setHeader("Content-Type", MediaType.APPLICATION_JSON);
-
-        user.setEmail("newEmail@email.com");
-
-        request.setEntity(new StringEntity(gson.toJson(user)));
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        String jsonFromResponse = EntityUtils.toString(response.getEntity());
-
-        var u = gson.fromJson(jsonFromResponse, UserVO.class);
-
-        log.info("User: " + u.getId() + ". N: " + u.getName() + " S: " + u.getSurname() + " E: " + u.getEmail() + " P: " + u.getPassword());
-
-        assert u.equals(user);
-    }
-
-    @Test
-    @Order(15)
-    public void deleteAdministrator() throws IOException {
-        HttpDelete request = new HttpDelete(BASE_URI + "administrator/" + user.getId());
-
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-
-        try {
-            HttpGet getRequest = new HttpGet(BASE_URI + "administrator/" + user.getId());
-
-            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
-
-            assert resp.getStatusLine().getStatusCode() == 500;
-
-        } catch (HTTPException e) {
-            assert e.getStatusCode() == 500;
-        }
-    }
-
-
-    @Test
-    @Order(16)
     public void addLabel() throws IOException {
         HttpPost request = new HttpPost(BASE_URI + "label");
 
@@ -432,7 +320,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(17)
+    @Order(15)
     public void getLabel() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "label/" + label.getId());
 
@@ -450,7 +338,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(18)
+    @Order(16)
     public void getLabels() throws IOException {
         HttpGet request = new HttpGet(BASE_URI + "label");
 
@@ -476,7 +364,7 @@ public class AdministrationIntegrationTest {
     }
 
     @Test
-    @Order(19)
+    @Order(17)
     public void updateLabel() throws IOException {
         HttpPut request = new HttpPut(BASE_URI + "label/" + label.getId());
 
@@ -498,8 +386,27 @@ public class AdministrationIntegrationTest {
         assert lab.equals(label);
     }
 
+
     @Test
-    @Order(20)
+    @Order(18)
+    public void deleteCategory() throws IOException {
+
+        HttpHelper.delete(BASE_URI + "category/" + category.getId());
+
+        try {
+            HttpGet getRequest = new HttpGet(BASE_URI + "category/" + category.getId());
+
+            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
+
+            assert resp.getStatusLine().getStatusCode() == 500;
+
+        } catch (HTTPException e) {
+            assert e.getStatusCode() == 500;
+        }
+    }
+
+    @Test
+    @Order(19)
     public void deleteLabel() throws IOException {
         HttpDelete request = new HttpDelete(BASE_URI + "label/" + label.getId());
 
@@ -516,4 +423,48 @@ public class AdministrationIntegrationTest {
             assert e.getStatusCode() == 500;
         }
     }
+
+    @Test
+    @Order(20)
+    public void deleteEventOrganizer() throws IOException {
+
+        HttpDelete request = new HttpDelete(BASE_URI + "event-organizer/" + eventOrganizer.getId());
+
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
+
+        try {
+            HttpGet getRequest = new HttpGet(BASE_URI + "event-organizer/" + eventOrganizer.getId());
+
+            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
+
+            assert resp.getStatusLine().getStatusCode() == 500;
+
+        } catch (HTTPException e) {
+            assert e.getStatusCode() == 500;
+        }
+    }
+
+
+    @Test
+    @Order(21)
+    public void deleteAdministrator() throws IOException {
+        HttpDelete request = new HttpDelete(BASE_URI + "administrator/" + user.getId());
+
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
+        try {
+            HttpGet getRequest = new HttpGet(BASE_URI + "administrator/" + user.getId());
+
+            HttpResponse resp = HttpClientBuilder.create().build().execute(getRequest);
+
+            assert resp.getStatusLine().getStatusCode() == 500;
+
+        } catch (HTTPException e) {
+            assert e.getStatusCode() == 500;
+        }
+    }
+
+
+
 }

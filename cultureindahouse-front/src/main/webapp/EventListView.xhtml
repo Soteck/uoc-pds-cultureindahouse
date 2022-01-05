@@ -11,7 +11,7 @@
 
 <ui:composition template="headerView.xhtml">
     <ui:define name="content">
-
+    <h:form>
         <div class="p-5 my-5 bg-dark border-warning rounded-3 " style="background-image:
         url('#'); background-repeat: no-repeat;background-size: cover; padding-top: 100px; ">
             <div class="container-fluid py-4">
@@ -73,13 +73,26 @@
                     </c:if>
                 </div>
             </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Order"/>
+                </f:facet>
+
+                <div style="padding:2px; display:inline">
+                    <h:link outcome="OrderEventView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                        <f:param name="eventId" value="#{event.id}"/>
+                        <i class="fa fa-search">&nbsp;</i>
+                    </h:link>
+                </div>
+            </h:column>
             
         </h:dataTable>
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
         <hr class="featurette-divider"></hr>
-
+    </h:form>
     </ui:define>
 </ui:composition>
 </html>

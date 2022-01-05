@@ -23,7 +23,7 @@ public class Response {
 	@Column(name = "message")
     private String message;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     @ToString.Exclude
     private Question question;

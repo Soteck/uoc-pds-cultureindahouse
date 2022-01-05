@@ -7,6 +7,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
+<f:metadata>
+    <f:viewParam name="eventId" value="#{AskQuestionMB.eventId}"/>
+</f:metadata>
+
 <ui:composition template="./headerView.xhtml">
     <ui:define name="content">
         <h:form>
@@ -14,7 +18,7 @@
 
                 <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
                     <div class="container-fluid py-4">
-                        <h2 class="display-4 text-white fw-bold">Make a suggestion</h2>
+                        <h2 class="display-4 text-white fw-bold">Add Question</h2>
                         <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
                         <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                             <span class="fa fa-home"/>
@@ -28,18 +32,21 @@
 
                 <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
                     <div class="container-fluid py-4">
-                        <h3 class="display-4 text-white fw-bold">Add your suggestion</h3>
-                        <div class="row form-floating mb-5 rounded-3">
-                        <div class="form col-8 mb-3 rounded-3 mb-3">
-                            <label for="new-name" class="form-label text-white">Description</label>
-                            <h:inputText class="form-control" id="new-name" placeholder="Nombre"
-                                         value="#{RegisterUserMB.user.name}"/>
+                        <h3 class="display-4 text-white fw-bold">Add your question </h3>
+
+                        <div class="mb-3">
+                            <label for="Title" class="form-label text-white">Title</label>
+                            <h:inputText class="form-control" id="Title" placeholder="Nombre" value="#{AskQuestionMB.title}" />
                         </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label text-white">Message</label>
+                            <h:inputText class="form-control" id="message" placeholder="Descripcion" value="#{AskQuestionMB.message}" />
                         </div>
 
                         <h:commandButton value="Add" height="355" width="350"
-                                         action="#{RegisterUserMB.guardarUsuario()}"
+                                         action="#{AskQuestionMB.AskQuestion}"
                                          class="btn btn-outline-success"/>
+
                     </div>
                 </div>
 

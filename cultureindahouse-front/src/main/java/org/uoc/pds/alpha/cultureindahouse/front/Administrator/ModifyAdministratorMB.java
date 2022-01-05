@@ -29,7 +29,7 @@ public class ModifyAdministratorMB {
     }
 
     public Object updateAdministrator() {
-        administratorLocal.updateAdministrator(userId,user.getName(), user.getSurname(), user.getPassword(), user.getEmail());
+        administratorLocal.updateAdministrator(userId,user.getName(), user.getSurname(), user.getPassword(), user.getEmail(), true);
         this.userId = null;
         this.user = null;
         return "AdministrationListView.xhtml";

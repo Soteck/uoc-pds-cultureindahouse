@@ -14,14 +14,14 @@
             <div class="container-fluid py-4">
                 <h2 class="display-4 text-white fw-bold">Administration Users</h2>
                 <p class="col-md-8 text-white fs-4">Don't you want to be here?</p>
-                <form class="d-flex">
+                <h:form class="d-flex">
                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                         <span class="fa fa-home"/>
                     </h:link>
                     <h:link outcome="superAdministrationView" type="button" value="" styleClass="btn btn-outline-success me-2" >
                         <span class="fa fa-tools"/>
                     </h:link>
-                </form>
+                </h:form>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
                         <h:outputText value="Edit"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="ModifyAdministratorView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
+                        <h:link outcome="modifyUserView.xhtml" class="btn btn-warning" style="margin-left: 25px;">
                             <f:param name="userId" value="#{administrators.id}"/>
                             <i class="fa fa-edit">&nbsp;</i>
                         </h:link>
@@ -88,22 +88,26 @@
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Event Organizator"/>
+                        <h:outputText value="Event Organizer"/>
                     </f:facet>
                     <div style="padding:2px; display:inline">
-                        <h:link outcome="a.xhtml" class="btn btn-primary" style="margin-left: 25px;">
+                        <h:link outcome="ModifyAdministratorView.xhtml" class="btn btn-primary" style="margin-left: 25px;">
                             <f:param name="userId" value="#{administrators.id}"/>
                             <i class="fa fa-plus-circle">&nbsp;</i>
                         </h:link>
-
-                        <h:commandButton  class="btn btn-primary"  action="#{ModifyAdministratorMB.updateAdministrator}" style="margin-left: 25px;">
-                            <f:param name="userId" value="#{administrators.id}"/>
-                        </h:commandButton>
-
                     </div>
                 </h:column>
 
             </h:dataTable>
+        </div>
+
+        <div class="row" style="padding-top: 20px" >
+            <div class="col-4 p-3">
+                <h:link outcome="modifyUserView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
+                    <i class="fa fa-plus">&nbsp;</i>
+                    <span>Add User to Administrator</span>
+                </h:link>
+            </div>
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>

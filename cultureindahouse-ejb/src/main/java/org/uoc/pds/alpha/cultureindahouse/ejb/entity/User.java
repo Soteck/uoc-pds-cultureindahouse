@@ -1,5 +1,6 @@
 package org.uoc.pds.alpha.cultureindahouse.ejb.entity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,25 +51,30 @@ public class User {
     @Column(name = "is_super_administrator")
     private boolean isSuperAdministrator;
 
-    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<EventOrganizer> eventOrganizers;
+    private Collection<EventOrganizer> eventOrganizers;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<OrderHistory> orderHistory;
+    private Collection<OrderHistory> orderHistory;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "favorites",
+            schema = "pra2",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
     @ToString.Exclude
-    private List<Event> favorites;
+    private Collection<Event> favorites;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Rating> ratings;
+    private Collection<Rating> ratings;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Comment> comments;
+    private Collection<Comment> comments;
 
 
     @Override
@@ -76,11 +82,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email);
+        return isAdministrator == user.isAdministrator && isSuperAdministrator == user.isSuperAdministrator && Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(nif, user.nif) && Objects.equals(preferedLanguage, user.preferedLanguage) && Objects.equals(address, user.address) && Objects.equals(eventOrganizers, user.eventOrganizers) && Objects.equals(orderHistory, user.orderHistory) && Objects.equals(favorites, user.favorites) && Objects.equals(ratings, user.ratings) && Objects.equals(comments, user.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email);
+        return Objects.hash(id, email, password, name, surname, nif, preferedLanguage, address, isAdministrator, isSuperAdministrator, eventOrganizers, orderHistory, favorites, ratings, comments);
     }
 }
