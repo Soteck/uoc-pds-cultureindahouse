@@ -82,11 +82,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email);
+        return isAdministrator == user.isAdministrator && isSuperAdministrator == user.isSuperAdministrator && Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(nif, user.nif) && Objects.equals(preferedLanguage, user.preferedLanguage) && Objects.equals(address, user.address) && Objects.equals(eventOrganizers, user.eventOrganizers) && Objects.equals(orderHistory, user.orderHistory) && Objects.equals(favorites, user.favorites) && Objects.equals(ratings, user.ratings) && Objects.equals(comments, user.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email);
+        return Objects.hash(id, email, password, name, surname, nif, preferedLanguage, address, isAdministrator, isSuperAdministrator, eventOrganizers, orderHistory, favorites, ratings, comments);
     }
 }
