@@ -21,7 +21,6 @@ public class ListFavoritesMB {
     @Getter
     @Setter
     protected Integer userId = null;
-    private UserVO user;
 
     public List<EventVO> getFavorites() {
         return favoritesLocal.listAllFavorites(userId);
