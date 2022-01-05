@@ -118,6 +118,18 @@
 
             <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
             <hr class="featurette-divider"/>
+            <script type="application/javascript">
+                let selectsHtml = document.getElementsByTagName("select");
+                for(let selectHtml of selectsHtml){
+                    if(!!selectHtml.attributes.multiple){
+                        if(!!selectHtml.children){
+                            for(let childrenHtml of selectHtml.children){
+                                childrenHtml.className = childrenHtml.className + "list-group-item";
+                            }
+                        }
+                    }
+                }
+            </script>
 
         </h:form>
     </ui:define>
