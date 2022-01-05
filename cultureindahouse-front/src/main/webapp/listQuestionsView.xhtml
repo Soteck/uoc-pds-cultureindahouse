@@ -34,6 +34,8 @@
                             </div>
                         </div>
 
+                        <c:if test="#{ not accountManagedBean.logged or ( accountManagedBean.logged and
+                        not accountManagedBean.loggedUser.superAdministrator and not accountManagedBean.loggedUser.administrator)}">
                         <div class="row" style="padding-top: 10px" >
                             <div class="col-3 p-3">
                                 <h:link outcome="AskQuestionView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
@@ -43,7 +45,7 @@
                                 </h:link>
                             </div>
                         </div>
-
+                        </c:if>
                         <p class="mt-5 mb-3 text-muted">&copy; Grupo Alpha 2021</p>
                         <hr class="featurette-divider"/>
 
@@ -71,7 +73,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="Answer"/>
                                 </f:facet>
-                            <h:form rendered="#{not ListQuestionsMB.isQuestionAnswered(question.id)}" >
+                            <h:form rendered="#{not ListQuestionsMB.isQuestionAnswered(question.id) and accountManagedBean.logged
+                            and (accountManagedBean.loggedUser.administrator or accountManagedBean.loggedUser.superAdministrator)}" >
                                 <div style="padding:2px; display:inline">
                                     <h:link outcome="AnswerQuestionView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
                                         <f:param name="questionId" value="#{question.id}"/>
