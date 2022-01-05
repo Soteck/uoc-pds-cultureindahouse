@@ -20,7 +20,7 @@ public class ListAdministratorsMB {
     }
 
     public String listAdministrators() {
-        return "AdministratorListView.xhtml";
+        return "administratorListView.xhtml";
     }
     public String Administration() { return "administrationView.xhtml"; }
     public String errorLabel() { return "ErrorView.xhtml"; }
