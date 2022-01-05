@@ -94,7 +94,7 @@ public class EventIntegrationTest {
 
         orderHistoryId = orderHistoryVO.getId();
 
-        assert orderHistoryVO.getEvent().getId() == event.getId() && orderHistoryVO.getUser().getId() == user.getId();
+        assert orderHistoryVO.getEvent().getId().equals(event.getId())  && orderHistoryVO.getUser().getId().equals(user.getId()) ;
 
 
     }
