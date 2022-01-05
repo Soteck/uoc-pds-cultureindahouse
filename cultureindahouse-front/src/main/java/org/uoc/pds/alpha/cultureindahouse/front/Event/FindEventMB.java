@@ -83,14 +83,16 @@ public class FindEventMB {
                     result = eventLocal.findEventsByName(this.filterName);
                 break;
             case "2":
-                if( this.selectedCategory.equals("-1"))
+                if( !this.selectedCategory.equals("-1"))
                     result = eventLocal.findEventsByCategory(Integer.parseInt(this.selectedCategory));
                 break;
             case "3":
-                if( this.selectedLabel.equals("-1"))
+                if( !this.selectedLabel.equals("-1"))
                     result =  eventLocal.findEventsByLabel(Integer.parseInt(this.selectedLabel));
                 break;
         }
         return result;
     }
+
+    public String ListEvents() {return "EventListView.xhtml";}
 }
