@@ -78,7 +78,7 @@ public class EventIntegrationTest {
 
         HttpHelper.put(PROFILE_URI + "events/" + event.getId() + "/label/" + label.getId(), null);
 
-        assert cat.equals(category) && lab.equals(label) && user.equals(u) && event.equals(e) && eventOrganizer.equals(ev);
+        assert cat.equals(category) && lab.equals(label) && u.getId() != null && event.equals(e) && eventOrganizer.equals(ev);
 
     }
 

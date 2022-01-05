@@ -158,7 +158,7 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
 
     @Override
     public UserVO updateAdministrator(int id, String email, String password, String name, String surname, boolean isSuperAdministrator) {
-        User user = new User();
+        User user = userRepository.get(id);
         user.setName(name);
         user.setPassword(password);
         user.setEmail(email);

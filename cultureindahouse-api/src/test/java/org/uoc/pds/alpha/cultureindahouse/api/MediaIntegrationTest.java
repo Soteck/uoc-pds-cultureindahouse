@@ -62,7 +62,7 @@ public class MediaIntegrationTest {
         event.setId(e.getId());
         log.info("Evento añadido: " + e.getId() + ". N: " + e.getName() + " D: " + e.getDescription() + " I: " + e.getImage() + " L: " + e.getLocation() + " ID: " + e.getInitDate() + " ED: " + e.getEndDate());
 
-        assert cat.equals(category) && user.equals(u) && event.equals(e) && eventOrganizer.equals(ev);
+        assert cat.equals(category) && u.getId() != null && event.equals(e) && eventOrganizer.equals(ev);
 
     }
 
