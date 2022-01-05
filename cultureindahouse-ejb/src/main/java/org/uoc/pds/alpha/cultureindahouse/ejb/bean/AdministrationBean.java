@@ -189,6 +189,8 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
         this.userRepository.delete(id);
     }
 
+
+
     @Override
     public LabelVO addLabel(String name, String description) {
         Label label = new Label();
@@ -220,6 +222,37 @@ public class AdministrationBean implements AdministrationLocal, AdministrationRe
     @Override
     public void deleteLabel(int id) {
         this.labelRepository.delete(id);
+    }
+
+    @Override
+    public void revokeAdministrator(int userId) {
+        User user = this.userRepository.get(userId);
+        user.setAdministrator(false);
+        user.setSuperAdministrator(false);
+        this.userRepository.update(userId, user);
+    }
+
+    @Override
+    public void promoteAdministrator(int userId) {
+        User user = this.userRepository.get(userId);
+        user.setAdministrator(true);
+        this.userRepository.update(userId, user);
+
+    }
+
+    @Override
+    public void promoteSuperAdministrator(int userId) {
+        User user = this.userRepository.get(userId);
+        user.setAdministrator(true);
+        user.setSuperAdministrator(true);
+        this.userRepository.update(userId, user);
+    }
+
+    @Override
+    public void revokeSuperAdministrator(int userId) {
+        User user = this.userRepository.get(userId);
+        user.setSuperAdministrator(false);
+        this.userRepository.update(userId, user);
     }
 
 

@@ -22,6 +22,15 @@ public class ListAdministratorsMB {
     public String listAdministrators() {
         return "listAdministratorsView.xhtml";
     }
+
+    public void revokeAdmin(int userId){
+        administratorLocal.revokeAdministrator(userId);
+    }
+
+    public void revokeSuperAdmin(int userId){
+        administratorLocal.revokeSuperAdministrator(userId);
+    }
+
     public String Administration() { return "administrationView.xhtml"; }
     public String errorLabel() { return "ErrorView.xhtml"; }
 

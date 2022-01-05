@@ -55,4 +55,9 @@ public interface AdministrationRemote {
 
     void deleteLabel(int id);
 
+    void revokeAdministrator(int userId);
+    void promoteAdministrator(int userId);
+    void promoteSuperAdministrator(int userId);
+    void revokeSuperAdministrator(int userId);
+
 }
