@@ -23,8 +23,9 @@ public class SendCommentMB {
     @Setter
     private String comment;
 
-    public void SendComment(Integer userId)
+    public String SendComment(Integer userId)
     {
         mediaLocal.sendComment(eventId, userId, comment);
+        return "FindOrdersView.xhtml";
     }
 }

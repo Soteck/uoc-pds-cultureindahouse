@@ -26,9 +26,11 @@ public class AddRattingMB {
     @Setter
     private String ratting = "0";
 
-    public void AddRatting(Integer userId)
+    public String AddRatting(Integer userId)
     {
+
         mediaLocal.addRating(eventId,userId,Integer.parseInt(ratting));
+        return "FindOrdersView.xhtml";
     }
 
     public List<SelectItem> getRattings()

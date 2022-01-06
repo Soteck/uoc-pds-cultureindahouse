@@ -23,7 +23,7 @@
 
                         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
                             <div class="container-fluid py-4">
-                                <h2 class="display-4 text-white fw-bold">Questions list</h2>
+                                <h2 class="display-4 text-white fw-bold">Questions Options</h2>
                                 <p class="col-md-8 text-white fs-4">Don't you want to be here? </p>
                                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                                         <span class="fa fa-home"/>
@@ -40,7 +40,7 @@
                             <div class="col-3 p-3">
                                 <h:link outcome="AskQuestionView.xhtml" class="w-100 btn btn-lg btn btn-outline-dark me-2" style="">
                                     <f:param name="eventId" value="#{ListQuestionsMB.eventId}"/>
-                                    <i class="fa">&nbsp;</i>
+                                    <i class="fa fa-circle-question">&nbsp;</i>
                                     <span>Ask question</span>
                                 </h:link>
                             </div>
@@ -73,12 +73,12 @@
                                 <f:facet name="header">
                                     <h:outputText value="Answer"/>
                                 </f:facet>
-                            <h:form rendered="#{not ListQuestionsMB.isQuestionAnswered(question.id) and accountManagedBean.logged
+                            <h:form rendered="#{not ListQuestionsMB.isQuestionAnswered(question.id)
                             and (accountManagedBean.loggedUser.administrator or accountManagedBean.loggedUser.superAdministrator)}" >
                                 <div style="padding:2px; display:inline">
-                                    <h:link outcome="AnswerQuestionView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                    <h:link outcome="AnswerQuestionView.xhmtl" class="btn btn-warning" style="margin-left: 25px;">
                                         <f:param name="questionId" value="#{question.id}"/>
-                                        <i class="fa fa-plus">&nbsp;</i>
+                                        <i class="fa fa-reply">&nbsp;</i>
                                     </h:link>
                                 </div>
                             </h:form>
@@ -89,9 +89,9 @@
                                 </f:facet>
                             <h:form rendered="#{ListQuestionsMB.isQuestionAnswered(question.id)}" >
                                 <div style="padding:2px; display:inline">
-                                    <h:link outcome="showResponseView.xhmtl" class="btn btn-success" style="margin-left: 25px;">
+                                    <h:link outcome="showResponseView.xhmtl" class="btn btn-primary" style="margin-left: 25px;">
                                         <f:param name="questionId" value="#{question.id}"/>
-                                        <i class="fa fa-search">&nbsp;</i>
+                                        <i class="fa fa-reply-all">&nbsp;</i>
                                     </h:link>
                                 </div>
                             </h:form>
@@ -126,7 +126,6 @@
 
                     </c:when>
 
-
                     <c:otherwise>
 
                         <div class="p-3 my-3 bg-dark border-warning rounded-3 " style="padding-top: 20px">
@@ -136,7 +135,7 @@
                                     <h:link outcome="index" type="button" value="" styleClass="btn btn-warning text-dark me-2">
                                         <span class="fa fa-home"/>
                                     </h:link>
-                                    <h:link outcome="AdministrationListView" type="button" value="" styleClass="btn btn-outline-success me-2" >
+                                    <h:link outcome="MediaView" type="button" value="" styleClass="btn btn-outline-success me-2" >
                                         <span class="fa fa-bars"/>
                                     </h:link>
                             </div>
