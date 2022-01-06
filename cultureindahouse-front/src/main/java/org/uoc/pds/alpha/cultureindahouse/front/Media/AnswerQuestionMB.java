@@ -28,8 +28,9 @@ public class AnswerQuestionMB {
         return questionLocal.getQuestion(questionId);
     }
 
-    public void AnswerQuestion()
+    public String AnswerQuestion()
     {
         questionLocal.answerQuestion(questionId,message);
+        return "FindEventView.xhtml";
     }
 }

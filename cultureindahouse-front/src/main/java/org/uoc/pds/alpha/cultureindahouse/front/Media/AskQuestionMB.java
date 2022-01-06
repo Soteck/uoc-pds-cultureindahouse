@@ -28,10 +28,10 @@ public class AskQuestionMB {
     @Setter
     protected String message = null;
 
-    public void AskQuestion()
+    public String AskQuestion()
     {
         questionLocal.askQuestion(eventId,title,message);
+        return "FindEventView.xhtml";
     }
-
 
 }
